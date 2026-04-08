@@ -94,6 +94,7 @@ nav {
   display: flex; flex-direction: column;
   padding: 80px 48px;
   transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow-y: auto;
 }
 .mobile-menu-overlay.open { transform: translateY(0); }
 .mobile-menu-close {
@@ -108,6 +109,11 @@ nav {
   border-bottom: 1px solid var(--rule); padding-bottom: 16px; cursor: pointer;
 }
 .mobile-menu-content button em { font-style: italic; color: var(--green); }
+
+/* Estilo específico para el botón de reservar en el menú móvil */
+.mobile-nav-book {
+  display: none; /* Oculto en escritorio */
+}
 
 /* ─────────────────────────────────────
    HOME — HERO
@@ -412,11 +418,26 @@ footer { display: grid; grid-template-columns: repeat(4, 1fr); padding: 48px; ga
 @media (max-width: 860px) {
   nav { padding: 0 24px; }
   .desktop-link { display: none; }
+  .nav-book { display: none; } /* Ocultar el botón Reservar del nav principal */
   .mobile-menu-toggle { display: block; }
 
-  .home-hero { grid-template-columns: 1fr; grid-template-rows: 56px 1fr; height: auto; min-height: 100vh; }
-  .hero-left { padding: 40px 24px 56px; grid-row: 2; justify-content: flex-start; }
-  .hero-right { height: 45vh; grid-row: 1; }
+  /* Ajuste de Hero - Resolviendo el espacio en blanco y proporciones rotas */
+  .home-hero { 
+    display: flex; 
+    flex-direction: column; 
+    height: auto; 
+    min-height: auto; 
+  }
+  .hero-right { 
+    height: 45vh; 
+    min-height: 350px; 
+    order: 1; /* Imagen arriba */
+  }
+  .hero-left { 
+    padding: 48px 24px 64px; 
+    order: 2; /* Texto abajo */
+    justify-content: flex-start; 
+  }
   .hero-img { object-position: center; }
   
   .intro { grid-template-columns: 1fr; padding: 64px 24px; gap: 24px; }
@@ -462,10 +483,33 @@ footer { display: grid; grid-template-columns: repeat(4, 1fr); padding: 48px; ga
   .pay-steps { grid-template-columns: 1fr; }
   .pay-step { border-right: none; border-bottom: 1px solid var(--rule); padding: 20px; }
   
-  .gallery-strip { grid-template-columns: repeat(2, 1fr); }
+  /* Ajuste de Galerías a 1 sola columna en móvil */
+  .gallery-strip { grid-template-columns: 1fr !important; gap: 12px !important; margin-top: 20px; }
+  .gs-item { aspect-ratio: 16/10 !important; } /* Proporción ideal para 1 columna en móvil */
+  
   .gp-header { padding: 0 20px; }
   .gp-title { font-size: 0.5rem; }
-  .gp-grid { padding: 16px; grid-template-columns: repeat(1, 1fr); gap: 8px; }
+  .gp-grid { padding: 16px; grid-template-columns: 1fr; gap: 12px; }
+
+  /* Mostrar Botón Reservar en Menú Móvil */
+  .mobile-nav-book {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--white) !important;
+    background: var(--green) !important;
+    padding: 16px 20px;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    margin-top: 16px;
+    transition: background .15s;
+  }
+  .mobile-nav-book:hover {
+    background: var(--black) !important;
+  }
 }
 </style>
 </head>
@@ -498,6 +542,7 @@ footer { display: grid; grid-template-columns: repeat(4, 1fr); padding: 48px; ga
     <button onclick="showPage('trip'); toggleMobileMenu()">Colorado <em>2026</em></button>
     <button onclick="showPage('about'); toggleMobileMenu()">Nosotros</button>
     <button onclick="goToContact(); toggleMobileMenu()">Contacto</button>
+    <a class="mobile-nav-book" href="https://wa.me/525651100276?text=Quiero%20informaci%C3%B3n%20sobre%20las%20expediciones" target="_blank">Reservar Expedición</a>
   </div>
 </div>
 
@@ -609,6 +654,16 @@ footer { display: grid; grid-template-columns: repeat(4, 1fr); padding: 48px; ga
     </div>
   </div>
 
+  <div class="trips-section" style="padding-top: 64px; padding-bottom: 64px; border-bottom: 1px solid var(--rule);">
+    <span class="ts-label" style="margin-bottom: 24px;">Galería Visual</span>
+    <div class="gallery-strip" style="margin-top:0;">
+      <div class="gs-item"><img src="https://images.pexels.com/photos/163688/hiking-trail-path-mountain-163688.jpeg" alt="Expedition 1" loading="lazy"></div>
+      <div class="gs-item"><img src="https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg" alt="Expedition 2" loading="lazy"></div>
+      <div class="gs-item"><img src="https://images.pexels.com/photos/1260815/pexels-photo-1260815.jpeg" alt="Expedition 3" loading="lazy"></div>
+      <div class="gs-item"><img src="https://images.pexels.com/photos/1144687/pexels-photo-1144687.jpeg" alt="Expedition 4" loading="lazy"></div>
+    </div>
+  </div>
+
   <div class="home-contact" id="hc-left">
     <div class="hc-left">
       <h2>El mundo es grande.<br>Hablemos de tu<br>próxima <em>expedición.</em></h2>
@@ -710,20 +765,20 @@ footer { display: grid; grid-template-columns: repeat(4, 1fr); padding: 48px; ga
 
   <div class="trips-section" style="padding-top: 64px; padding-bottom: 64px;">
     <span class="ts-label" style="margin-bottom: 32px;">Nuestros Dominios</span>
-    <div class="gallery-strip" style="grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top:0;">
-      <div class="gs-item" style="aspect-ratio: 16/9;">
+    <div class="gallery-strip" style="margin-top:0;">
+      <div class="gs-item">
         <img src="https://images.pexels.com/photos/29952996/pexels-photo-29952996.jpeg" alt="Ski & Snowboard">
         <div style="position:absolute; bottom:16px; left:16px; color:white; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; background: rgba(0,0,0,0.3); padding: 4px 8px;">Ski & Snowboard</div>
       </div>
-      <div class="gs-item" style="aspect-ratio: 16/9;">
+      <div class="gs-item">
         <img src="https://images.pexels.com/photos/36913675/pexels-photo-36913675.jpeg" alt="Surf">
         <div style="position:absolute; bottom:16px; left:16px; color:white; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; background: rgba(0,0,0,0.3); padding: 4px 8px;">Surf & Coast</div>
       </div>
-      <div class="gs-item" style="aspect-ratio: 16/9;">
+      <div class="gs-item">
         <img src="https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg" alt="Hiking">
         <div style="position:absolute; bottom:16px; left:16px; color:white; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; background: rgba(0,0,0,0.3); padding: 4px 8px;">Senderismo & Alpinismo</div>
       </div>
-      <div class="gs-item" style="aspect-ratio: 16/9;">
+      <div class="gs-item">
         <img src="https://images.pexels.com/photos/7559699/pexels-photo-7559699.jpeg" alt="Water Sports">
         <div style="position:absolute; bottom:16px; left:16px; color:white; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; background: rgba(0,0,0,0.3); padding: 4px 8px;">Deportes Acuáticos</div>
       </div>
