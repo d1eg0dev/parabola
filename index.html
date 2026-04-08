@@ -785,13 +785,32 @@ footer { display: grid; grid-template-columns: repeat(4, 1fr); padding: 48px; ga
     </div>
   </div>
 
-  <div class="home-contact" style="border-top: 1px solid var(--rule); display: flex; justify-content: center;">
-    <div class="hc-left" style="width: 100%; max-width: 800px; border-right: none; text-align: center; padding: 100px 24px;">
-      <h2 style="margin-bottom: 24px; font-size: 2.5rem;">El mundo es grande.<br><em>Hablemos de tu próxima frontera.</em></h2>
-      <p style="margin: 0 auto 40px; max-width: 600px; color: var(--mid); line-height: 1.8; font-size: 1.1rem;">Únete a nuestras próximas expediciones o permítenos diseñar una experiencia privada a la medida. Tu equipo, nuestra logística.</p>
-      <div style="display: flex; justify-content: center;">
-        <a class="btn-solid" href="https://wa.me/525651100276?text=Hola%2C%20quiero%20dise%C3%B1ar%20una%20experiencia%20de%20Outdoor%20Adventure" target="_blank">Contactar a un Curador</a>
-      </div>
+<div class="home-contact" id="hc-left">
+    <div class="hc-left">
+      <h2>El mundo es grande.<br>Hablemos de tu<br>próxima <em>expedición.</em></h2>
+      <p>Cupos limitados por expedición. Si te interesa un destino, escríbele a uno de nuestros curadores para mandarte toda la información y apartar tu lugar.</p>
+      <a class="btn-solid" href="https://wa.me/525651100276?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20expediciones%20de%20Par%C3%A1bola" target="_blank">Escribir por WhatsApp</a>
+      <p style="margin-top:20px;font-size:0.78rem;color:var(--light);font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;">fbarnetche@gmail.com</p>
+    </div>
+    <div class="hc-right">
+      <div class="cf-label" style="margin-bottom:4px;">Nombre</div>
+      <input class="cf-input" type="text" placeholder="Tu nombre">
+      <div class="cf-label">Correo</div>
+      <input class="cf-input" type="email" placeholder="tu@correo.com">
+      <div class="cf-label">Destino de interés</div>
+      <select class="cf-select">
+        <option value="">Seleccionar</option>
+        <option>Colorado 2026 — Snowmass & Crested Butte</option>
+        <option>Próximos destinos — Notifícame</option>
+        <option>Diseño de Expedición Privada</option>
+      </select>
+      <div class="cf-label">Mensaje</div>
+      <textarea class="cf-textarea" placeholder="Dudas, tamaño de grupo, disciplina..."></textarea>
+      <button class="btn-solid" style="width:100%;margin-top:4px;" onclick="submitForm()">Enviar →</button>
+      <a class="cf-wa-row" href="https://wa.me/525651100276" target="_blank">
+        <div class="wa-dot"></div>
+        <span class="cf-wa-text">Escríbenos directo por WhatsApp · +52 (565) 110 0276</span>
+      </a>
     </div>
   </div>
   
