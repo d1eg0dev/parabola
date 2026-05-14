@@ -374,6 +374,98 @@ nav {
   color: var(--mid);
 }
 
+/* GALLERY */
+.gallery-section {
+  padding: 96px 48px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.gallery-header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  margin-bottom: 60px;
+}
+
+.gallery-h2 {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 300; line-height: 1.25;
+  letter-spacing: -0.01em; color: var(--black);
+  max-width: 700px;
+}
+.gallery-h2 em { font-style: italic; color: var(--green); }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  cursor: pointer;
+  border: 1px solid var(--rule);
+  transition: all .2s;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .3s;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(17, 17, 16, 0.95);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-modal.open {
+  display: flex;
+}
+
+.gallery-modal-img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+}
+
+.gallery-close {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 1001;
+  transition: color .15s;
+}
+
+.gallery-close:hover {
+  color: var(--yellow);
+}
+
+@media (max-width: 768px) {
+  .gallery-section { padding: 80px 24px; }
+  .gallery-header { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
+
 <section class="gallery-section">
   <div class="gallery-header">
     <div class="aside-label" style="padding-top: 4px;">Galería</div>
