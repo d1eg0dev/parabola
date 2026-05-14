@@ -374,6 +374,107 @@ nav {
   color: var(--mid);
 }
 
+<section class="gallery-section">
+  <div class="gallery-header">
+    <div class="aside-label" style="padding-top: 4px;">Galería</div>
+    <div>
+      <h2 class="gallery-h2">Explora <em>Patak Ranch</em></h2>
+    </div>
+  </div>
+  
+  <div class="gallery-grid">
+    <div class="gallery-item" onclick="openGallery('1a.jpg')">
+      <img src="1a.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('1aa.jpg')">
+      <img src="1aa.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('1b.jpg')">
+      <img src="1b.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('1we.jpg')">
+      <img src="1we.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('1zx.jpg')">
+      <img src="1zx.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('2bf.jpg')">
+      <img src="2bf.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('4rfc.jpg')">
+      <img src="4rfc.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('5tcv.jpg')">
+      <img src="5tcv.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('5txss.jpg')">
+      <img src="5txss.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('5tyu.jpg')">
+      <img src="5tyu.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('5vtyu.jpg')">
+      <img src="5vtyu.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('11er.jpg')">
+      <img src="11er.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('12j.jpg')">
+      <img src="12j.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('13e.jpg')">
+      <img src="13e.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('13er.jpg')">
+      <img src="13er.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('14e.jpg')">
+      <img src="14e.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('15t.jpg')">
+      <img src="15t.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('15tr.jpg')">
+      <img src="15tr.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('56yt.jpg')">
+      <img src="56yt.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('123r.jpg')">
+      <img src="123r.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('rt6.jpg')">
+      <img src="rt6.jpg" alt="Patak Ranch">
+    </div>
+    <div class="gallery-item" onclick="openGallery('t6777.jpg')">
+      <img src="t6777.jpg" alt="Patak Ranch">
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY MODAL -->
+<div class="gallery-modal" id="galleryModal" onclick="closeGallery()">
+  <button class="gallery-close" onclick="closeGallery()">Cerrar ✕</button>
+  <img id="galleryImg" src="" alt="Patak Ranch" class="gallery-modal-img">
+</div>
+
+<script>
+function openGallery(src) {
+  document.getElementById('galleryImg').src = src;
+  document.getElementById('galleryModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeGallery() {
+  document.getElementById('galleryModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeGallery();
+});
+</script>
+  
 /* PRICING */
 .pricing-section {
   padding: 96px 48px;
