@@ -3,1184 +3,1213 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parábola</title>
+<title>Parabola — Curadores de viajes de alto nivel</title>
+<meta name="description" content="Diseñamos viajes privados hechos a la medida. No partimos de catálogos: partimos de ti. Ciudad de México · WhatsApp +52 (565) 110 0276">
+<meta name="theme-color" content="#1F4A2A">
+<meta property="og:title" content="Parabola — Curadores de viajes de alto nivel">
+<meta property="og:description" content="Viajes privados diseñados a la medida. No partimos de catálogos: partimos de ti.">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-
-/* ─────────────────────────────────────
-   TOKENS
-   Monocromático casi total.
-   Un solo acento: verde Parábola.
-   Geometric cuts como único ornamento.
-───────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
-
-:root {
-  --black:  #111110;
-  --dark:   #1c1c1a;
-  --mid:    #555550;
-  --light:  #a8a89e;
-  --rule:   #d8d8d0;
-  --bg:     #f5f4f0;
-  --white:  #fafaf8;
-  --green:  #2d5240;   
-  --amber:  #b8832a;   
-  --yellow: #e8c84a;   
-}
-
-body {
-  font-family: 'IBM Plex Sans', sans-serif;
-  background: var(--bg);
-  color: var(--black);
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ─── PAGE SYSTEM ─── */
-.page { display: none; }
-.page.active { display: block; }
-
-/* ─────────────────────────────────────
-   NAV & MOBILE MENU
-───────────────────────────────────── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 48px;
-  height: 56px;
-  background: var(--bg);
-  border-bottom: 1px solid var(--rule);
-  mix-blend-mode: normal;
-}
-
-.nav-logo {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.8rem; font-weight: 500;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--black); text-decoration: none;
-}
-.nav-logo span { color: var(--green); }
-
-.nav-links {
-  display: flex; align-items: center; gap: 40px;
-}
-.nav-links a, .nav-links button {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--mid); text-decoration: none; background: none; border: none;
-  cursor: pointer; transition: color .15s;
-}
-.nav-links a:hover, .nav-links button:hover,
-.nav-links a.active { color: var(--black); }
-
-.nav-book {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--white); background: var(--green);
-  padding: 8px 20px; text-decoration: none; cursor: pointer;
-  transition: background .15s; border: none;
-}
-.nav-book:hover { background: var(--yellow); color: var(--black); }
-
-/* Menú Móvil - Estilos Base (Oculto en Desktop) */
-.mobile-menu-toggle {
-  display: none; background: none; border: none; cursor: pointer; color: var(--black); padding: 4px; margin-left: 16px;
-}
-.mobile-menu-overlay {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-  background: var(--bg); z-index: 999;
-  display: flex; flex-direction: column;
-  padding: 80px 48px;
-  transform: translateY(-100%); transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  overflow-y: auto;
-}
-.mobile-menu-overlay.open { transform: translateY(0); }
-.mobile-menu-close {
-  position: absolute; top: 18px; right: 48px; background: none; border: none;
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--black); cursor: pointer;
-}
-.mobile-menu-content { display: flex; flex-direction: column; gap: 32px; margin-top: 40px; }
-.mobile-menu-content button {
-  font-family: 'IBM Plex Sans', sans-serif; font-size: 2.2rem; font-weight: 300;
-  color: var(--black); text-align: left; background: none; border: none;
-  border-bottom: 1px solid var(--rule); padding-bottom: 16px; cursor: pointer;
-}
-.mobile-menu-content button em { font-style: italic; color: var(--green); }
-
-/* Estilo específico para el botón de reservar en el menú móvil */
-.mobile-nav-book {
-  display: none; /* Oculto en escritorio */
-}
-
-/* ─────────────────────────────────────
-   HOME — HERO
-───────────────────────────────────── */
-.home-hero {
-  margin-top: 56px;
-  height: calc(100vh - 56px);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-left {
-  display: flex; flex-direction: column;
-  justify-content: flex-end;
-  padding: 64px 56px 72px 48px;
-  background: var(--bg);
-  position: relative; z-index: 2;
-}
-
-.hero-eyebrow {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
-  color: var(--light); margin-bottom: 28px;
-  animation: fadeIn .6s .2s both;
-}
-
-.hero-h1 {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
-  font-weight: 300; line-height: 1.06;
-  color: var(--black); letter-spacing: -0.02em;
-  margin-bottom: 40px;
-  animation: fadeIn .7s .35s both;
-}
-.hero-h1 em { font-style: italic; color: #674673; }
-
-.hero-body {
-  font-size: 0.9rem; line-height: 1.75; font-weight: 300;
-  color: var(--mid); max-width: 380px;
-  margin-bottom: 48px;
-  animation: fadeIn .6s .5s both;
-}
-
-.hero-cta-row {
-  display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
-  animation: fadeIn .6s .65s both;
-}
-
-.btn-solid {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
-  background: var(--green); color: var(--white);
-  padding: 14px 32px; text-decoration: none; cursor: pointer;
-  border: 1px solid var(--green); transition: background .15s, color .15s;
-  display: inline-block; text-align: center;
-}
-.btn-solid:hover { background: var(--black); border-color: var(--black); }
-
-.btn-text {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--mid); text-decoration: none; cursor: pointer;
-  border: none; background: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 2px; transition: color .15s, border-color .15s;
-}
-.btn-text:hover { color: var(--black); border-color: var(--black); }
-
-.hero-right { position: relative; overflow: hidden; }
-.hero-img {
-  width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(35%) brightness(0.88);
-  display: block; object-position: left;
-}
-.hero-geo {
-  position: absolute; top: 0; right: 16%; width: 38%; height: 88%;
-  background: #674673; mix-blend-mode: multiply; pointer-events: none;
-  clip-path: polygon(0 0, 100% 0, 100% 68%, 54% 100%, 0 100%);
-  animation: geoReveal 1s .8s cubic-bezier(0.22,1,0.36,1) both;
-}
-@keyframes geoReveal {
-  from { clip-path: polygon(0 0, 100% 0, 100% 0, 100% 0, 0 0); opacity: 0; }
-  to   { clip-path: polygon(0 0, 100% 0, 100% 68%, 54% 100%, 0 100%); opacity: 1; }
-}
-.hero-vline {
-  position: absolute; top: 0; right: 16%; width: 1px; height: 60%;
-  background: rgba(232,200,74,0.6); transform-origin: top;
-  animation: vlineIn .8s 1.6s cubic-bezier(0.22,1,0.36,1) both;
-}
-@keyframes vlineIn {
-  from { transform: scaleY(0); } to { transform: scaleY(1); }
-}
-.hero-year {
-  position: absolute; bottom: 32px; right: 32px;
-  font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em;
-  color: rgba(250,250,248,0.5); text-transform: uppercase;
-}
-
-/* ─────────────────────────────────────
-   HOME — MARQUEE
-───────────────────────────────────── */
-.marquee-wrap { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 14px 0; background: var(--white); }
-.marquee-track { display: flex; gap: 80px; animation: marquee 22s linear infinite; width: max-content; }
-.marquee-track span { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); white-space: nowrap; }
-.marquee-track span.accent { color: var(--green); }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ─────────────────────────────────────
-   HOME — INTRO TEXT
-───────────────────────────────────── */
-.intro { display: grid; grid-template-columns: 200px 1fr; gap: 0; padding: 96px 48px; border-bottom: 1px solid var(--rule); }
-.intro-aside { padding-top: 4px; }
-.aside-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--light); }
-.intro-main h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 300; line-height: 1.25; letter-spacing: -0.01em; color: var(--black); max-width: 700px; margin-bottom: 28px; }
-.intro-main h2 em { font-style: italic; color: var(--green); }
-.intro-main p { font-size: 0.92rem; line-height: 1.8; color: var(--mid); max-width: 560px; }
-
-/* ─────────────────────────────────────
-   HOME — VIAJES LIST
-───────────────────────────────────── */
-.trips-section { padding: 0 48px; border-bottom: 1px solid var(--rule); }
-.trips-header { display: flex; align-items: baseline; justify-content: space-between; padding: 40px 0 0; margin-bottom: 0; }
-.trips-header-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--light); }
-.trip-list { list-style: none; }
-.trip-item { border-top: 1px solid var(--rule); display: grid; grid-template-columns: 80px 1fr auto; align-items: center; gap: 0 40px; padding: 28px 0; cursor: pointer; transition: background .15s; position: relative; text-decoration: none; color: inherit; }
-.trip-item:last-child { border-bottom: 1px solid var(--rule); }
-.trip-item:hover { background: var(--white); margin: 0 -48px; padding-left: 48px; padding-right: 48px; }
-.trip-idx { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; color: var(--light); align-self: start; padding-top: 3px; }
-.trip-title { font-size: 1.5rem; font-weight: 300; letter-spacing: -0.01em; color: var(--black); margin-bottom: 4px; transition: color .15s; }
-.trip-item:hover .trip-title { color: var(--green); }
-.trip-sub { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
-.trip-meta { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
-.trip-date { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
-.trip-status { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; }
-.trip-status.open { color: var(--green); }
-.trip-status.soon { color: var(--amber); }
-.trip-status.full { color: var(--light); }
-.trip-thumb { position: absolute; right: 0; top: 50%; transform: translateY(-50%) translateX(20px); width: 140px; height: 90px; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; z-index: 10; }
-.trip-thumb img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(25%); }
-.trip-item:hover .trip-thumb { opacity: 1; transform: translateY(-50%) translateX(-160px); }
-
-/* ─────────────────────────────────────
-   HOME — PHILOSOPHY BAND
-───────────────────────────────────── */
-.band { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--rule); }
-.band-item { padding: 64px 48px; border-right: 1px solid var(--rule); }
-.band-item:last-child { border-right: none; }
-.band-num { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; color: var(--light); margin-bottom: 20px; display: block; }
-.band-title { font-size: 1.1rem; font-weight: 300; color: var(--black); margin-bottom: 14px; letter-spacing: -0.01em; }
-.band-body { font-size: 0.85rem; line-height: 1.75; color: var(--mid); }
-
-/* ─────────────────────────────────────
-   HOME — CONTACT / FOOTER
-───────────────────────────────────── */
-.home-contact { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
-.hc-left { padding: 80px 48px; border-right: 1px solid var(--rule); }
-.hc-left h2 { font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; letter-spacing: -0.02em; color: var(--black); line-height: 1.1; margin-bottom: 32px; }
-.hc-left h2 em { font-style: italic; color: var(--green); }
-.hc-left p { font-size: 0.88rem; line-height: 1.75; color: var(--mid); margin-bottom: 36px; max-width: 380px; }
-.hc-right { padding: 80px 48px; background: var(--white); }
-.cf-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 8px; }
-.cf-input, .cf-select, .cf-textarea { width: 100%; padding: 11px 0; border: none; border-bottom: 1px solid var(--rule); background: transparent; color: var(--black); font-family: 'IBM Plex Sans', sans-serif; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color .15s; margin-bottom: 28px; }
-.cf-input:focus, .cf-select:focus, .cf-textarea:focus { border-bottom-color: var(--green); }
-.cf-textarea { height: 80px; resize: none; }
-.cf-wa-row { display: flex; align-items: center; gap: 14px; margin-top: 8px; padding-top: 24px; border-top: 1px solid var(--rule); text-decoration: none; transition: opacity .15s; }
-.cf-wa-row:hover { opacity: 0.7; }
-.wa-dot { width: 8px; height: 8px; border-radius: 50%; background: #25D366; flex-shrink: 0; }
-.cf-wa-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); }
-
-/* ─── FOOTER ─── */
-footer { display: grid; grid-template-columns: repeat(4, 1fr); padding: 48px; gap: 0; background: var(--white); border-top: 1px solid var(--rule); }
-.ft-col { padding-right: 32px; }
-.ft-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--light); margin-bottom: 16px; display: block; }
-.ft-logo { font-family: 'IBM Plex Mono', monospace; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.12em; color: var(--black); text-transform: uppercase; }
-.ft-logo span { color: var(--green); }
-.ft-tagline { font-size: 0.82rem; line-height: 1.65; color: var(--mid); margin-top: 10px; font-style: italic; }
-.ft-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.ft-links a, .ft-links button { font-size: 0.82rem; color: var(--mid); text-decoration: none; transition: color .15s; background: none; border: none; padding: 0; text-align: left; font-family: inherit; cursor: pointer; }
-.ft-links a:hover, .ft-links button:hover { color: var(--black); }
-.ft-copy { grid-column: 1 / -1; padding-top: 32px; margin-top: 32px; border-top: 1px solid var(--rule); font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); }
-
-/* ─────────────────────────────────────
-   TRIP PAGE — Colorado
-───────────────────────────────────── */
-.trip-hero { margin-top: 56px; height: 80vh; min-height: 520px; position: relative; overflow: hidden; }
-.th-img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%) brightness(0.75); display: block; }
-.th-geo { position: absolute; top: 0; left: 0; width: 40%; height: 56%; background: var(--green); mix-blend-mode: multiply; clip-path: polygon(0 0, 100% 0, 78% 100%, 0 100%); animation: thGeoReveal 1s 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
-@keyframes thGeoReveal { from { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); opacity: 0; } to { clip-path: polygon(0 0, 100% 0, 65% 100%, 0 100%); opacity: 1; } }
-.th-diag { position: absolute; top: 56%; left: 0; width: 26%; height: 1px; background: rgba(232,200,74,0.7); transform-origin: right; margin-bottom: 33%; animation: thDiagReveal 1s 1s cubic-bezier(0.22, 1, 0.36, 1) both; }
-@keyframes thDiagReveal { from { clip-path: inset(0 0 100% 0); opacity: 0; transform: translateY(-20px); } to { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0); } }
-.th-content { position: absolute; bottom: 56px; left: 48px; right: 48px; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; }
-.th-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(250,250,248,0.55); margin-bottom: 12px; display: block; }
-.th-title { font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 300; color: var(--white); line-height: 1.0; letter-spacing: -0.025em; }
-.th-title em { font-style: italic; color: rgba(250,250,248,0.55); }
-.th-right { text-align: right; }
-.th-price-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,250,248,0.45); display: block; margin-bottom: 4px; }
-.th-price { font-size: 2rem; font-weight: 300; color: var(--white); letter-spacing: -0.02em; }
-.th-price sup { font-size: 0.9rem; vertical-align: super; }
-
-.trip-data-bar { display: grid; grid-template-columns: repeat(5, 1fr); border-bottom: 1px solid var(--rule); background: var(--white); }
-.tdb-item { padding: 24px 28px; border-right: 1px solid var(--rule); }
-.tdb-item:last-child { border-right: none; }
-.tdb-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--light); margin-bottom: 6px; display: block; }
-.tdb-value { font-size: 0.95rem; font-weight: 300; color: var(--black); }
-
-.trip-body { display: grid; grid-template-columns: 1fr 340px; align-items: start; border-bottom: 1px solid var(--rule); }
-.trip-main { border-right: 1px solid var(--rule); }
-.trip-side { position: sticky; top: 56px; }
-
-.trip-section { padding: 64px 56px 64px 48px; border-bottom: 1px solid var(--rule); }
-.trip-section:last-child { border-bottom: none; }
-.ts-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--light); display: block; margin-bottom: 24px; }
-.ts-title { font-size: 1.3rem; font-weight: 300; color: var(--black); letter-spacing: -0.01em; margin-bottom: 16px; }
-.ts-body { font-size: 0.9rem; line-height: 1.8; color: var(--mid); }
-
-.itin-list { list-style: none; margin-top: 8px; }
-.itin-item { display: grid; grid-template-columns: 48px 1fr; gap: 0 20px; padding: 20px 0; border-top: 1px solid var(--rule); cursor: pointer; }
-.itin-item:last-child { border-bottom: 1px solid var(--rule); }
-.itin-day { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--green); padding-top: 3px; font-weight: 500; }
-.itin-title { font-size: 0.95rem; font-weight: 300; color: var(--black); margin-bottom: 0; transition: color .15s; }
-.itin-item:hover .itin-title { color: var(--green); }
-.itin-loc { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
-.itin-detail { grid-column: 2; font-size: 0.83rem; line-height: 1.7; color: var(--mid); max-height: 0; overflow: hidden; transition: max-height .3s ease, margin .3s; }
-.itin-item.open .itin-detail { max-height: 200px; margin-top: 10px; }
-.itin-item.open .itin-title { color: var(--green); }
-
-.inc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin-top: 8px; }
-.inc-col { padding-right: 32px; }
-.inc-col:last-child { padding-right: 0; padding-left: 32px; border-left: 1px solid var(--rule); }
-.inc-col-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); margin-bottom: 14px; display: block; }
-.inc-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-.inc-list li { font-size: 0.85rem; color: var(--mid); display: flex; align-items: baseline; gap: 10px; }
-.inc-list li::before { content: '–'; color: var(--green); flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; }
-.inc-list.no li::before { content: '–'; color: var(--rule); }
-
-.pay-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; margin-top: 8px; border: 1px solid var(--rule); }
-.pay-step { padding: 24px; border-right: 1px solid var(--rule); }
-.pay-step:last-child { border-right: none; }
-.pay-pct { font-size: 1.6rem; font-weight: 300; color: var(--black); letter-spacing: -0.02em; margin-bottom: 4px; }
-.pay-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); line-height: 1.4; }
-
-.trip-side-inner { padding: 40px 36px; }
-.side-price { font-size: 2.2rem; font-weight: 300; color: var(--black); letter-spacing: -0.02em; margin-bottom: 4px; }
-.side-price-note { font-family: 'IBM Plex Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light); margin-bottom: 28px; display: block; }
-.side-divider { height: 1px; background: var(--rule); margin: 24px 0; }
-.side-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
-.side-row-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light); }
-.side-row-val { font-size: 0.85rem; color: var(--black); }
-.btn-full { width: 100%; padding: 16px; background: var(--green); color: var(--white); border: none; cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 24px; margin-bottom: 12px; transition: background .15s; }
-.btn-full:hover { background: var(--black); }
-.btn-wa-side { width: 100%; padding: 13px; background: transparent; color: var(--mid); border: 1px solid var(--rule); cursor: pointer; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; transition: border-color .15s, color .15s; }
-.btn-wa-side:hover { border-color: #25D366; color: #25D366; }
-.wa-badge { width: 6px; height: 6px; border-radius: 50%; background: #25D366; }
-.side-note { font-family: 'IBM Plex Mono', monospace; font-size: 0.55rem; letter-spacing: 0.08em; color: var(--light); line-height: 1.6; margin-top: 20px; text-align: center; }
-
-.gallery-trigger { display: inline-flex; align-items: center; gap: 10px; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--mid); background: none; border: none; border-bottom: 1px solid var(--rule); padding-bottom: 2px; cursor: pointer; transition: color .15s, border-color .15s; }
-.gallery-trigger:hover { color: var(--black); border-color: var(--black); }
-.gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3px; margin-top: 24px; }
-.gs-item { aspect-ratio: 4/3; overflow: hidden; cursor: pointer; position: relative; }
-.gs-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%); transition: filter .25s, transform .3s; display: block; }
-.gs-item:hover img { filter: grayscale(0%); transform: scale(1.03); }
-
-/* ─────────────────────────────────────
-   GALLERY POPUP
-───────────────────────────────────── */
-.gallery-popup { position: fixed; inset: 0; z-index: 500; background: rgba(17,17,16,0.97); display: none; flex-direction: column; overflow: hidden; }
-.gallery-popup.open { display: flex; }
-.gp-header { display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 56px; flex-shrink: 0; border-bottom: 1px solid rgba(250,250,248,0.08); }
-.gp-title { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(250,250,248,0.35); }
-.gp-close { font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,250,248,0.45); background: none; border: none; cursor: pointer; transition: color .15s; }
-.gp-close:hover { color: var(--white); }
-.gp-grid { flex: 1; overflow-y: auto; padding: 24px 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 3px; align-content: start; }
-.gp-item { aspect-ratio: 3/2; overflow: hidden; cursor: pointer; position: relative; }
-.gp-item::after { content: ''; position: absolute; inset: 0; pointer-events: none; opacity: 0.08; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); background-size: 160px; mix-blend-mode: overlay; }
-.gp-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(40%) brightness(0.9); transition: filter .3s; display: block; }
-.gp-item:hover img { filter: grayscale(10%) brightness(1); }
-
-/* Lightbox single */
-.gp-single { position: fixed; inset: 0; z-index: 600; background: rgba(17,17,16,0.99); display: none; align-items: center; justify-content: center; }
-.gp-single.open { display: flex; }
-.gp-single img { max-width: 88vw; max-height: 88vh; object-fit: contain; filter: grayscale(20%); }
-.gp-single-close { position: absolute; top: 20px; right: 32px; font-family: 'IBM Plex Mono', monospace; font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(250,250,248,0.4); background: none; border: none; cursor: pointer; transition: color .15s; }
-.gp-single-close:hover { color: var(--white); }
-
-/* ─────────────────────────────────────
-   FLOATING WA
-───────────────────────────────────── */
-.wa-fab { position: fixed; bottom: 24px; right: 24px; z-index: 200; width: 44px; height: 44px; background: #25D366; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform .15s; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
-.wa-fab:hover { transform: scale(1.08); }
-.wa-fab svg { width: 22px; height: 22px; }
-
-/* ─────────────────────────────────────
-   ANIMATIONS
-───────────────────────────────────── */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ─────────────────────────────────────
-   RESPONSIVE (OPTIMIZED FOR MOBILE)
-───────────────────────────────────── */
-@media (max-width: 860px) {
-  nav { padding: 0 24px; }
-  .desktop-link { display: none; }
-  .nav-book { display: none; } /* Ocultar el botón Reservar del nav principal */
-  .mobile-menu-toggle { display: block; }
-
-  /* Ajuste de Hero - Resolviendo el espacio en blanco y proporciones rotas */
-  .home-hero { 
-    display: flex; 
-    flex-direction: column; 
-    height: auto; 
-    min-height: auto; 
+  :root{
+    --paper:#F4F1E8;
+    --ink:#152019;
+    --ink2:#4C564E;
+    --green:#2F6B3E;
+    --green-deep:#1F4A2A;
+    --acc:#E2531F;
+    --acc-deep:#C2430F;
+    --yellow:#FFD41F;
+    --wa:#25D366;
+    --line:rgba(21,32,25,.16);
+    --line-c:rgba(244,241,232,.22);
+    --sans:"Instrument Sans",Helvetica,sans-serif;
+    --mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --pad:clamp(20px,5vw,72px);
   }
-  .hero-right { 
-    height: 45vh; 
-    min-height: 350px; 
-    order: 1; /* Imagen arriba */
-  }
-  .hero-left { 
-    padding: 48px 24px 64px; 
-    order: 2; /* Texto abajo */
-    justify-content: flex-start; 
-  }
-  .hero-img { object-position: left; }
-  
-  .intro { grid-template-columns: 1fr; padding: 64px 24px; gap: 24px; }
-  .intro-main h2 { font-size: 1.8rem; }
-  
-  .trips-section { padding: 0 24px; }
-  .trip-item { grid-template-columns: 40px 1fr; gap: 16px; padding: 24px 0; }
-  .trip-meta, .trip-thumb { display: none; }
-  .trip-item:hover { margin: 0; padding-left: 0; padding-right: 0; background: transparent; }
-  
-  .band { grid-template-columns: 1fr; }
-  .band-item { border-right: none; border-bottom: 1px solid var(--rule); padding: 48px 24px; }
-  
-  .home-contact { grid-template-columns: 1fr; }
-  .hc-left { border-right: none; border-bottom: 1px solid var(--rule); padding: 56px 24px; }
-  .hc-right { padding: 56px 24px; }
-  
-  footer { grid-template-columns: 1fr; gap: 32px; padding: 48px 24px; }
-  .ft-col { padding-right: 0; }
-  .ft-copy { margin-top: 16px; padding-top: 24px; }
-  
-  .trip-hero { height: 60vh; min-height: 400px; }
-  .th-content { padding: 0 24px 32px; flex-direction: column; gap: 16px; align-items: flex-start; left: 0; right: 0; bottom: 0; }
-  .th-right { text-align: left; }
-  .th-title { font-size: 2.8rem; }
-  
-  .trip-data-bar { grid-template-columns: repeat(2, 1fr); }
-  .tdb-item { padding: 16px 24px; border-bottom: 1px solid var(--rule); }
-  .tdb-item:nth-child(even) { border-right: none; }
-  .tdb-item:last-child { grid-column: 1 / -1; border-bottom: none; border-right: none; }
-  
-  .trip-body { grid-template-columns: 1fr; }
-  .trip-main { border-right: none; }
-  .trip-section { padding: 48px 24px; }
-  
-  .trip-side { position: static; border-top: 1px solid var(--rule); }
-  .trip-side-inner { padding: 40px 24px; }
-  
-  .inc-grid { grid-template-columns: 1fr; gap: 32px; }
-  .inc-col { padding-right: 0; }
-  .inc-col:last-child { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 24px; }
-  
-  .pay-steps { grid-template-columns: 1fr; }
-  .pay-step { border-right: none; border-bottom: 1px solid var(--rule); padding: 20px; }
-  
-  /* Ajuste de Galerías a 1 sola columna en móvil */
-  .gallery-strip { grid-template-columns: 1fr !important; gap: 12px !important; margin-top: 20px; }
-  .gs-item { aspect-ratio: 16/10 !important; } /* Proporción ideal para 1 columna en móvil */
-  
-  .gp-header { padding: 0 20px; }
-  .gp-title { font-size: 0.5rem; }
-  .gp-grid { padding: 16px; grid-template-columns: 1fr; gap: 12px; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font:400 16.5px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--acc);color:var(--paper)}
+  section{scroll-margin-top:84px}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;background:none;border:0;color:inherit}
+  :focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+  .wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--pad)}
 
-  /* Mostrar Botón Reservar en Menú Móvil */
-  .mobile-nav-book {
-    display: block;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 1rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--white) !important;
-    background: var(--green) !important;
-    padding: 16px 20px;
-    text-decoration: none;
-    text-align: center;
-    border: none;
-    margin-top: 16px;
-    transition: background .15s;
+  .label{display:flex;align-items:center;gap:14px;font:500 10px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--acc)}
+  .label::before{content:"";width:28px;height:1px;background:currentColor;flex:none}
+  .dark .label{color:var(--yellow)}
+  .display{font:500 clamp(2.7rem,7vw,6rem)/1.04 var(--sans);letter-spacing:-.03em}
+  .h2{font:500 clamp(2rem,4.4vw,3.4rem)/1.1 var(--sans);letter-spacing:-.03em}
+  .sec-intro{max-width:46ch;color:var(--ink2);font-size:1.02rem}
+  .dark .sec-intro{color:rgba(244,241,232,.75)}
+  .sec-head{margin-bottom:clamp(2.8rem,6vw,5rem)}
+  .sec-head .label{margin-bottom:1.4rem}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ——— Velo de carga (parábolas + puntos) ——— */
+  #veil{position:fixed;inset:0;z-index:2000;background:var(--green-deep);display:grid;place-items:center;transition:transform .8s var(--ease)}
+  #veil.lift{transform:translateY(-101%)}
+  .veil-in{text-align:center}
+  .veil-art{width:210px;max-width:56vw;display:block;margin:0 auto 18px}
+  .vp{fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:vdraw 1.5s var(--ease) forwards}
+  .v1{stroke:var(--acc);stroke-width:2.6;animation-delay:.15s}
+  .v2{stroke:rgba(244,241,232,.55);stroke-width:1.5;animation-delay:.45s}
+  .v3{stroke:var(--yellow);stroke-width:1.5;opacity:.9;animation-delay:.75s;animation-duration:1.4s}
+  .vd{fill:var(--acc);opacity:0;transform:scale(0);transform-origin:center;transform-box:fill-box;animation:vpop .5s var(--ease) forwards}
+  .vd-y{fill:var(--yellow)}
+  .vd-p{fill:rgba(244,241,232,.85)}
+  .veil-word{display:block;font:500 12px var(--sans);letter-spacing:.44em;text-indent:.44em;color:var(--paper);opacity:0;animation:vfade .7s 1.9s forwards}
+  .veil-tag{display:block;margin-top:14px;font:400 10px var(--mono);letter-spacing:.3em;text-transform:uppercase;color:rgba(244,241,232,.55);opacity:0;animation:vfade .8s 2.1s forwards}
+  @keyframes vdraw{to{stroke-dashoffset:0}}
+  @keyframes vfade{to{opacity:1}}
+  @keyframes vpop{to{opacity:1;transform:scale(1)}}
+
+  /* ——— Ruta en rojo ——— */
+  #route{position:fixed;inset:0;width:100%;height:100vh;pointer-events:none;z-index:3}
+  #routePath{stroke:var(--acc);stroke-width:2.2;fill:none;stroke-linecap:round}
+  #tip{fill:var(--acc)}
+  #tipRing{stroke:var(--acc);fill:none;stroke-width:1.2}
+  .node{fill:var(--paper);stroke:var(--acc);stroke-width:1.6;transition:fill .5s}
+  .node.on{fill:var(--acc)}
+  .node-label{font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .6s}
+  .node-label.on{opacity:1}
+  .node-label.lt{fill:var(--ink)}
+  .node-label.dk{fill:var(--paper)}
+
+  /* ——— Header ——— */
+  #top{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px var(--pad);color:var(--paper);transition:background .45s,color .45s,padding .45s,border-color .45s;border-bottom:1px solid transparent}
+  #top.scrolled{background:rgba(244,241,232,.92);backdrop-filter:blur(10px);color:var(--ink);padding-block:13px;border-color:var(--line)}
+  .brand{display:flex;align-items:center;gap:11px;font:600 12px var(--sans);letter-spacing:.34em}
+  .brand svg{width:34px;display:block}
+  .brand svg path{stroke:var(--acc);stroke-width:2.4;fill:none;stroke-linecap:round}
+  .top-nav{display:flex;gap:32px}
+  .top-nav a{position:relative;font:500 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;padding-block:5px}
+  .top-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+  .top-nav a:hover::after{transform:scaleX(1);transform-origin:left}
+  .lang{display:flex;align-items:center;gap:5px;font:500 11px var(--mono);letter-spacing:.08em}
+  .lang span{opacity:.4}
+  .lang button{opacity:.55;padding:4px 2px;transition:opacity .3s}
+  .lang button:hover{opacity:.85}
+  .lang button.on{opacity:1;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--acc)}
+  #menuBtn{display:none;width:38px;height:38px;position:relative}
+  #menuBtn span{position:absolute;left:8px;right:8px;height:1.5px;background:currentColor;transition:transform .4s var(--ease),top .4s var(--ease)}
+  #menuBtn span:first-child{top:15px}
+  #menuBtn span:last-child{top:23px}
+  body.menu-open #menuBtn span:first-child{top:19px;transform:rotate(45deg)}
+  body.menu-open #menuBtn span:last-child{top:19px;transform:rotate(-45deg)}
+
+  #menu{position:fixed;inset:0;z-index:95;background:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
+  body.menu-open #menu{opacity:1;visibility:visible}
+  #menu nav{display:flex;flex-direction:column;gap:4px}
+  #menu a.m-link{font:500 clamp(1.9rem,8vw,2.8rem)/1.3 var(--sans);letter-spacing:-.02em;display:flex;align-items:baseline;gap:16px;opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  #menu a.m-link small{font:500 10px var(--mono);letter-spacing:.2em;color:var(--acc)}
+  body.menu-open #menu a.m-link{opacity:1;transform:none}
+  body.menu-open #menu nav a:nth-child(1){transition-delay:.08s}
+  body.menu-open #menu nav a:nth-child(2){transition-delay:.15s}
+  body.menu-open #menu nav a:nth-child(3){transition-delay:.22s}
+  body.menu-open #menu nav a:nth-child(4){transition-delay:.29s}
+  .menu-contact{margin-top:2.6rem;display:flex;flex-direction:column;gap:.55rem;font:400 13px var(--mono);letter-spacing:.03em;color:var(--ink2)}
+  .menu-contact a{text-decoration:underline;text-underline-offset:3px;width:fit-content}
+  .menu-contact a:hover{color:var(--acc)}
+
+  /* ——— Botones ——— */
+  .btn{display:inline-flex;align-items:center;gap:14px;background:var(--acc);color:var(--paper);padding:17px 26px;border:1px solid var(--acc);font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;transition:background .35s,border-color .35s}
+  .btn:hover{background:var(--acc-deep);border-color:var(--acc-deep)}
+  .btn svg{transition:transform .4s var(--ease)}
+  .btn:hover svg{transform:translateX(5px)}
+  .tlink{font:600 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:4px;transition:color .3s}
+  .tlink:hover{color:var(--acc)}
+
+  /* ——— Hero ——— */
+  .hero{position:relative;min-height:100svh;background:var(--green);color:var(--paper);display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--pad) 44px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(55% 45% at 18% 22%,rgba(255,255,255,.06),transparent 60%),
+    radial-gradient(45% 40% at 78% 12%,rgba(0,0,0,.16),transparent 60%),
+    radial-gradient(60% 50% at 70% 85%,rgba(255,255,255,.05),transparent 55%),
+    radial-gradient(40% 45% at 30% 80%,rgba(0,0,0,.18),transparent 60%)}
+  .hero-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .hero-art path{stroke:var(--paper);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:hdraw 2.2s var(--ease) forwards}
+  .hero-art path:nth-child(2){animation-delay:.35s;animation-duration:2.6s}
+  .hero-art circle{fill:var(--paper);opacity:0;animation:hfade 1s .9s forwards}
+  @keyframes hdraw{to{stroke-dashoffset:0}}
+  @keyframes hfade{to{opacity:.4}}
+  .hero-inner{position:relative;z-index:2;max-width:1240px;width:100%;margin-inline:auto}
+  .hero .label{margin-bottom:clamp(1.5rem,3vw,2.2rem)}
+  .h1 .line{display:block;overflow:hidden}
+  .h1 .line>span{display:block;transform:translateY(110%);transition:transform 1s var(--ease)}
+  body.ready .h1 .line>span{transform:none}
+  .h1 .line:nth-child(2)>span{transition-delay:.09s}
+  .h1 .line:nth-child(3)>span{transition-delay:.18s}
+  .h1 .dot{color:var(--acc)}
+  .hero-sub{max-width:52ch;margin-top:clamp(1.5rem,3vw,2.2rem);color:rgba(244,241,232,.85);font-size:1.05rem}
+  .hero-cta{display:flex;align-items:center;gap:30px;flex-wrap:wrap;margin-top:clamp(1.8rem,3.5vw,2.6rem)}
+  .hero-foot{position:relative;z-index:2;max-width:1240px;margin:clamp(2.4rem,5vh,4rem) auto 0;display:flex;justify-content:space-between;align-items:flex-end;gap:18px;font:500 10px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:rgba(244,241,232,.65);opacity:0;transition:opacity 1s .9s}
+  body.ready .hero-foot{opacity:1}
+  .scroll-hint{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--paper)}
+  .scroll-hint .vline{width:1px;height:44px;background:rgba(244,241,232,.35);position:relative;overflow:hidden;display:block}
+  .scroll-hint .vline::after{content:"";position:absolute;inset:0;background:var(--acc);animation:drip 2s var(--ease) infinite}
+  @keyframes drip{0%{transform:translateY(-100%)}55%{transform:translateY(0)}100%{transform:translateY(100%)}}
+
+  .paper-bg{background-image:radial-gradient(rgba(21,32,25,.10) 1px,transparent 1.1px);background-size:26px 26px}
+
+  /* ——— Nosotros ——— */
+  .manif{padding:clamp(6rem,13vh,10rem) 0}
+  .manif-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .manif-copy{grid-column:5/13;max-width:62ch}
+  .lede{font:400 clamp(1.08rem,1.5vw,1.28rem)/1.65 var(--sans);color:var(--ink2)}
+  .lede+.lede{margin-top:1.4em}
+  .lede strong{font-weight:600;color:var(--ink)}
+  .pull{grid-column:1/10;margin-top:clamp(3.4rem,7vw,5.4rem);padding-top:clamp(1.8rem,4vw,2.6rem);border-top:1px solid var(--line);font:500 clamp(1.5rem,3vw,2.4rem)/1.25 var(--sans);letter-spacing:-.02em;max-width:24ch}
+  .hl{background:var(--yellow);padding:.02em .14em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .principles{grid-column:5/13;margin-top:clamp(3rem,6vw,4.6rem);list-style:none}
+  .principles li{display:flex;gap:20px;align-items:baseline;padding:1.1rem 0;border-top:1px solid var(--line);font-size:1.05rem;color:var(--ink2)}
+  .principles li:last-child{border-bottom:1px solid var(--line)}
+  .principles li span{font:500 10px var(--mono);letter-spacing:.14em;color:var(--acc);flex:none}
+
+  /* ——— Banda campo ——— */
+  .field-band{position:relative;color:var(--paper);overflow:hidden;background:
+    radial-gradient(55% 45% at 15% 20%,rgba(255,255,255,.06),transparent 60%),
+    radial-gradient(45% 40% at 80% 15%,rgba(0,0,0,.16),transparent 60%),
+    radial-gradient(60% 50% at 72% 78%,rgba(255,255,255,.05),transparent 55%),
+    radial-gradient(45% 45% at 28% 85%,rgba(0,0,0,.18),transparent 60%),
+    radial-gradient(30% 30% at 55% 40%,rgba(0,0,0,.10),transparent 65%),
+    var(--green)}
+  .field-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .fl{stroke:var(--paper);stroke-width:1.5;fill:none;opacity:.85;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.9s var(--ease) .2s}
+  .fl.d2{transition-delay:.5s;transition-duration:2.3s}
+  .field-band.in .fl{stroke-dashoffset:0}
+  .fdot{fill:var(--paper);opacity:0;transition:opacity .8s 1.4s}
+  .field-band.in .fdot{opacity:.9}
+  .fshadow{fill:rgba(8,22,12,.30)}
+  .fcopy{position:relative;z-index:2;padding:clamp(5rem,12vh,8rem) 0}
+  .fcopy .h2{max-width:18ch;margin-top:1.4rem}
+  .fcopy .sub{max-width:46ch;margin-top:1.4rem;color:rgba(244,241,232,.85)}
+  .stats{list-style:none;display:flex;gap:clamp(1.6rem,4vw,3.2rem);flex-wrap:wrap;margin-top:2.6rem;font:500 10px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.8)}
+  .stats li{display:flex;align-items:center;gap:10px}
+  .stats li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--acc);flex:none}
+
+  /* ——— Proceso ——— */
+  .dark{background:var(--green);color:var(--paper)}
+  .process{padding:clamp(6rem,13vh,10rem) 0}
+  .process .sec-head{max-width:1240px;margin-inline:auto;padding-inline:var(--pad)}
+  .phases{max-width:1240px;margin-inline:auto;padding-inline:var(--pad)}
+  .phase{display:grid;grid-template-columns:clamp(70px,10vw,150px) minmax(0,1fr) minmax(0,1fr);gap:clamp(1.4rem,4vw,4rem);align-items:start;padding:clamp(2.4rem,5vw,3.8rem) 0;border-top:1px solid var(--line-c)}
+  .phase:last-of-type{border-bottom:1px solid var(--line-c)}
+  .phase:nth-child(2){padding-left:clamp(0px,5vw,90px)}
+  .phase:nth-child(3){padding-left:clamp(0px,2vw,40px)}
+  .ph-num{font:500 11px var(--mono);letter-spacing:.2em;color:rgba(244,241,232,.65);padding-top:.5rem}
+  .ph-num b{display:block;font:500 10px var(--mono);color:var(--yellow);letter-spacing:.2em;margin-bottom:.5rem}
+  .ph-word{font:500 clamp(1.9rem,3.2vw,2.8rem)/1.1 var(--sans);letter-spacing:-.02em;margin-bottom:.9rem}
+  .ph-text{color:rgba(244,241,232,.8);font-size:.99rem;max-width:46ch}
+  .process-note{max-width:1240px;margin:clamp(2.2rem,5vw,3.4rem) auto 0;padding-inline:var(--pad);font:400 13px var(--mono);letter-spacing:.04em;color:rgba(244,241,232,.6)}
+
+  /* ——— Banda collage ——— */
+  .collage{position:relative;display:block}
+  .collage svg{display:block;width:100%;height:auto}
+  .cl{stroke:var(--paper);stroke-width:1.5;fill:none;opacity:.8;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--ease) .3s}
+  .collage.in .cl{stroke-dashoffset:0}
+  .collage-note{position:absolute;left:var(--pad);bottom:clamp(1.4rem,4vw,2.8rem);z-index:2;color:var(--paper);font:500 clamp(1.15rem,2.2vw,1.8rem)/1.3 var(--sans);letter-spacing:-.02em;max-width:22ch}
+
+  /* ——— Enfoques ——— */
+  .focus{padding:clamp(6rem,13vh,10rem) 0}
+  .focus .sec-head{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(2rem,5vw,6rem);align-items:end}
+  .focus .sec-head .h2{margin-top:1.4rem}
+  .focus .sec-intro{justify-self:end}
+  .acc{border-top:1px solid var(--line)}
+  .acc-item{border-bottom:1px solid var(--line)}
+  .acc-head{width:100%;display:grid;grid-template-columns:56px 1fr auto 34px;gap:clamp(1rem,3vw,2.4rem);align-items:baseline;padding:clamp(1.5rem,3vw,2.2rem) 0;text-align:left}
+  .acc-num{font:500 11px var(--mono);letter-spacing:.14em;color:var(--acc);transition:transform .4s var(--ease)}
+  .acc-title{font:500 clamp(1.5rem,3vw,2.4rem)/1.15 var(--sans);letter-spacing:-.02em;transition:transform .4s var(--ease)}
+  .acc-tag{font:500 10px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)}
+  .acc-x{position:relative;width:14px;height:14px;justify-self:end;align-self:center}
+  .acc-x::before,.acc-x::after{content:"";position:absolute;background:var(--acc);transition:transform .45s var(--ease)}
+  .acc-x::before{left:0;right:0;top:6.5px;height:1.5px}
+  .acc-x::after{top:0;bottom:0;left:6.5px;width:1.5px}
+  .acc-head:hover .acc-title{transform:translateX(12px)}
+  .acc-item.open .acc-x::after{transform:rotate(90deg)}
+  .acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+  .acc-item.open .acc-body{grid-template-rows:1fr}
+  .acc-body-in{overflow:hidden}
+  .acc-body p{max-width:56ch;color:var(--ink2);padding:0 0 clamp(1.6rem,3vw,2.2rem) calc(56px + clamp(1rem,3vw,2.4rem))}
+
+  /* ——— A tu medida (parábolas) ——— */
+  .medida{padding:clamp(6rem,13vh,10rem) 0}
+  .med-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,440px);gap:clamp(2.5rem,6vw,5.5rem);align-items:center}
+  .med-grid .h2{margin-top:1.4rem;max-width:14ch}
+  .med-grid .sec-intro{margin-top:1.4rem;max-width:46ch}
+  .med-cta{margin-top:2.2rem}
+  .med-fig svg{display:block;width:100%;height:auto}
+  .mp{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.7s var(--ease) .25s}
+  .medida.in .mp{stroke-dashoffset:0}
+  .mdot{opacity:0;transition:opacity .7s 1.3s}
+  .medida.in .mdot{opacity:1}
+
+  /* ——— Formulario ——— */
+  .apply{padding:clamp(6rem,13vh,10rem) 0}
+  .apply .sec-head .h2{max-width:16ch;margin-bottom:1.6rem}
+  .apply-grid{display:grid;grid-template-columns:minmax(0,.72fr) minmax(0,1fr);gap:clamp(2.6rem,7vw,6.5rem);align-items:start}
+  .apply-aside{position:sticky;top:110px}
+  .aside-title{font:500 1.25rem/1.4 var(--sans);margin-bottom:1.6rem}
+  .aside-steps{list-style:none}
+  .aside-steps li{display:flex;gap:16px;padding:1rem 0;border-top:1px solid var(--line-c);color:rgba(244,241,232,.8);font-size:.95rem}
+  .aside-steps li span{font:500 11px var(--mono);color:var(--yellow);flex:none;padding-top:4px}
+  .aside-note{margin-top:1.8rem;font:400 12px var(--mono);letter-spacing:.04em;color:rgba(244,241,232,.6)}
+  .aside-direct{margin-top:2.2rem;padding-top:1.8rem;border-top:1px solid var(--line-c);display:flex;flex-direction:column;gap:.55rem}
+  .aside-direct .f-label{margin-bottom:.2rem}
+  .aside-direct a{font-size:1rem;color:var(--paper);text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(244,241,232,.4);transition:text-decoration-color .3s,color .3s;width:fit-content}
+  .aside-direct a:hover{color:var(--yellow);text-decoration-color:var(--yellow)}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.2rem 1.8rem}
+  .field.full{grid-column:1/-1}
+  .f-label{display:block;font:500 10px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:rgba(244,241,232,.75);margin-bottom:.8rem}
+  .f-input{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(244,241,232,.35);padding:8px 0 12px;color:var(--paper);font:400 1rem/1.5 var(--sans);border-radius:0;transition:border-color .3s}
+  .f-input:focus{outline:none;border-color:var(--yellow)}
+  .f-input::placeholder{color:rgba(244,241,232,.35)}
+  textarea.f-input{resize:vertical;min-height:84px}
+  .f-err{margin-top:.6rem;font:400 11px var(--mono);letter-spacing:.04em;color:var(--yellow)}
+  .chips{display:flex;flex-wrap:wrap;gap:9px}
+  .chips input{position:absolute;opacity:0;pointer-events:none}
+  .chips label{padding:10px 17px;border:1px solid rgba(244,241,232,.35);border-radius:999px;font:400 .88rem var(--sans);color:rgba(244,241,232,.85);cursor:pointer;transition:background .3s,color .3s,border-color .3s}
+  .chips label:hover{border-color:var(--paper);color:var(--paper)}
+  .chips input:checked+label{background:var(--paper);color:var(--green-deep);border-color:var(--paper)}
+  .chips input:focus-visible+label{outline:2px solid var(--yellow);outline-offset:2px}
+  .form-foot{grid-column:1/-1;display:flex;align-items:center;gap:24px;flex-wrap:wrap;margin-top:.4rem}
+  .form-micro{font:400 11px var(--mono);letter-spacing:.05em;color:rgba(244,241,232,.55)}
+  .apply-form-wrap{transition:opacity .5s}
+  .apply-form-wrap.sent{opacity:0}
+  #formSuccess{max-width:52ch}
+  #formSuccess svg{width:130px;display:block;margin-bottom:1.4rem}
+  #formSuccess path{stroke:var(--acc);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100}
+  #formSuccess.show path{animation:vdraw 1.1s .2s var(--ease) forwards}
+  #formSuccess h3{font:500 clamp(1.6rem,2.6vw,2.2rem)/1.2 var(--sans);letter-spacing:-.02em;margin-bottom:1rem}
+  #formSuccess p{color:rgba(244,241,232,.82)}
+  #formSuccess a{border-bottom:1px solid currentColor}
+  #formSuccess{opacity:0;transition:opacity .7s}
+  #formSuccess.show{opacity:1}
+
+  /* ——— WhatsApp flotante ——— */
+  #waFloat{position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:120;display:flex;align-items:center;background:var(--wa);color:#fff;padding:15px;border-radius:999px;box-shadow:0 12px 30px rgba(15,35,20,.28);opacity:0;transform:translateY(14px);transition:opacity .6s .8s,transform .6s .8s var(--ease),background .3s}
+  body.ready #waFloat{opacity:1;transform:none}
+  #waFloat:hover{background:#1DB954}
+  #waFloat svg{width:26px;height:26px;display:block;position:relative;z-index:1}
+  #waFloat::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(37,211,102,.5);animation:wap 3.4s infinite}
+  @keyframes wap{0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}60%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .wa-tip{font:600 12px var(--sans);letter-spacing:.02em;white-space:nowrap;max-width:0;overflow:hidden;transition:max-width .45s var(--ease);position:relative;z-index:1}
+  #waFloat:hover .wa-tip{max-width:220px;margin-left:10px}
+
+  /* ——— Footer ——— */
+  footer{background:var(--green-deep);color:var(--paper);border-top:1px solid var(--line-c)}
+  .foot-mark{text-align:center;padding:clamp(3.4rem,7vw,5.5rem) 0 0;position:relative}
+  .foot-mark svg{width:90px;display:block;margin:0 auto 14px}
+  .foot-mark path{stroke:var(--acc);stroke-width:2.2;fill:none;stroke-linecap:round}
+  .foot-word{font:500 clamp(2.4rem,8.5vw,6.5rem)/1 var(--sans);letter-spacing:.3em;text-indent:.3em}
+  .foot-tag{font:500 10px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:rgba(244,241,232,.6);margin-top:1.4rem}
+  .foot-grid{display:grid;grid-template-columns:1.1fr .7fr .9fr .6fr;gap:clamp(2rem,5vw,4rem);padding-block:clamp(2.6rem,5vw,4rem)}
+  .foot-grid p{color:rgba(244,241,232,.7);font-size:.94rem;max-width:30ch}
+  .foot-col h4{font:500 10px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.1rem}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+  .foot-col a{font-size:.94rem;color:rgba(244,241,232,.78);transition:color .3s;display:inline-flex;align-items:center;gap:9px}
+  .foot-col a:hover{color:var(--paper)}
+  .foot-col a svg{width:15px;height:15px;flex:none}
+  .foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line-c);padding-block:1.4rem;font:400 11px var(--mono);letter-spacing:.06em;color:rgba(244,241,232,.45)}
+
+  /* ——— Responsive ——— */
+  @media (max-width:1024px){
+    .manif-copy{grid-column:3/13}
+    .principles{grid-column:3/13}
+    .pull{grid-column:1/12}
+    .focus .sec-head{grid-template-columns:1fr;align-items:start}
+    .focus .sec-intro{justify-self:start}
+    .med-grid{grid-template-columns:1fr;gap:3rem}
+    .med-fig{max-width:420px}
+    .foot-grid{grid-template-columns:1fr 1fr}
   }
-  .mobile-nav-book:hover {
-    background: var(--black) !important;
+  @media (max-width:900px){
+    .top-nav{display:none}
+    #menuBtn{display:block}
+    .phase{grid-template-columns:1fr;gap:1rem}
+    .apply-grid{grid-template-columns:1fr}
+    .apply-aside{position:static}
   }
-}
+  @media (max-width:760px){
+    .top-cta{display:none}
+  }
+  @media (max-width:640px){
+    .manif-grid{display:block}
+    .manif-copy{margin-top:2rem}
+    .acc-head{grid-template-columns:40px 1fr 24px}
+    .acc-tag{display:none}
+    .acc-body p{padding-left:0}
+    .form-grid{grid-template-columns:1fr}
+    .hero-foot span{display:none}
+    .foot-grid{grid-template-columns:1fr;gap:2.2rem}
+    .node-label{display:none}
+    #routePath{stroke-width:1.8}
+    .collage-note{max-width:16ch}
+    .veil-art{width:170px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+    html{scroll-behavior:auto}
+    .reveal,.fdot,.mdot{opacity:1;transform:none}
+    .h1 .line>span{transform:none}
+    .hero-foot{opacity:1}
+    .hero-art path,.fl,.cl,.mp,.vp{stroke-dashoffset:0}
+    .vd{opacity:1;transform:none}
+    #waFloat{opacity:1;transform:none}
+    #waFloat::after{display:none}
+  }
 </style>
 </head>
 <body>
 
-<a class="wa-fab" href="https://wa.me/525651100276" target="_blank" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<nav>
-  <a class="nav-logo" href="#" onclick="showPage('home')">PARÁ<span>B</span>OLA</a>
-  <div class="nav-links">
-    <button class="desktop-link" onclick="showPage('home')" id="nl-home">Inicio</button>
-    <button class="desktop-link" onclick="showPage('trip')" id="nl-trip">Colorado</button>
-    <a href="https://parabola.mx/patak-parabola.html" target="_blank">Patak Ranch</a>
-    <button class="desktop-link" onclick="showPage('about')" id="nl-about">Nosotros</button>
-    <a class="nav-book" href="https://wa.me/525651100276?text=Quiero%20informaci%C3%B3n%20sobre%20el%20viaje%20MTB%20Colorado%202026" target="_blank">Reservar</a>
-    
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="Abrir menú">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M3 12h18M3 6h18M3 18h18"/>
-      </svg>
-    </button>
-  </div>
-</nav>
-
-<div class="mobile-menu-overlay" id="mobileMenu">
-  <button class="mobile-menu-close" onclick="toggleMobileMenu()">Cerrar ✕</button>
-  <div class="mobile-menu-content">
-    <button onclick="showPage('home'); toggleMobileMenu()">Inicio</button>
-    <button onclick="showPage('trip'); toggleMobileMenu()">Colorado <em>2026</em></button>
-    <button onclick="showPage('about'); toggleMobileMenu()">Nosotros</button>
-    <button onclick="goToContact(); toggleMobileMenu()">Contacto</button>
-    <a class="mobile-nav-book" href="https://wa.me/525651100276?text=Quiero%20informaci%C3%B3n%20sobre%20las%20expediciones" target="_blank">Reservar Expedición</a>
+<!-- Velo de carga -->
+<div id="veil" aria-hidden="true">
+  <div class="veil-in">
+    <svg class="veil-art" viewBox="0 0 240 150">
+      <path class="vp v2" pathLength="100" d="M30 118 Q 120 6 210 118"/>
+      <path class="vp v3" pathLength="100" d="M48 128 Q 120 62 192 128"/>
+      <path class="vp v1" pathLength="100" d="M14 112 Q 120 -52 226 112"/>
+      <circle class="vd" cx="14" cy="112" r="2.4" style="animation-delay:.25s"/>
+      <circle class="vd vd-y" cx="120" cy="30" r="3.4" style="animation-delay:.95s"/>
+      <circle class="vd vd-p" cx="120" cy="62" r="2.6" style="animation-delay:1.25s"/>
+      <circle class="vd vd-y" cx="120" cy="95" r="2.4" style="animation-delay:1.5s"/>
+      <circle class="vd" cx="226" cy="112" r="2.4" style="animation-delay:1.55s"/>
+    </svg>
+    <span class="veil-word">PARABOLA</span>
+    <span class="veil-tag" data-i18n="v.tag"></span>
   </div>
 </div>
 
-<div class="page active" id="page-home">
+<!-- Ruta en rojo -->
+<svg id="route" aria-hidden="true">
+  <g id="routeG">
+    <path id="routePath" d=""/>
+    <circle id="tipRing" r="8"/>
+    <circle id="tip" r="4"/>
+    <g id="nodes"></g>
+  </g>
+</svg>
 
-  <div class="home-hero">
-    <div class="hero-left">
-      <span class="hero-eyebrow">Outdoor Adventures · Refugios Exclusivos · Logística Impecable</span>
-      <h1 class="hero-h1">Explora donde<br>otros solo<br><em>imaginan.</em></h1>
-      <p class="hero-body">Parábola cura expediciones premium en los destinos más extraordinarios. Grupos íntimos, enclaves privados y una logística absoluta para que tú solo te enfoques en el entorno.</p>
-      <div class="hero-cta-row">
-        <button class="btn-solid" onclick="showPage('trip')">Ver expedición Colorado</button>
-        <button class="btn-text" onclick="scrollToDestinations()">Ver todos los destinos</button>
-      </div>
-    </div>
-    <div class="hero-right">
-      <img class="hero-img" src="https://images.pexels.com/photos/32552595/pexels-photo-32552595.jpeg" alt="MTB trail" loading="eager">
-      <div class="hero-geo"></div>
-      <div class="hero-vline"></div>
-      <span class="hero-year">Parábola © 2026</span>
-    </div>
+<!-- Header -->
+<header id="top">
+  <a class="brand" href="#inicio" aria-label="Parabola — inicio">
+    <svg viewBox="0 0 40 18" aria-hidden="true"><path d="M3 14 C 10 3, 16 16, 24 7 S 34 11, 37 4"/></svg>
+    PARABOLA
+  </a>
+  <nav class="top-nav" aria-label="Principal">
+    <a href="#inicio" data-i18n="nav.home"></a>
+    <a href="#nosotros" data-i18n="nav.about"></a>
+    <a href="#enfoques" data-i18n="nav.focus"></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-lang="es" class="on">ES</button><span>/</span><button type="button" data-lang="en">EN</button>
   </div>
+  <a class="btn top-cta" href="#conversacion" style="padding:13px 20px" data-i18n="cta.head"></a>
+  <button id="menuBtn" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
+</header>
 
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <span>Snowmass</span><span class="accent">—</span><span>Crested Butte</span><span class="accent">—</span><span>Colorado</span><span class="accent">—</span><span>Agosto 2026</span><span class="accent">—</span><span class="accent">14 aventureros máximo</span><span class="accent">—</span><span>Acceso Privado</span><span class="accent">—</span><span>Parábola Expeditions</span><span class="accent">—</span>
-      <span>Snowmass</span><span class="accent">—</span><span>Crested Butte</span><span class="accent">—</span><span>Colorado</span><span class="accent">—</span><span>Agosto 2026</span><span class="accent">—</span><span class="accent">14 aventureros máximo</span><span class="accent">—</span><span>Acceso Privado</span><span class="accent">—</span><span>Parábola Expeditions</span><span class="accent">—</span>
-    </div>
+<!-- Menú móvil -->
+<div id="menu" aria-hidden="true">
+  <nav aria-label="Menú móvil">
+    <a class="m-link" href="#inicio"><small>01</small><span data-i18n="m.home"></span></a>
+    <a class="m-link" href="#nosotros"><small>02</small><span data-i18n="m.about"></span></a>
+    <a class="m-link" href="#enfoques"><small>03</small><span data-i18n="m.focus"></span></a>
+    <a class="m-link" href="#conversacion"><small>04</small><span data-i18n="m.contact"></span></a>
+  </nav>
+  <div class="menu-contact">
+    <a href="tel:+525651100276">+52 (565) 110 0276</a>
+    <a class="wa-link" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="mailto:fbarnetche@gmail.com">fbarnetche@gmail.com</a>
   </div>
-
-  <div class="intro">
-    <div class="intro-aside">
-      <span class="aside-label">Quiénes somos</span>
-    </div>
-    <div class="intro-main">
-      <h2>Expediciones diseñadas para quienes exigen excelencia<br>en la ruta y en el <em>refugio.</em></h2>
-      <p>Curamos Outdoor Adventures de alto nivel con una logística invisible. Elegimos propiedades exclusivas, colaboramos con profesionales que dominan el terreno y mantenemos grupos íntimos para garantizar que el destino sea verdaderamente tuyo. Tu equipo, nuestra logística.</p>
-    </div>
-  </div>
-
-  <div class="trips-section" id="destinations-list">
-    <div class="trips-header">
-      <span class="trips-header-label">Destinos · 2026 / 2027</span>
-    </div>
-    <ul class="trip-list">
-      <li class="trip-item" onclick="showPage('trip')">
-        <span class="trip-idx">01</span>
-        <div class="trip-info">
-          <div class="trip-title">Snowmass & Crested Butte</div>
-          <div class="trip-sub">Colorado, USA · Mountain Bike Expedition</div>
-        </div>
-        <div class="trip-meta">
-          <span class="trip-date">19 — 29 Ago 2026</span>
-          <span class="trip-status open">Inscripciones abiertas</span>
-        </div>
-        <div class="trip-thumb"><img src="https://images.pexels.com/photos/3628990/pexels-photo-3628990.jpeg" alt=""></div>
-      </li>
-      <li class="trip-item" style="cursor:default;">
-        <span class="trip-idx">02</span>
-        <div class="trip-info">
-          <div class="trip-title" style="color:var(--light);">Oaxaca</div>
-          <div class="trip-sub">México · Mountain Bike Expedition · Acceso Privado</div>
-        </div>
-        <div class="trip-meta">
-          <span class="trip-date">2027</span>
-          <span class="trip-status soon">Próximamente</span>
-        </div>
-      </li>
-      <li class="trip-item" style="cursor:default;">
-        <span class="trip-idx">03</span>
-        <div class="trip-info">
-          <div class="trip-title" style="color:var(--light);">Medellín</div>
-          <div class="trip-sub">Colombia · Mountain Bike Expedition · Rutas Exclusivas</div>
-        </div>
-        <div class="trip-meta">
-          <span class="trip-date">2027</span>
-          <span class="trip-status soon">En proceso</span>
-        </div>
-      </li>
-      <li class="trip-item" style="cursor:default;">
-        <span class="trip-idx">04</span>
-        <div class="trip-info">
-          <div class="trip-title" style="color:var(--light);">Patagonia</div>
-          <div class="trip-sub">Chile · Mountain Bike Expedition · Refugios Remotos</div>
-        </div>
-        <div class="trip-meta">
-          <span class="trip-date">2027</span>
-          <span class="trip-status full">Explorando</span>
-        </div>
-      </li>
-    </ul>
-  </div>
-
-  <div class="band">
-    <div class="band-item">
-      <span class="band-num">01 —</span>
-      <div class="band-title">Acceso y Privacidad</div>
-      <p class="band-body">Operamos bajo un modelo de asociación con propiedades exclusivas. Grupos íntimos de máximo 14 aventureros garantizan el acceso a terrenos prístinos.</p>
-    </div>
-    <div class="band-item">
-      <span class="band-num">02 —</span>
-      <div class="band-title">Logística Invisible</div>
-      <p class="band-body">Nos encargamos de la complejidad operativa para que la experiencia sea fluida. Tu equipo, nuestra logística. Desde traslados hasta cenas.</p>
-    </div>
-    <div class="band-item">
-      <span class="band-num">03 —</span>
-      <div class="band-title">Expertos Locales</div>
-      <p class="band-body">Nuestras experiencias son guiadas por profesionales que dominan el terreno. Cada ruta ha sido explorada y curada previamente.</p>
-    </div>
-  </div>
-
-  <div class="trips-section" style="padding-top: 64px; padding-bottom: 64px; border-bottom: 1px solid var(--rule);">
-    <span class="ts-label" style="margin-bottom: 24px;">Galería Visual</span>
-    <div class="gallery-strip" style="margin-top:0;">
-      <div class="gs-item"><img src="https://images.pexels.com/photos/1274009/pexels-photo-1274009.jpeg" alt="Expedition 1" loading="lazy"></div>
-      <div class="gs-item"><img src="https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg" alt="Expedition 2" loading="lazy"></div>
-      <div class="gs-item"><img src="https://images.pexels.com/photos/33368403/pexels-photo-33368403.jpeg" alt="Expedition 3" loading="lazy"></div>
-      <div class="gs-item"><img src="https://images.pexels.com/photos/7689048/pexels-photo-7689048.jpeg" alt="Expedition 4" loading="lazy"></div>
-    </div>
-  </div>
-
-  <div class="home-contact" id="hc-left">
-    <div class="hc-left">
-      <h2>El mundo es grande.<br>Hablemos de tu<br>próxima <em>expedición.</em></h2>
-      <p>Cupos limitados por expedición. Si te interesa un destino, escríbele a uno de nuestros curadores para mandarte toda la información y apartar tu lugar.</p>
-      <a class="btn-solid" href="https://wa.me/525651100276?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20expediciones%20de%20Par%C3%A1bola" target="_blank">Escribir por WhatsApp</a>
-      <p style="margin-top:20px;font-size:0.78rem;color:var(--light);font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;">fbarnetche@gmail.com</p>
-    </div>
-    <div class="hc-right">
-      <div class="cf-label" style="margin-bottom:4px;">Nombre</div>
-      <input class="cf-input" type="text" placeholder="Tu nombre">
-      <div class="cf-label">Correo</div>
-      <input class="cf-input" type="email" placeholder="tu@correo.com">
-      <div class="cf-label">Destino de interés</div>
-      <select class="cf-select">
-        <option value="">Seleccionar</option>
-        <option>Colorado 2026 — Snowmass & Crested Butte</option>
-        <option>Próximos destinos — Notifícame</option>
-        <option>Diseño de Expedición Privada</option>
-      </select>
-      <div class="cf-label">Mensaje</div>
-      <textarea class="cf-textarea" placeholder="Dudas, tamaño de grupo, disciplina..."></textarea>
-      <button class="btn-solid" style="width:100%;margin-top:4px;" onclick="submitForm()">Enviar →</button>
-      <a class="cf-wa-row" href="https://wa.me/525651100276" target="_blank">
-        <div class="wa-dot"></div>
-        <span class="cf-wa-text">Escríbenos directo por WhatsApp · +52 (565) 110 0276</span>
-      </a>
-    </div>
-  </div>
-
-  <footer>
-    <div class="ft-col">
-      <div class="ft-logo">PARÁ<span>B</span>OLA</div>
-      <div class="ft-tagline">"Curadores de Outdoor Adventures de alto nivel."</div>
-    </div>
-    <div class="ft-col">
-      <span class="ft-label">Navegación</span>
-      <ul class="ft-links">
-        <li><button onclick="showPage('home')">Inicio</button></li>
-        <li><button onclick="showPage('trip')">Colorado 2026</button></li>
-        <li><button onclick="showPage('about')">Nosotros</button></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <span class="ft-label">Contacto</span>
-      <ul class="ft-links">
-        <li><a href="https://wa.me/525651100276" target="_blank">+52 (565) 110 0276</a></li>
-        <li><a href="mailto:fbarnetche@gmail.com">fbarnetche@gmail.com</a></li>
-        <li><button onclick="goToContact()">Formulario de contacto</button></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <span class="ft-label">Redes</span>
-      <ul class="ft-links">
-        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-        <li><a href="https://wa.me/525651100276" target="_blank">WhatsApp</a></li>
-      </ul>
-    </div>
-    <div class="ft-copy">© 2026 Parábola · Ciudad de México · Todos los derechos reservados</div>
-  </footer>
-
 </div>
 
-<div class="page" id="page-about">
+<main>
 
-  <div class="trip-hero">
-    <img class="th-img" src="https://images.pexels.com/photos/9466513/pexels-photo-9466513.jpeg" alt="High Altitude Adventure" loading="eager" style="filter: grayscale(20%) brightness(0.75); object-position: center 30%;">
-    <div class="th-geo"></div>
-    <div class="th-diag"></div>
-    <div class="th-content">
-      <div class="th-left">
-        <span class="th-eyebrow">Outdoor Adventures</span><h1 class="th-title">Explora sin<br><em>fronteras.</em></h1>
+  <!-- 1 · HERO -->
+  <section id="inicio" class="hero" data-route="rl0" data-x=".85" data-th="dk">
+    <svg class="hero-art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path pathLength="1" opacity=".16" d="M-40 230 C 160 150, 300 330, 470 300 S 720 170, 860 260 S 1120 420, 1280 330 S 1400 230, 1500 290"/>
+      <path pathLength="1" opacity=".10" d="M-40 660 C 140 580, 320 780, 500 710 S 780 560, 930 670 S 1180 810, 1340 710 S 1440 650, 1520 680"/>
+      <circle cx="470" cy="300" r="2.5"/><circle cx="860" cy="260" r="2.5"/>
+      <circle cx="1280" cy="330" r="2.5"/><circle cx="930" cy="670" r="2.5"/>
+    </svg>
+    <div class="hero-inner">
+      <p class="label reveal" data-i18n="hero.label"></p>
+      <h1 class="display h1">
+        <span class="line"><span data-i18n="hero.h1a"></span></span>
+        <span class="line"><span data-i18n="hero.h1b"></span></span>
+        <span class="line"><span><span data-i18n="hero.h1c"></span><span class="dot">.</span></span></span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.sub"></p>
+      <div class="hero-cta">
+        <a class="btn" href="#conversacion">
+          <span data-i18n="hero.cta"></span>
+          <svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" fill="none"/></svg>
+        </a>
+        <a class="tlink" href="#proceso" data-i18n="hero.how"></a>
       </div>
     </div>
-  </div>
+    <div class="hero-foot">
+      <span data-i18n="hero.footl"></span>
+      <a class="scroll-hint" href="#nosotros" aria-label="Bajar"><span data-i18n="hero.hint"></span><i class="vline"></i></a>
+      <span data-i18n="hero.footr"></span>
+    </div>
+  </section>
 
-  <div class="intro">
-    <div class="intro-aside"><span class="aside-label">Filosofía</span></div>
-    <div class="intro-main">
-      <h2>Curamos el acceso a las fronteras<br>más extraordinarias del <em>planeta.</em></h2>
-      <p>Parábola nació de una insatisfacción con el turismo de aventura tradicional. Creemos que la búsqueda de lo salvaje no debe estar peleada con un confort excepcional. No somos un operador masivo; somos curadores de Outdoor Adventures de alto nivel para grupos íntimos de aventureros que exigen excelencia tanto en la ruta como en el refugio.</p>
-      <p style="margin-top:16px;">Desde las cumbres más remotas hasta costas vírgenes, nuestra promesa es una logística impecable donde cada detalle —desde tus traslados en helicóptero hasta los refugios más exclusivos del mundo— está meticulosamente resuelto para que tú solo te enfoques en el entorno.</p>
-    </div>
-  </div>
-
-  <div class="band">
-    <div class="band-item">
-      <span class="band-num">01 —</span><div class="band-title">Acceso y Privacidad</div>
-      <p class="band-body">Operamos bajo un modelo de asociación con propiedades exclusivas y enclaves privados. Te garantizamos el acceso a terrenos prístinos, lejos de las rutas convencionales, asegurando que el destino sea verdaderamente tuyo.</p>
-    </div>
-    <div class="band-item">
-      <span class="band-num">02 —</span><div class="band-title">Expertos Locales</div>
-      <p class="band-body">Nuestras experiencias son guiadas por profesionales y atletas que dominan el terreno de forma intuitiva. Su conocimiento técnico es el puente entre el desafío físico y la seguridad absoluta.</p>
-    </div>
-    <div class="band-item">
-      <span class="band-num">03 —</span><div class="band-title">Logística Invisible</div>
-      <p class="band-body">Nos encargamos de la complejidad operativa para que la experiencia sea fluida. Tu equipo, nuestra logística. Nos anticipamos a cada necesidad para que la transición de la montaña al refugio sea perfecta.</p>
-    </div>
-  </div>
-
-  <div class="trips-section" style="padding-top: 64px; padding-bottom: 64px;">
-    <span class="ts-label" style="margin-bottom: 32px;">Nuestros Dominios</span>
-    <div class="gallery-strip" style="margin-top:0;">
-      <div class="gs-item">
-        <img src="https://images.pexels.com/photos/29952996/pexels-photo-29952996.jpeg" alt="Ski & Snowboard">
-        <div style="position:absolute; bottom:16px; left:16px; color:white; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; background: rgba(0,0,0,0.3); padding: 4px 8px;">Ski & Snowboard</div>
-      </div>
-      <div class="gs-item">
-        <img src="https://images.pexels.com/photos/36913675/pexels-photo-36913675.jpeg" alt="Surf">
-        <div style="position:absolute; bottom:16px; left:16px; color:white; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; background: rgba(0,0,0,0.3); padding: 4px 8px;">Surf & Coast</div>
-      </div>
-      <div class="gs-item">
-        <img src="https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg" alt="Hiking">
-        <div style="position:absolute; bottom:16px; left:16px; color:white; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; background: rgba(0,0,0,0.3); padding: 4px 8px;">Senderismo & Alpinismo</div>
-      </div>
-      <div class="gs-item">
-        <img src="https://images.pexels.com/photos/7559699/pexels-photo-7559699.jpeg" alt="Water Sports">
-        <div style="position:absolute; bottom:16px; left:16px; color:white; font-family:'IBM Plex Mono', monospace; font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; background: rgba(0,0,0,0.3); padding: 4px 8px;">Deportes Acuáticos</div>
-      </div>
-    </div>
-  </div>
-
-<div class="home-contact" id="hc-left">
-    <div class="hc-left">
-      <h2>El mundo es grande.<br>Hablemos de tu<br>próxima <em>expedición.</em></h2>
-      <p>Cupos limitados por expedición. Si te interesa un destino, escríbele a uno de nuestros curadores para mandarte toda la información y apartar tu lugar.</p>
-      <a class="btn-solid" href="https://wa.me/525651100276?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20las%20expediciones%20de%20Par%C3%A1bola" target="_blank">Escribir por WhatsApp</a>
-      <p style="margin-top:20px;font-size:0.78rem;color:var(--light);font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;">fbarnetche@gmail.com</p>
-    </div>
-    <div class="hc-right">
-      <div class="cf-label" style="margin-bottom:4px;">Nombre</div>
-      <input class="cf-input" type="text" placeholder="Tu nombre">
-      <div class="cf-label">Correo</div>
-      <input class="cf-input" type="email" placeholder="tu@correo.com">
-      <div class="cf-label">Destino de interés</div>
-      <select class="cf-select">
-        <option value="">Seleccionar</option>
-        <option>Colorado 2026 — Snowmass & Crested Butte</option>
-        <option>Próximos destinos — Notifícame</option>
-        <option>Diseño de Expedición Privada</option>
-      </select>
-      <div class="cf-label">Mensaje</div>
-      <textarea class="cf-textarea" placeholder="Dudas, tamaño de grupo, disciplina..."></textarea>
-      <button class="btn-solid" style="width:100%;margin-top:4px;" onclick="submitForm()">Enviar →</button>
-      <a class="cf-wa-row" href="https://wa.me/525651100276" target="_blank">
-        <div class="wa-dot"></div>
-        <span class="cf-wa-text">Escríbenos directo por WhatsApp · +52 (565) 110 0276</span>
-      </a>
-    </div>
-  </div>
-  
-  <footer>
-    <div class="ft-col">
-      <div class="ft-logo">PARÁ<span>B</span>OLA</div>
-      <div class="ft-tagline">"Curadores de Outdoor Adventures de alto nivel."</div>
-    </div>
-    <div class="ft-col">
-      <span class="ft-label">Navegación</span>
-      <ul class="ft-links">
-        <li><button onclick="showPage('home')">Inicio</button></li>
-        <li><button onclick="showPage('trip')">Colorado 2026</button></li>
-        <li><button onclick="showPage('about')">Nosotros</button></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <span class="ft-label">Contacto</span>
-      <ul class="ft-links">
-        <li><a href="https://wa.me/525651100276" target="_blank">+52 (565) 110 0276</a></li>
-        <li><a href="mailto:fbarnetche@gmail.com">fbarnetche@gmail.com</a></li>
-        <li><button onclick="goToContact()">Formulario de contacto</button></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <span class="ft-label">Redes</span>
-      <ul class="ft-links">
-        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-        <li><a href="https://wa.me/525651100276" target="_blank">WhatsApp</a></li>
-      </ul>
-    </div>
-    <div class="ft-copy">© 2026 Parábola · Ciudad de México · Todos los derechos reservados</div>
-  </footer>
-</div>
-
-<div class="page" id="page-trip">
-
-  <div class="trip-hero">
-    <img class="th-img" src="https://images.pexels.com/photos/3628990/pexels-photo-3628990.jpeg" alt="Colorado MTB" loading="eager">
-    <div class="th-geo"></div>
-    <div class="th-diag"></div>
-    <div class="th-content">
-      <div class="th-left">
-        <span class="th-eyebrow">Colorado, USA · Agosto 2026 · Mountain Bike Expedition</span>
-        <h1 class="th-title">Snowmass<br>&amp; <em>Crested Butte</em></h1>
-      </div>
-      <div class="th-right">
-        <span class="th-price-label">Desde</span>
-        <div class="th-price"><sup>$</sup>3,650 <span style="font-size:1rem;color:rgba(250,250,248,0.45);">USD</span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="trip-data-bar">
-    <div class="tdb-item"><span class="tdb-label">Fechas</span><div class="tdb-value">19 — 29 Ago 2026</div></div>
-    <div class="tdb-item"><span class="tdb-label">Duración</span><div class="tdb-value">10 noches</div></div>
-    <div class="tdb-item"><span class="tdb-label">Grupo</span><div class="tdb-value">Máx. 14 aventureros</div></div>
-    <div class="tdb-item"><span class="tdb-label">Disciplina</span><div class="tdb-value">Mountain Bike</div></div>
-    <div class="tdb-item"><span class="tdb-label">Estado</span><div class="tdb-value" style="color:var(--green);">Cupos disponibles</div></div>
-  </div>
-
-  <div class="trip-body">
-    <div class="trip-main">
-      <div class="trip-section">
-        <span class="ts-label">La Expedición</span>
-        <h2 class="ts-title">Dos leyendas de la montaña en un acceso exclusivo</h2>
-        <p class="ts-body">Snowmass es un lugar que todo aficionado del MTB debe visitar al menos una vez en la vida. Ubicado en plena zona alpina de las Montañas Rocosas, este destino es reconocido por la IMBA como un "Gold-Level Ride Center". Crested Butte, es considerado por muchos como la cuna del ciclismo de montaña. Juntos, en 10 noches, forman una expedición inigualable.</p>
-        <p class="ts-body" style="margin-top:16px;">Cinco noches en Patak Ranch, un enclave privado de 32 hectáreas con piscina, jacuzzi y fogata. Cinco noches en casas junto al río East River en Crested Butte, con amplias salas y terrazas con vistas panorámicas. Bike parks con lifts, cross-country épico, el legendario Trail 401, el Government Trail y mucho más.</p>
-
-        <div style="margin-top:32px;">
-          <button class="gallery-trigger" onclick="openGallery()">
-            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="1" width="6" height="6"/><rect x="9" y="1" width="6" height="6"/><rect x="9" y="9" width="6" height="6"/><rect x="1" y="9" width="6" height="6"/></svg>
-            Ver galería de fotos
-          </button>
-          <div class="gallery-strip" id="galleryStrip">
-            <div class="gs-item" onclick="openGallery()"><img src="https://images.pexels.com/photos/6438857/pexels-photo-6438857.jpeg" alt="" loading="lazy"></div>
-            <div class="gs-item" onclick="openGallery()"><img src="https://images.pexels.com/photos/33559608/pexels-photo-33559608.jpeg" alt="" loading="lazy"></div>
-            <div class="gs-item" onclick="openGallery()"><img src="https://images.pexels.com/photos/10743835/pexels-photo-10743835.jpeg" alt="" loading="lazy"></div>
-            <div class="gs-item" onclick="openGallery()"><img src="https://images.pexels.com/photos/7476433/pexels-photo-7476433.jpeg" alt="" loading="lazy"></div>
-          </div>
+  <!-- 2 · NOSOTROS -->
+  <section id="nosotros" class="manif paper-bg" data-route="rl1" data-x=".14">
+    <div class="wrap">
+      <p class="label reveal" data-i18n="s1.label"></p>
+      <h2 class="h2 reveal" style="--d:.08s;margin:1.4rem 0 clamp(2.6rem,5vw,4rem);max-width:16ch" data-i18n="s1.h2"></h2>
+      <div class="manif-grid">
+        <div class="manif-copy">
+          <p class="lede reveal" data-i18n="s1.l1"></p>
+          <p class="lede reveal" style="--d:.08s" data-i18n-html="s1.l2"></p>
+          <p class="lede reveal" style="--d:.14s" data-i18n="s1.l3"></p>
         </div>
-      </div>
-
-      <div class="trip-section">
-        <span class="ts-label">Itinerario Detallado</span>
-        <ul class="itin-list">
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 1</span>
-            <div class="itin-info">
-              <div class="itin-title">Llegada + Bienvenida en Patak Ranch</div>
-              <div class="itin-loc">Denver → Snowmass</div>
-            </div>
-            <div class="itin-detail">Llegada al aeropuerto de Denver Colorado y traslado a Patak Ranch. Check-in y asignación de habitaciones. Visita al supermercado para compras personales y cena de bienvenida en Patak Ranch.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 2</span>
-            <div class="itin-info">
-              <div class="itin-title">Snowmass Bike Park — Día 1</div>
-              <div class="itin-loc">Snowmass</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en Patak Ranch. Traslado a Snowmass y pick-up de bicicletas (rentadas). Rodada en el Bike Park.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 3</span>
-            <div class="itin-info">
-              <div class="itin-title">Government Trail → Buttermilk</div>
-              <div class="itin-loc">Aspen → Buttermilk</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en Patak Ranch. Rodada Government Trail, uno de los recorridos más emblemáticos de Aspen. Comeremos en Home Team BBQ.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 4</span>
-            <div class="itin-info">
-              <div class="itin-title">Snowmass Bike Park — Día 2</div>
-              <div class="itin-loc">Snowmass</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en Patak Ranch. Traslado a Snowmass y pick-up de bicicletas (rentadas) para rodar en el Bike Park.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 5</span>
-            <div class="itin-info">
-              <div class="itin-title">Rim Trail Loop + Seven Star</div>
-              <div class="itin-loc">Snowmass</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en Patak Ranch. Rodada Rim Trail Loop y Seven Star Trail. Comeremos en Woody Creek Tavern (taverna que solia visitar el legendatio Hunter S Thompson). Regreso al rancho por la tarde: descanso, jacuzzi, alberca, tiempo libre, cena, etc.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 6</span>
-            <div class="itin-info">
-              <div class="itin-title">Transfer → Crested Butte</div>
-              <div class="itin-loc">Snowmass → Crested Butte</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en Patak Ranch. Opción de hike de Snowmass a Crested Butte o transfer en auto. Check-in en hospedaje en Crested Butte y cena de bienvenida.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 7</span>
-            <div class="itin-info">
-              <div class="itin-title">Crested Butte Bike Park — Día 1</div>
-              <div class="itin-loc">Crested Butte</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en casa. Traslado a Crested Butte bike park y pick-up de bicicletas (rentadas). Rodada en el Bike Park y visita al supermercado para compras personales.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 8</span>
-            <div class="itin-info">
-              <div class="itin-title">Lupine Loop — Snodgrass / Gunsight</div>
-              <div class="itin-loc">Crested Butte</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en la casa. Rodada Snodgrass/Lupine/Gunsight. Comida en Secret Stash.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 9</span>
-            <div class="itin-info">
-              <div class="itin-title">Rest Day & Exploración Local</div>
-              <div class="itin-loc">Crested Butte</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en casa. Día de descanso o actividad alternativa (rafting, paddle boarding, hiking, etc).</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 10</span>
-            <div class="itin-info">
-              <div class="itin-title">El legendario Trail 401</div>
-              <div class="itin-loc">Crested Butte</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en la casa. Rodada Trail 401. Cena de despedida en Bonez.</div>
-          </li>
-          <li class="itin-item" onclick="toggleItin(this)">
-            <span class="itin-day">Día 11</span>
-            <div class="itin-info">
-              <div class="itin-title">Fin de la expedición</div>
-              <div class="itin-loc">Crested Butte → Denver</div>
-            </div>
-            <div class="itin-detail">Desayuno continental en casa. Traslado a aeropuerto.</div>
-          </li>
+        <p class="pull reveal" data-i18n-html="s1.pull"></p>
+        <ul class="principles">
+          <li class="reveal"><span>01</span><span data-i18n="s1.p1"></span></li>
+          <li class="reveal" style="--d:.06s"><span>02</span><span data-i18n="s1.p2"></span></li>
+          <li class="reveal" style="--d:.12s"><span>03</span><span data-i18n="s1.p3"></span></li>
+          <li class="reveal" style="--d:.18s"><span>04</span><span data-i18n="s1.p4"></span></li>
         </ul>
       </div>
-
-      <div class="trip-section">
-        <span class="ts-label">Logística Integrada</span>
-        <div class="inc-grid">
-          <div class="inc-col">
-            <span class="inc-col-label">Incluye</span>
-            <ul class="inc-list">
-              <li>Entradas/boletos a los bike parks, todos los desayunos, cena de bienvenida en Snowmass + cena de bienvenida en Crested Butte</li>
-              <li>Transportes (todos los transportes para las todas las actividades + los traslados del aeropuerto) incluyendo tu bicicleta</li>
-              <li>Pago a los guías locales que liderarán las rutas de los trails (no en el Bike Park)</li>
-              <li>Limpieza general del alojamiento</li>
-            </ul>
-          </div>
-          <div class="inc-col">
-            <span class="inc-col-label">No incluye</span>
-            <ul class="inc-list no">
-              <li>Vuelo</li>
-              <li>Renta de bicicleta</li>
-              <li>Seguro médico y/o de viaje</li>
-              <li>Comidas no mencionadas en el itinerario</li>
-              <li>Bebidas alcoholicas</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="trip-section">
-        <span class="ts-label">Plan de Pagos</span>
-        <div class="pay-steps">
-          <div class="pay-step"><div class="pay-pct">35%</div><div class="pay-label">Para reservar<br>tu lugar</div></div>
-          <div class="pay-step"><div class="pay-pct">32.5%</div><div class="pay-label">2do pago<br>(fecha asignada)</div></div>
-          <div class="pay-step"><div class="pay-pct">32.5%</div><div class="pay-label">30 días antes<br>del viaje</div></div>
-        </div>
-        <p style="font-family:'IBM Plex Mono',monospace;font-size:0.58rem;letter-spacing:0.1em;color:var(--light);margin-top:14px;">Transferencia a banco Wells Fargo en USA · Venmo · Paypal · Efectivo · Transferencia a banco en México</p>
-      </div>
-
     </div>
-    <div class="trip-side">
-      <div class="trip-side-inner">
-        <div class="side-price">$3,650</div>
-        <span class="side-price-note">USD · Habitación compartida (doble)</span>
-        <div class="side-row"><span class="side-row-label">Individual</span><span class="side-row-val">$4,900 USD</span></div>
-        <div class="side-row"><span class="side-row-label">Duración</span><span class="side-row-val">10 noches</span></div>
-        <div class="side-row"><span class="side-row-label">Fechas</span><span class="side-row-val">19 — 29 Ago 2026</span></div>
-        <div class="side-row"><span class="side-row-label">Grupo</span><span class="side-row-val">Máximo 14 personas</span></div>
-        <div class="side-row"><span class="side-row-label">Llegada</span><span class="side-row-val">Denver, CO (DEN)</span></div>
-        <div class="side-divider"></div>
-        <button class="btn-full" onclick="window.open('https://wa.me/525651100276?text=Quiero%20reservar%20el%20tour%20MTB%20Colorado%202026','_blank')">Asegurar acceso →</button>
-        <a class="btn-wa-side" href="https://wa.me/525651100276?text=Tengo%20preguntas%20sobre%20el%20tour%20MTB%20Colorado%202026" target="_blank"><div class="wa-badge"></div>Hablar con un curador</a>
-        <p class="side-note">Cupos limitados · 35% para apartar · Pagos en 3 partes</p>
-      </div>
-    </div>
-  </div>
+  </section>
 
-  <footer>
-    <div class="ft-col">
-      <div class="ft-logo">PARÁ<span>B</span>OLA</div>
-      <div class="ft-tagline">"Curadores de Outdoor Adventures de alto nivel."</div>
-    </div>
-    <div class="ft-col">
-      <span class="ft-label">Navegación</span>
-      <ul class="ft-links">
-        <li><button onclick="showPage('home')">← Inicio</button></li>
-        <li><button onclick="scrollToDestinations()">Todos los destinos</button></li>
+  <!-- BANDA · El campo -->
+  <!-- PRODUCCIÓN: reemplazar este SVG por la ilustración/foto real cuando exista -->
+  <section class="field-band" aria-hidden="true">
+    <svg class="field-lines" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMid slice">
+      <ellipse class="fshadow" cx="330" cy="150" rx="26" ry="6"/>
+      <ellipse class="fshadow" cx="1060" cy="360" rx="30" ry="7"/>
+      <ellipse class="fshadow" cx="700" cy="470" rx="22" ry="5"/>
+      <path class="fl" pathLength="1" d="M-40 120 C 180 60, 320 240, 520 200 S 780 90, 940 180 S 1220 320, 1500 220"/>
+      <path class="fl d2" pathLength="1" d="M-40 430 C 200 360, 360 540, 580 480 S 860 360, 1040 460 S 1300 560, 1500 460"/>
+      <circle class="fdot" cx="520" cy="200" r="3"/><circle class="fdot" cx="940" cy="180" r="3"/>
+      <circle class="fdot" cx="580" cy="480" r="3"/><circle class="fdot" cx="1040" cy="460" r="3"/>
+      <g class="fdot"><path d="M1180 250 v-38" stroke="#F4F1E8" stroke-width="2"/><path d="M1180 212 l30 9 -30 9z" fill="#E2531F"/></g>
+    </svg>
+    <div class="wrap fcopy">
+      <p class="label reveal" data-i18n="fb.label"></p>
+      <h2 class="h2 reveal" style="--d:.08s" data-i18n="fb.h2"></h2>
+      <p class="sub reveal" style="--d:.14s" data-i18n="fb.sub"></p>
+      <ul class="stats reveal" style="--d:.2s">
+        <li data-i18n="fb.s1"></li>
+        <li data-i18n="fb.s2"></li>
+        <li data-i18n="fb.s3"></li>
       </ul>
     </div>
-    <div class="ft-col">
-      <span class="ft-label">Contacto</span>
-      <ul class="ft-links">
-        <li><a href="https://wa.me/525651100276" target="_blank">+52 (565) 110 0276</a></li>
+  </section>
+
+  <!-- 3 · PROCESO -->
+  <section id="proceso" class="process dark" data-route="rl2" data-x=".87">
+    <header class="sec-head">
+      <p class="label reveal" data-i18n="s2.label"></p>
+      <h2 class="h2 reveal" style="--d:.08s;margin-top:1.4rem" data-i18n="s2.h2"></h2>
+      <p class="sec-intro reveal" style="--d:.16s;margin-top:1.4rem" data-i18n="s2.intro"></p>
+    </header>
+    <div class="phases">
+      <article class="phase reveal">
+        <div class="ph-num"><b>PASO</b>01</div>
+        <h3 class="ph-word" data-i18n="s2.w1"></h3>
+        <p class="ph-text" data-i18n="s2.t1"></p>
+      </article>
+      <article class="phase reveal">
+        <div class="ph-num"><b>PASO</b>02</div>
+        <h3 class="ph-word" data-i18n="s2.w2"></h3>
+        <p class="ph-text" data-i18n="s2.t2"></p>
+      </article>
+      <article class="phase reveal">
+        <div class="ph-num"><b>PASO</b>03</div>
+        <h3 class="ph-word" data-i18n="s2.w3"></h3>
+        <p class="ph-text" data-i18n="s2.t3"></p>
+      </article>
+    </div>
+    <p class="process-note" data-i18n="s2.note"></p>
+  </section>
+
+  <!-- BANDA · Collage -->
+  <section class="collage" aria-hidden="true">
+    <svg viewBox="0 0 1440 760">
+      <defs>
+        <mask id="holes">
+          <rect x="0" y="380" width="1440" height="380" fill="#fff"/>
+          <circle cx="250" cy="540" r="44" fill="#000"/>
+          <circle cx="640" cy="610" r="58" fill="#000"/>
+          <circle cx="1020" cy="520" r="40" fill="#000"/>
+          <circle cx="1290" cy="640" r="52" fill="#000"/>
+          <circle cx="830" cy="700" r="34" fill="#000"/>
+        </mask>
+      </defs>
+      <rect width="1440" height="760" fill="#2F6B3E"/>
+      <path class="cl" pathLength="1" d="M-40 140 C 240 80, 420 260, 640 210 S 940 100, 1120 200 S 1340 300, 1500 240"/>
+      <path class="cl" pathLength="1" d="M-40 300 C 200 240, 380 400, 600 350 S 880 250, 1080 340 S 1340 420, 1500 360"/>
+      <circle cx="640" cy="210" r="3" fill="#F4F1E8"/><circle cx="1080" cy="340" r="3" fill="#F4F1E8"/>
+      <circle cx="600" cy="350" r="3" fill="#F4F1E8"/>
+      <circle cx="120" cy="120" r="56" fill="#E2531F"/>
+      <circle cx="470" cy="205" r="40" fill="#E2531F"/>
+      <circle cx="920" cy="95" r="64" fill="#E2531F"/>
+      <circle cx="1300" cy="180" r="46" fill="#E2531F"/>
+      <rect x="0" y="380" width="1440" height="380" fill="#E2531F" mask="url(#holes)"/>
+    </svg>
+    <p class="collage-note" data-i18n="col.note"></p>
+  </section>
+
+  <!-- 4 · ENFOQUES -->
+  <section id="enfoques" class="focus paper-bg" data-route="rl3" data-x=".13">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <p class="label reveal" data-i18n="s3.label"></p>
+          <h2 class="h2 reveal" style="--d:.08s" data-i18n-html="s3.h2"></h2>
+        </div>
+        <p class="sec-intro reveal" style="--d:.16s" data-i18n="s3.intro"></p>
+      </header>
+      <div class="acc">
+        <div class="acc-item open">
+          <button class="acc-head" aria-expanded="true">
+            <span class="acc-num">01</span>
+            <span class="acc-title" data-i18n="s3.i1t"></span>
+            <span class="acc-tag" data-i18n="s3.i1g"></span>
+            <span class="acc-x" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-in"><p data-i18n="s3.i1b"></p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">
+            <span class="acc-num">02</span>
+            <span class="acc-title" data-i18n="s3.i2t"></span>
+            <span class="acc-tag" data-i18n="s3.i2g"></span>
+            <span class="acc-x" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-in"><p data-i18n="s3.i2b"></p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">
+            <span class="acc-num">03</span>
+            <span class="acc-title" data-i18n="s3.i3t"></span>
+            <span class="acc-tag" data-i18n="s3.i3g"></span>
+            <span class="acc-x" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-in"><p data-i18n="s3.i3b"></p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">
+            <span class="acc-num">04</span>
+            <span class="acc-title" data-i18n="s3.i4t"></span>
+            <span class="acc-tag" data-i18n="s3.i4g"></span>
+            <span class="acc-x" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-in"><p data-i18n="s3.i4b"></p></div></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" aria-expanded="false">
+            <span class="acc-num">05</span>
+            <span class="acc-title" data-i18n="s3.i5t"></span>
+            <span class="acc-tag" data-i18n="s3.i5g"></span>
+            <span class="acc-x" aria-hidden="true"></span>
+          </button>
+          <div class="acc-body"><div class="acc-body-in"><p data-i18n="s3.i5b"></p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · A TU MEDIDA -->
+  <section id="medida" class="medida paper-bg" data-route="rl4" data-x=".88">
+    <div class="wrap med-grid">
+      <div>
+        <p class="label reveal" data-i18n="s4.label"></p>
+        <h2 class="h2 reveal" style="--d:.08s" data-i18n="s4.h2"></h2>
+        <p class="sec-intro reveal" style="--d:.16s" data-i18n="s4.text"></p>
+        <div class="med-cta reveal" style="--d:.22s">
+          <a class="btn" href="#conversacion">
+            <span data-i18n="s4.cta"></span>
+            <svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" fill="none"/></svg>
+          </a>
+        </div>
+      </div>
+      <figure class="med-fig reveal" style="--d:.12s" aria-hidden="true">
+        <svg viewBox="0 0 520 420">
+          <path d="M40 360 Q 260 -120 480 360 L 400 360 Q 260 40 120 360 Z" fill="#FFD41F"/>
+          <path class="mp" pathLength="1" d="M90 372 Q 300 -60 500 300" stroke="#E2531F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path class="mdot" d="M20 386 Q 240 20 440 386" stroke="rgba(21,32,25,.5)" stroke-width="1.4" fill="none" stroke-dasharray="2 7" stroke-linecap="round"/>
+          <path class="mdot" d="M20 398 H500" stroke="rgba(21,32,25,.3)" stroke-width="1" fill="none" stroke-dasharray="2 6"/>
+          <circle class="mdot" cx="298" cy="138" r="4.5" fill="#E2531F"/>
+          <circle class="mdot" cx="90" cy="372" r="2.5" fill="rgba(21,32,25,.55)"/>
+          <circle class="mdot" cx="500" cy="300" r="2.5" fill="rgba(21,32,25,.55)"/>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 6 · FORMULARIO -->
+  <section id="conversacion" class="apply dark" data-route="rl5" data-x=".12">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label reveal" data-i18n="s5.label"></p>
+        <h2 class="h2 reveal" style="--d:.08s;margin-top:1.4rem" data-i18n="s5.h2"></h2>
+        <p class="sec-intro reveal" style="--d:.16s;margin-top:1.4rem" data-i18n="s5.intro"></p>
+      </header>
+      <div class="apply-grid">
+        <aside class="apply-aside reveal">
+          <p class="aside-title" data-i18n="f.aside.h"></p>
+          <ol class="aside-steps">
+            <li><span>01</span><span data-i18n="f.aside.s1"></span></li>
+            <li><span>02</span><span data-i18n="f.aside.s2"></span></li>
+            <li><span>03</span><span data-i18n="f.aside.s3"></span></li>
+          </ol>
+          <p class="aside-note" data-i18n="f.aside.note"></p>
+          <div class="aside-direct">
+            <p class="f-label" data-i18n="f.direct"></p>
+            <a href="tel:+525651100276">+52 (565) 110 0276</a>
+            <a class="wa-link" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="mailto:fbarnetche@gmail.com">fbarnetche@gmail.com</a>
+          </div>
+        </aside>
+
+        <div class="apply-form-wrap reveal" style="--d:.12s">
+          <form id="applyForm" class="form-grid" novalidate>
+            <div class="field">
+              <label class="f-label" for="f-name" data-i18n="f.name"></label>
+              <input class="f-input" id="f-name" name="nombre" type="text" data-i18n-ph="f.ph.name" autocomplete="name">
+              <p class="f-err" id="err-name" hidden data-i18n="f.err.name"></p>
+            </div>
+            <div class="field">
+              <label class="f-label" for="f-mail" data-i18n="f.mail"></label>
+              <input class="f-input" id="f-mail" name="correo" type="email" data-i18n-ph="f.ph.mail" autocomplete="email">
+              <p class="f-err" id="err-mail" hidden data-i18n="f.err.mail"></p>
+            </div>
+            <div class="field full">
+              <span class="f-label" data-i18n="f.g.pace"></span>
+              <div class="chips" role="radiogroup">
+                <input type="radio" name="ritmo" id="r1" value="1"><label for="r1" data-i18n="f.pace.1"></label>
+                <input type="radio" name="ritmo" id="r2" value="2"><label for="r2" data-i18n="f.pace.2"></label>
+                <input type="radio" name="ritmo" id="r3" value="3"><label for="r3" data-i18n="f.pace.3"></label>
+                <input type="radio" name="ritmo" id="r4" value="4"><label for="r4" data-i18n="f.pace.4"></label>
+              </div>
+            </div>
+            <div class="field full">
+              <span class="f-label" data-i18n="f.g.int"></span>
+              <div class="chips" role="group">
+                <input type="checkbox" name="interes" id="a1" value="1"><label for="a1" data-i18n="f.int.1"></label>
+                <input type="checkbox" name="interes" id="a2" value="2"><label for="a2" data-i18n="f.int.2"></label>
+                <input type="checkbox" name="interes" id="a3" value="3"><label for="a3" data-i18n="f.int.3"></label>
+                <input type="checkbox" name="interes" id="a4" value="4"><label for="a4" data-i18n="f.int.4"></label>
+                <input type="checkbox" name="interes" id="a5" value="5"><label for="a5" data-i18n="f.int.5"></label>
+                <input type="checkbox" name="interes" id="a6" value="6"><label for="a6" data-i18n="f.int.6"></label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="f-label" data-i18n="f.g.party"></span>
+              <div class="chips" role="radiogroup">
+                <input type="radio" name="compania" id="c1" value="1"><label for="c1" data-i18n="f.party.1"></label>
+                <input type="radio" name="compania" id="c2" value="2"><label for="c2" data-i18n="f.party.2"></label>
+                <input type="radio" name="compania" id="c3" value="3"><label for="c3" data-i18n="f.party.3"></label>
+                <input type="radio" name="compania" id="c4" value="4"><label for="c4" data-i18n="f.party.4"></label>
+              </div>
+            </div>
+            <div class="field">
+              <span class="f-label" data-i18n="f.g.when"></span>
+              <div class="chips" role="radiogroup">
+                <input type="radio" name="cuando" id="h1" value="1"><label for="h1" data-i18n="f.when.1"></label>
+                <input type="radio" name="cuando" id="h2" value="2"><label for="h2" data-i18n="f.when.2"></label>
+                <input type="radio" name="cuando" id="h3" value="3"><label for="h3" data-i18n="f.when.3"></label>
+              </div>
+            </div>
+            <div class="field full">
+              <label class="f-label" for="f-story" data-i18n="f.g.more"></label>
+              <textarea class="f-input" id="f-story" name="nota" rows="3" data-i18n-ph="f.ph.more"></textarea>
+            </div>
+            <div class="form-foot">
+              <button class="btn" type="submit">
+                <span data-i18n="f.send"></span>
+                <svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" fill="none"/></svg>
+              </button>
+              <p class="form-micro" data-i18n="f.micro"></p>
+            </div>
+          </form>
+        </div>
+
+        <div id="formSuccess" hidden>
+          <svg viewBox="0 0 120 40" aria-hidden="true"><path pathLength="100" d="M6 32 C 28 6, 48 36, 70 16 S 104 26, 114 10"/></svg>
+          <h3 data-i18n="f.ok.h"></h3>
+          <p data-i18n-html="f.ok.p"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- WhatsApp flotante -->
+<!-- PRODUCCIÓN: confirmar que 525651100276 es el número correcto de WhatsApp Business -->
+<a id="waFloat" class="wa-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <span class="wa-tip" data-i18n="wa.tip"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Footer -->
+<footer>
+  <div class="foot-mark">
+    <svg viewBox="0 0 90 30" aria-hidden="true"><path d="M6 24 C 20 5, 34 27, 52 12 S 78 18, 84 7"/></svg>
+    <div class="foot-word">PARABOLA</div>
+    <p class="foot-tag" data-i18n="ft.tag"></p>
+  </div>
+  <div class="wrap foot-grid">
+    <div>
+      <h4 data-i18n="ft.h1"></h4>
+      <p data-i18n="ft.p1"></p>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="ft.h2"></h4>
+      <ul>
+        <li><a href="#inicio" data-i18n="ft.n1"></a></li>
+        <li><a href="#nosotros" data-i18n="ft.n2"></a></li>
+        <li><a href="#enfoques" data-i18n="ft.n3"></a></li>
+        <li><a href="#conversacion" data-i18n="ft.n4"></a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="ft.h3"></h4>
+      <ul>
+        <li><a href="tel:+525651100276">+52 (565) 110 0276</a></li>
         <li><a href="mailto:fbarnetche@gmail.com">fbarnetche@gmail.com</a></li>
-        <li><button onclick="goToContact()">Formulario de contacto</button></li>
+        <li><a href="#conversacion" data-i18n="ft.n4"></a></li>
       </ul>
     </div>
-    <div class="ft-col"></div>
-    <div class="ft-copy">© 2026 Parábola · Ciudad de México</div>
-  </footer>
-
-</div>
-
-<div class="gallery-popup" id="galleryPopup">
-  <div class="gp-header">
-    <span class="gp-title">Colorado 2026 — Snowmass & Crested Butte · Galería</span>
-    <button class="gp-close" onclick="closeGallery()">Cerrar ✕</button>
+    <div class="foot-col">
+      <h4 data-i18n="ft.h4"></h4>
+      <ul>
+        <li>
+          <!-- PRODUCCIÓN: poner el handle real de Instagram -->
+          <a href="https://www.instagram.com/parabola.mx/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a class="wa-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
-  <div class="gp-grid">
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/1119796/pexels-photo-1119796.jpeg')"><img src="https://images.pexels.com/photos/1119796/pexels-photo-1119796.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/1154929/pexels-photo-1154929.jpeg')"><img src="https://images.pexels.com/photos/1154929/pexels-photo-1154929.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/2422461/pexels-photo-2422461.jpeg')"><img src="https://images.pexels.com/photos/2422461/pexels-photo-2422461.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/1144687/pexels-photo-1144687.jpeg')"><img src="https://images.pexels.com/photos/1144687/pexels-photo-1144687.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/3768130/pexels-photo-3768130.jpeg')"><img src="https://images.pexels.com/photos/3768130/pexels-photo-3768130.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/2827817/pexels-photo-2827817.jpeg')"><img src="https://images.pexels.com/photos/2827817/pexels-photo-2827817.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/1059078/pexels-photo-1059078.jpeg')"><img src="https://images.pexels.com/photos/1059078/pexels-photo-1059078.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg')"><img src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/1054655/pexels-photo-1054655.jpeg')"><img src="https://images.pexels.com/photos/1054655/pexels-photo-1054655.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg')"><img src="https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/1260815/pexels-photo-1260815.jpeg')"><img src="https://images.pexels.com/photos/1260815/pexels-photo-1260815.jpeg" alt="" loading="lazy"></div>
-    <div class="gp-item" onclick="openSingle('https://images.pexels.com/photos/3766200/pexels-photo-3766200.jpeg')"><img src="https://images.pexels.com/photos/3766200/pexels-photo-3766200.jpeg" alt="" loading="lazy"></div>
+  <div class="wrap foot-base">
+    <span data-i18n="ft.bl"></span>
+    <span data-i18n="ft.br"></span>
   </div>
-</div>
-
-<div class="gp-single" id="gpSingle" onclick="if(event.target===this)closeSingle()">
-  <button class="gp-single-close" onclick="closeSingle()">Cerrar ✕</button>
-  <img id="gpSingleImg" src="" alt="">
-</div>
+</footer>
 
 <script>
-/* PAGE ROUTER */
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'instant' });
-  
-  // nav active state
-  ['home','trip','about'].forEach(n => {
-    const el = document.getElementById('nl-' + n);
-    if (el) el.style.color = (n === name) ? 'var(--black)' : '';
+(function(){
+  "use strict";
+  const $  = (s,c)=> (c||document).querySelector(s);
+  const $$ = (s,c)=> Array.prototype.slice.call((c||document).querySelectorAll(s));
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (v,a,b)=> Math.min(b,Math.max(a,v));
+
+  /* =========================================================
+     I18N — Todos los textos del sitio en ES y EN.
+     Para editar copy: modificar aquí, no en el HTML.
+     ========================================================= */
+  const I18N = {
+    es: {
+      "doc.title":"Parabola — Curadores de viajes de alto nivel",
+      "wa.msg":"Hola Parábola, quiero diseñar un viaje.",
+      "wa.tip":"Escríbenos por WhatsApp",
+      "wa.tip2":"Pregunta por Colorado 2026",
+      "m.subject":"Nueva solicitud — Parabola · ",
+      "b.name":"Nombre","b.mail":"Correo","b.pace":"Ritmo de viaje","b.int":"Intereses","b.party":"Compañía","b.when":"Horizonte","b.note":"Nota",
+      "v.tag":"trazando tu curva…",
+      "nav.home":"Inicio","nav.about":"Nosotros","nav.focus":"Enfoques","cta.head":"Iniciar conversación",
+      "m.home":"Inicio","m.about":"Nosotros","m.focus":"Enfoques","m.contact":"Iniciar conversación",
+      "hero.label":"Curadores de viajes de alto nivel",
+      "hero.h1a":"El viaje que","hero.h1b":"aún no existe","hero.h1c":"empieza en ti",
+      "hero.sub":"Diseñamos viajes privados hechos a la medida. No partimos de catálogos: partimos de ti —tu ritmo, tu tiempo, tu manera de viajar— y construimos una travesía que no existe hasta que la hacemos.",
+      "hero.cta":"Iniciar la conversación","hero.how":"Ver cómo trabajamos",
+      "hero.footl":"Ciudad de México — diseñamos hacia cualquier parte","hero.hint":"Desliza","hero.footr":"Cada itinerario se hace una sola vez",
+      "s1.label":"01 — Nosotros","s1.h2":"Hay quienes recorren. Hay quienes habitan.",
+      "s1.l1":"Un buen viaje no se demuestra con fotos: se nota en cómo transcurren los días. Que nada corra prisa. Que nada sobre. Que cada cosa llegue justo a su hora.",
+      "s1.l2":"Por eso trabajamos al revés que una agencia tradicional: <strong>no empezamos por el destino, empezamos por ti.</strong> Una conversación larga, las preguntas correctas y cero plantillas. Con eso armamos un itinerario que se siente tuyo desde el primer día — porque se diseñó para una sola persona.",
+      "s1.l3":"Del resto nos encargamos nosotros: reservas, tiempos, accesos, imprevistos. Tú solo viajas.",
+      "s1.pull":"El mejor itinerario <span class=\"hl\">parece escrito por ti.</span>",
+      "s1.p1":"Escuchar antes de proponer.","s1.p2":"Cada itinerario se escribe una sola vez.","s1.p3":"La buena logística no se nota.","s1.p4":"Tu ritmo manda sobre el calendario.",
+      "fb.label":"El trazo","fb.h2":"Rutas que no existen en ningún catálogo.",
+      "fb.sub":"Cada itinerario se levanta desde cero: línea por línea, día por día, con tu ritmo como única regla.",
+      "fb.s1":"Respuesta en menos de 48 h","fb.s2":"Un itinerario por viajero","fb.s3":"Acompañamiento en ruta",
+      "s2.label":"02 — Cómo trabajamos","s2.h2":"Así se diseña tu viaje.",
+      "s2.intro":"Tres pasos, sin letra chica. Tú participas en las decisiones importantes; nosotros resolvemos todo lo demás.",
+      "s2.w1":"Escuchar",
+      "s2.t1":"Todo empieza con una conversación, sin guion ni formularios largos. Queremos saber cómo viajas: qué te descansa, qué te despierta curiosidad, qué te ha faltado en otros viajes. Una sesión suele bastar. Ahí queda claro el tono del viaje.",
+      "s2.w2":"Diseñar",
+      "s2.t2":"Convertimos esa conversación en una ruta concreta: dónde, cuándo, cómo y con quién, con todas las reservas y tiempos resueltos. Recibes una propuesta clara, la ajustamos contigo y cerramos cada detalle antes de partir.",
+      "s2.w3":"Acompañar",
+      "s2.t3":"Durante el viaje sigues con contacto directo nuestro. Cambiar una reserva, mover un horario, resolver lo inesperado: suele bastar un mensaje. Para eso estamos.",
+      "s2.note":"Sin costos escondidos: el alcance y el presupuesto quedan claros desde la primera propuesta.",
+      "col.note":"La ruta es tuya. El trazo, nuestro.",
+      "s3.label":"03 — Enfoques","s3.h2":"Puntos de partida,<br>no un catálogo.",
+      "s3.intro":"Ningún itinerario se repite. Pero casi todos los deseos caen en alguna de estas familias: tómalas como punto de partida, no como categorías cerradas. Y si algo no está aquí, mejor todavía: es lo que más nos gusta diseñar.",
+      "s3.i1t":"Descanso profundo","s3.i1g":"Pausa & bienestar",
+      "s3.i1b":"Lugares privados y silenciosos para desconectarse de verdad: comodidad sin horarios y días que avanzan a tu paso.",
+      "s3.i2t":"Expediciones de gran escala","s3.i2g":"Rutas ambiciosas",
+      "s3.i2b":"Viajes largos y complejos que requieren logística fina. La complejidad es nuestra; la sensación de fluidez, tuya.",
+      "s3.i3t":"Cultura de acceso privado","s3.i3g":"Puertas que no se abren solas",
+      "s3.i3b":"Encuentros y lugares que no aparecen en ningún buscador: se conocen por relación y por presentación. Nosotros hacemos la presentación.",
+      "s3.i4t":"Algo distinto","s3.i4g":"Si no está en la lista",
+      "s3.i4b":"Si lo que tienes en mente no encaja en ninguna categoría, perfecto: esos son los proyectos favoritos del estudio. Cuéntanoslo y lo diseñamos desde cero.",
+      "s3.i5t":"Fechas que importan","s3.i5g":"Celebraciones & capítulos",
+      "s3.i5b":"Aniversarios, uniones, reencuentros, despedidas. Los días grandes se celebran una vez: los diseñamos para que queden grandes.",
+      "s4.label":"04 — A tu medida","s4.h2":"No hay dos viajes iguales.",
+      "s4.text":"Lo que tengas en mente —donde sea, como sea— lo diseñamos desde cero y solo para ti. El punto de partida siempre es el mismo: una buena conversación.",
+      "s4.cta":"Empezar el tuyo",
+      "s5.label":"05 — Iniciar","s5.h2":"Cuéntanos cómo viajas.",
+      "s5.intro":"Llena esto en tres minutos. No es una reserva: es el inicio de la conversación. Con lo que nos digas aquí, nuestra primera respuesta ya va a tu medida.",
+      "f.aside.h":"Qué pasa después de enviar",
+      "f.aside.s1":"Leemos tu mensaje con calma.","f.aside.s2":"Te respondemos en menos de 48 horas.","f.aside.s3":"Agendamos la primera conversación, en el formato que prefieras.",
+      "f.aside.note":"Cada solicitud la lee una persona. Siempre.","f.direct":"¿Prefieres hablar directo?",
+      "f.name":"Tu nombre","f.mail":"Tu correo","f.ph.name":"Nombre y apellido","f.ph.mail":"tu@correo.com",
+      "f.g.pace":"¿Cómo prefieres viajar?","f.pace.1":"Pausa","f.pace.2":"Movimiento","f.pace.3":"Mezcla de ambos","f.pace.4":"Aún no lo sé",
+      "f.g.int":"¿Qué te llama del viaje?","f.int.1":"Silencio","f.int.2":"Naturaleza","f.int.3":"Cultura","f.int.4":"Ciudades","f.int.5":"Descanso","f.int.6":"Grandes recorridos",
+      "f.g.party":"¿Con quién viajas?","f.party.1":"Solo/a","f.party.2":"En pareja","f.party.3":"Familia","f.party.4":"Amigos",
+      "f.g.when":"¿Para cuándo?","f.when.1":"Próximos meses","f.when.2":"Este año","f.when.3":"Aún lo estoy pensando",
+      "f.g.more":"¿Algo más?","f.ph.more":"Un viaje que te marcó, una idea que traes en la cabeza, lo que sea.",
+      "f.send":"Enviar","f.micro":"Respondemos en menos de 48 horas. Tu información no se comparte con nadie.",
+      "f.err.name":"Escribe tu nombre.","f.err.mail":"Revisa tu correo: ahí te escribiremos.",
+      "f.ok.h":"Recibido.",
+      "f.ok.p":"Se abrió tu correo con el mensaje listo: solo presiona enviar y te escribimos en menos de 48 horas. Si prefieres adelantar algo, <a class=\"wa-link\" target=\"_blank\" rel=\"noopener\">escríbenos por WhatsApp</a>.",
+      "ft.tag":"Curadores de viajes de alto nivel","ft.h1":"El estudio",
+      "ft.p1":"Viajes privados diseñados a la medida. Cada itinerario se hace una sola vez: para ti.",
+      "ft.h2":"Navegación","ft.n1":"Inicio","ft.n2":"Nosotros","ft.n3":"Enfoques","ft.n4":"Formulario de contacto",
+      "ft.h3":"Contacto","ft.h4":"Redes","ft.bl":"© 2025 Parabola","ft.br":"Ciudad de México — diseñamos hacia cualquier parte",
+      "rl0":"00 · Inicio","rl1":"01 · Nosotros","rl2":"02 · Proceso","rl3":"03 · Enfoques","rl4":"04 · A tu medida","rl5":"05 · Contacto"
+    },
+    en: {
+      "doc.title":"Parabola — High-level travel curation",
+      "wa.msg":"Hi Parabola, I'd like to design a trip.",
+      "wa.tip":"Message us on WhatsApp",
+      "wa.tip2":"Ask about Colorado 2026",
+      "m.subject":"New request — Parabola · ",
+      "b.name":"Name","b.mail":"Email","b.pace":"Travel pace","b.int":"Interests","b.party":"Party","b.when":"Timeframe","b.note":"Note",
+      "v.tag":"plotting your curve…",
+      "nav.home":"Home","nav.about":"About","nav.focus":"Approaches","cta.head":"Start the conversation",
+      "m.home":"Home","m.about":"About","m.focus":"Approaches","m.contact":"Start the conversation",
+      "hero.label":"Curators of high-level travel",
+      "hero.h1a":"The trip that","hero.h1b":"doesn't exist yet","hero.h1c":"starts with you",
+      "hero.sub":"We design private trips, made from scratch. We don't start from catalogs: we start from you —your pace, your time, your way of traveling— and build a journey that doesn't exist until we make it.",
+      "hero.cta":"Start the conversation","hero.how":"See how we work",
+      "hero.footl":"Mexico City — we design for anywhere","hero.hint":"Scroll","hero.footr":"Every itinerary is made once",
+      "s1.label":"01 — About","s1.h2":"Some visit places. Others inhabit them.",
+      "s1.l1":"A great trip isn't proven with photos: you can tell by how the days unfold. Nothing rushed. Nothing extra. Everything arriving right on time.",
+      "s1.l2":"That's why we work the opposite way from a traditional agency: <strong>we don't start with the destination, we start with you.</strong> One long conversation, the right questions, zero templates. From that we build an itinerary that feels yours from day one — because it was designed for one single person.",
+      "s1.l3":"We take care of the rest: bookings, timing, access, the unexpected. You just travel.",
+      "s1.pull":"The best itinerary <span class=\"hl\">reads like you wrote it.</span>",
+      "s1.p1":"Listen before proposing.","s1.p2":"Every itinerary is written once.","s1.p3":"Good logistics go unnoticed.","s1.p4":"Your pace outranks the calendar.",
+      "fb.label":"The line","fb.h2":"Routes that exist in no catalog.",
+      "fb.sub":"Every itinerary is built from scratch: line by line, day by day, with your pace as the only rule.",
+      "fb.s1":"Reply within 48 h","fb.s2":"One itinerary per traveler","fb.s3":"Support along the way",
+      "s2.label":"02 — How we work","s2.h2":"This is how your trip gets designed.",
+      "s2.intro":"Three steps, no fine print. You're part of the big decisions; we handle everything else.",
+      "s2.w1":"Listen",
+      "s2.t1":"It all starts with a conversation — no scripts, no long forms. We want to know how you travel: what rests you, what sparks your curiosity, what other trips were missing. One session is usually enough. That sets the tone of the trip.",
+      "s2.w2":"Design",
+      "s2.t2":"We turn that conversation into a concrete route: where, when, how and with whom, with every booking and timing solved. You get a clear proposal, we refine it together, and every detail is closed before departure.",
+      "s2.w3":"Support",
+      "s2.t3":"While you travel, you stay in direct contact with us. Change a booking, shift a schedule, handle the unexpected: a message is usually enough. That's what we're here for.",
+      "s2.note":"No hidden costs: scope and budget are clear from the first proposal.",
+      "col.note":"The route is yours. The line, ours.",
+      "s3.label":"03 — Approaches","s3.h2":"Starting points,<br>not a catalog.",
+      "s3.intro":"No itinerary repeats. But most wishes fall into one of these families: take them as starting points, not closed categories. And if what you want isn't here, even better: it's what we love designing most.",
+      "s3.i1t":"Deep rest","s3.i1g":"Pause & wellbeing",
+      "s3.i1b":"Private, silent places to truly switch off: comfort without schedules and days that move at your pace.",
+      "s3.i2t":"Large-scale expeditions","s3.i2g":"Ambitious routes",
+      "s3.i2b":"Long, complex trips that take fine logistics. The complexity is ours; the feeling of flow, yours.",
+      "s3.i3t":"Private-access culture","s3.i3g":"Doors that don't open by themselves",
+      "s3.i3b":"Meetings and places no search engine will show you: they're known through relationships and introductions. We make the introduction.",
+      "s3.i4t":"Something else","s3.i4g":"If it's not on the list",
+      "s3.i4b":"If what you have in mind fits no category, perfect: those are the studio's favorite projects. Tell us about it and we'll design it from scratch.",
+      "s3.i5t":"Dates that matter","s3.i5g":"Celebrations & chapters",
+      "s3.i5b":"Anniversaries, unions, reunions, farewells. The big days happen once: we design them to stay big.",
+      "s4.label":"04 — Made for you","s4.h2":"No two trips are alike.",
+      "s4.text":"Whatever you have in mind — wherever it is, whatever shape it takes — we design it from scratch, only for you. The starting point is always the same: a good conversation.",
+      "s4.cta":"Start yours",
+      "s5.label":"05 — Start","s5.h2":"Tell us how you travel.",
+      "s5.intro":"Fill this out in three minutes. It's not a booking: it's the start of the conversation. With what you share here, our first reply already fits you.",
+      "f.aside.h":"What happens after you send",
+      "f.aside.s1":"We read your message calmly.","f.aside.s2":"We reply within 48 hours.","f.aside.s3":"We schedule the first conversation, in whatever format you prefer.",
+      "f.aside.note":"A human reads every request. Always.","f.direct":"Rather talk directly?",
+      "f.name":"Your name","f.mail":"Your email","f.ph.name":"First and last name","f.ph.mail":"you@email.com",
+      "f.g.pace":"How do you like to travel?","f.pace.1":"Slow","f.pace.2":"On the move","f.pace.3":"A mix of both","f.pace.4":"Not sure yet",
+      "f.g.int":"What calls you to travel?","f.int.1":"Silence","f.int.2":"Nature","f.int.3":"Culture","f.int.4":"Cities","f.int.5":"Rest","f.int.6":"Long journeys",
+      "f.g.party":"Who are you traveling with?","f.party.1":"Solo","f.party.2":"As a couple","f.party.3":"Family","f.party.4":"Friends",
+      "f.g.when":"For when?","f.when.1":"In the next few months","f.when.2":"This year","f.when.3":"Still thinking about it",
+      "f.g.more":"Anything else?","f.ph.more":"A trip that marked you, an idea you keep coming back to, anything.",
+      "f.send":"Send","f.micro":"We reply within 48 hours. Your information is never shared.",
+      "f.err.name":"Please write your name.","f.err.mail":"Check your email — that's where we'll write to you.",
+      "f.ok.h":"Got it.",
+      "f.ok.p":"Your email client just opened with the message ready: hit send and we'll get back to you within 48 hours. Want to move faster? <a class=\"wa-link\" target=\"_blank\" rel=\"noopener\">Write us on WhatsApp</a>.",
+      "ft.tag":"Curators of high-level travel","ft.h1":"The studio",
+      "ft.p1":"Private trips designed from scratch. Every itinerary is made once: for you.",
+      "ft.h2":"Browse","ft.n1":"Home","ft.n2":"About","ft.n3":"Approaches","ft.n4":"Contact form",
+      "ft.h3":"Contact","ft.h4":"Social","ft.bl":"© 2025 Parabola","ft.br":"Mexico City — we design for anywhere",
+      "rl0":"00 · Home","rl1":"01 · About","rl2":"02 · Process","rl3":"03 · Approaches","rl4":"04 · Bespoke","rl5":"05 · Contact"
+    }
+  };
+
+  let LANG = "es";
+  function t(k){ return (I18N[LANG] && I18N[LANG][k]) || I18N.es[k] || ""; }
+
+  function setWaLinks(){
+    const href = "https://wa.me/525651100276?text=" + encodeURIComponent(t("wa.msg"));
+    $$(".wa-link").forEach(a=> a.href = href);
+  }
+
+  function applyLang(l){
+    LANG = (l === "en" && I18N.en) ? "en" : "es";
+    try{ localStorage.setItem("pb-lang", LANG); }catch(e){}
+    document.documentElement.setAttribute("lang", LANG);
+    document.title = t("doc.title");
+    $$("[data-i18n]").forEach(el=> el.textContent = t(el.dataset.i18n));
+    $$("[data-i18n-html]").forEach(el=> el.innerHTML = t(el.dataset.i18nHtml));
+    $$("[data-i18n-ph]").forEach(el=> el.setAttribute("placeholder", t(el.dataset.i18nPh)));
+    $$(".lang button").forEach(b=> b.classList.toggle("on", b.dataset.lang === LANG));
+    setWaLinks();
+    buildRoute(); /* redespliega la ruta: textos de nodos + alturas cambiaron */
+  }
+  $$(".lang button").forEach(b=> b.addEventListener("click", ()=> applyLang(b.dataset.lang)));
+
+  /* ——— Velo ——— */
+  const veil = $("#veil");
+  let revealed = false;
+  function initReveals(){
+    if(revealed) return; revealed = true;
+    const io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    },{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+    $$(".reveal").forEach(el=> io.observe(el));
+  }
+  function lift(){
+    if(document.body.classList.contains("ready")) return;
+    document.body.classList.add("ready");
+    veil.classList.add("lift");
+    setTimeout(()=>{ veil.remove(); initReveals(); }, 800);
+  }
+  if(RM){ veil.remove(); document.body.classList.add("ready"); initReveals(); }
+  else { setTimeout(lift, 3400); setTimeout(lift, 6500); /* red de seguridad */ }
+
+  /* ——— Bandas ilustradas ——— */
+  const bandIO = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); bandIO.unobserve(e.target); } });
+  },{threshold:.3});
+  $$(".field-band,.collage,.medida").forEach(el=> bandIO.observe(el));
+
+  /* ——— Header ——— */
+  const top = $("#top");
+  addEventListener("scroll", ()=> top.classList.toggle("scrolled", scrollY > 24), {passive:true});
+
+  /* ——— Menú móvil ——— */
+  const menuBtn = $("#menuBtn");
+  menuBtn.addEventListener("click", ()=>{
+    const open = document.body.classList.toggle("menu-open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
   });
-}
+  $$("#menu a").forEach(a=> a.addEventListener("click", ()=>{
+    document.body.classList.remove("menu-open");
+    menuBtn.setAttribute("aria-expanded","false");
+    document.body.style.overflow = "";
+  }));
 
-/* SMART SCROLLING (Manejo de anclas a través de páginas) */
-function goToContact() {
-  if (!document.getElementById('page-home').classList.contains('active')) {
-    showPage('home');
+  /* ——— Acordeón ——— */
+  $$(".acc-item").forEach(item=>{
+    const head = $(".acc-head", item);
+    head.addEventListener("click", ()=>{
+      const was = item.classList.contains("open");
+      $$(".acc-item.open").forEach(o=>{ o.classList.remove("open"); $(".acc-head",o).setAttribute("aria-expanded","false"); });
+      if(!was){ item.classList.add("open"); head.setAttribute("aria-expanded","true"); }
+    });
+  });
+
+  /* ——— Formulario → correo (funciona sin backend) ———
+     PRODUCCIÓN: sustituir el bloque mailto por fetch() al endpoint
+     del CRM / Formspree / servicio que prefieran. */
+  const form = $("#applyForm");
+  function lblOf(input){
+    if(!input) return "—";
+    const l = form.querySelector('label[for="'+input.id+'"]');
+    return l ? l.textContent.trim() : "—";
   }
-  setTimeout(() => {
-    document.getElementById('hc-left').scrollIntoView({behavior:'smooth'});
-  }, 100);
-}
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const name = $("#f-name"), mail = $("#f-mail");
+    let ok = true;
+    $("#err-name").hidden = !!name.value.trim(); if(!name.value.trim()) ok = false;
+    const okMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail.value.trim());
+    $("#err-mail").hidden = okMail; if(!okMail) ok = false;
+    if(!ok) return;
+    const pick = (n)=> lblOf(form.querySelector('input[name="'+n+'"]:checked'));
+    const inters = $$('input[name="interes"]:checked').map(lblOf).join(", ") || "—";
+    const body =
+      t("b.name") + ": " + name.value.trim() + "\n" +
+      t("b.mail") + ": " + mail.value.trim() + "\n" +
+      t("b.pace") + ": " + pick("ritmo") + "\n" +
+      t("b.int") + ": " + inters + "\n" +
+      t("b.party") + ": " + pick("compania") + "\n" +
+      t("b.when") + ": " + pick("cuando") + "\n\n" +
+      t("b.note") + ":\n" + ($("#f-story").value.trim() || "—");
+    window.location.href = "mailto:fbarnetche@gmail.com"
+      + "?subject=" + encodeURIComponent(t("m.subject") + name.value.trim())
+      + "&body=" + encodeURIComponent(body);
+    const wrap = $(".apply-form-wrap");
+    wrap.classList.add("sent");
+    setTimeout(()=>{
+      wrap.hidden = true;
+      const s = $("#formSuccess");
+      s.hidden = false;
+      setWaLinks();
+      requestAnimationFrame(()=> requestAnimationFrame(()=> s.classList.add("show")));
+    }, 460);
+  });
 
-function scrollToDestinations() {
-  if (!document.getElementById('page-home').classList.contains('active')) {
-    showPage('home');
+  /* ——— La ruta en rojo ——— */
+  const svg = $("#route"), g = $("#routeG"), path = $("#routePath"),
+        tip = $("#tip"), ring = $("#tipRing"), nodesG = $("#nodes");
+  const SVGNS = "http://www.w3.org/2000/svg";
+  let total = 0, nodeEls = [], nodeLens = [];
+
+  function prnd(n){ const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
+  function smooth(p){
+    let d = "M " + p[0].x + " " + p[0].y;
+    for(let i = 0; i < p.length - 1; i++){
+      const p0 = p[Math.max(0,i-1)], p1 = p[i], p2 = p[i+1], p3 = p[Math.min(p.length-1,i+2)];
+      d += " C " + (p1.x+(p2.x-p0.x)/6) + " " + (p1.y+(p2.y-p0.y)/6) + ", "
+                 + (p2.x-(p3.x-p1.x)/6) + " " + (p2.y-(p3.y-p1.y)/6) + ", " + p2.x + " " + p2.y;
+    }
+    return d;
   }
-  setTimeout(() => {
-    document.getElementById('destinations-list').scrollIntoView({behavior:'smooth'});
-  }, 100);
-}
 
-/* MOBILE MENU */
-function toggleMobileMenu() {
-  const menu = document.getElementById('mobileMenu');
-  const isOpen = menu.classList.contains('open');
-  
-  if (isOpen) {
-    menu.classList.remove('open');
-    document.body.style.overflow = '';
-  } else {
-    menu.classList.add('open');
-    document.body.style.overflow = 'hidden';
+  function buildRoute(){
+    const W = innerWidth;
+    const docH = document.documentElement.scrollHeight;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + innerHeight);
+
+    const anchors = $$("[data-route]").map((s,i)=>{
+      const r = s.getBoundingClientRect();
+      const isHero = s.id === "inicio";
+      return {
+        x: W * parseFloat(s.dataset.x || (i % 2 ? ".86" : ".14")),
+        y: isHero ? (r.bottom + scrollY - 140) : (r.top + scrollY + 64),
+        label: t(s.dataset.route),
+        dark: s.classList.contains("dark") || s.dataset.th === "dk"
+      };
+    });
+
+    let pts = [{x: W * .5, y: -80}];
+    anchors.forEach((a,i)=>{
+      const prev = pts[pts.length-1];
+      for(let k = 1; k <= 2; k++){
+        const tt = k / 3;
+        const dx = a.x - prev.x, dy = a.y - prev.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const amp = (prnd(i * 7 + k) - .5) * 120;
+        pts.push({ x: clamp(prev.x + dx * tt - (dy/len) * amp, 24, W - 24),
+                   y: prev.y + dy * tt + (dx/len) * amp });
+      }
+      pts.push({x: a.x, y: a.y});
+    });
+    pts.push({x: W * .55, y: docH + 80});
+
+    path.setAttribute("d", smooth(pts));
+    total = path.getTotalLength();
+    path.style.strokeDasharray = total;
+    path.style.strokeDashoffset = RM ? 0 : total;
+
+    nodesG.innerHTML = ""; nodeEls = []; nodeLens = [];
+    anchors.forEach(a=>{
+      const c = document.createElementNS(SVGNS, "circle");
+      c.setAttribute("cx", a.x); c.setAttribute("cy", a.y); c.setAttribute("r", "5");
+      c.setAttribute("class", "node");
+      const tx = document.createElementNS(SVGNS, "text");
+      tx.textContent = a.label;
+      tx.setAttribute("class", "node-label " + (a.dark ? "dk" : "lt"));
+      if(a.x > W * .5){ tx.setAttribute("text-anchor","end"); tx.setAttribute("x", a.x - 16); }
+      else { tx.setAttribute("text-anchor","start"); tx.setAttribute("x", a.x + 16); }
+      tx.setAttribute("y", a.y + 3.5);
+      nodesG.appendChild(c); nodesG.appendChild(tx);
+      nodeEls.push([c, tx]); nodeLens.push(nearestLen(a));
+    });
+    if(RM) nodeEls.forEach(p=>{ p[0].classList.add("on"); p[1].classList.add("on"); });
   }
-}
 
-/* ITINERARY ACCORDION */
-function toggleItin(item) {
-  const wasOpen = item.classList.contains('open');
-  document.querySelectorAll('.itin-item.open').forEach(i => i.classList.remove('open'));
-  if (!wasOpen) item.classList.add('open');
-}
+  function nearestLen(pt){
+    let best = 0, bd = Infinity;
+    for(let l = 0; l <= total; l += 40){
+      const q = path.getPointAtLength(l);
+      const d = (q.x-pt.x)*(q.x-pt.x) + (q.y-pt.y)*(q.y-pt.y);
+      if(d < bd){ bd = d; best = l; }
+    }
+    for(let l = Math.max(0, best-40); l <= Math.min(total, best+40); l += 2){
+      const q = path.getPointAtLength(l);
+      const d = (q.x-pt.x)*(q.x-pt.x) + (q.y-pt.y)*(q.y-pt.y);
+      if(d < bd){ bd = d; best = l; }
+    }
+    return best;
+  }
 
-/* GALLERY */
-function openGallery() {
-  document.getElementById('galleryPopup').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeGallery() {
-  document.getElementById('galleryPopup').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function openSingle(src) {
-  document.getElementById('gpSingleImg').src = src;
-  document.getElementById('gpSingle').classList.add('open');
-}
-function closeSingle() {
-  document.getElementById('gpSingle').classList.remove('open');
-}
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeGallery(); closeSingle(); }
-});
+  let tP = 0, cP = 0, tY = scrollY, cY = scrollY;
+  function onScroll(){
+    tY = scrollY;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    tP = max > 0 ? Math.min(1, scrollY / max) : 0;
+  }
+  addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
 
-/* FORM */
-function submitForm() {
-  const inputs = document.querySelectorAll('#page-home .cf-input');
-  const name = inputs[0]?.value || '';
-  const trip = document.querySelector('#page-home .cf-select')?.value || 'un viaje';
-  window.open(`https://wa.me/525651100276?text=Hola%2C%20soy%20${encodeURIComponent(name)}%20y%20me%20interesa%20${encodeURIComponent(trip)}`, '_blank');
-}
+  function tick(){
+    cY += (tY - cY) * .1; cP += (tP - cP) * .08;
+    if(Math.abs(tY - cY) < .05) cY = tY;
+    if(Math.abs(tP - cP) < .0004) cP = tP;
+    g.setAttribute("transform", "translate(0 " + (-cY) + ")");
+    const drawn = cP * total;
+    path.style.strokeDashoffset = total - drawn;
+    const p = path.getPointAtLength(drawn);
+    tip.setAttribute("cx", p.x); tip.setAttribute("cy", p.y);
+    ring.setAttribute("cx", p.x); ring.setAttribute("cy", p.y);
+    nodeEls.forEach((pair, i)=>{
+      const on = drawn >= nodeLens[i] - 2;
+      pair[0].classList.toggle("on", on);
+      pair[1].classList.toggle("on", on);
+    });
+    requestAnimationFrame(tick);
+  }
 
-/* NAV scroll state */
-window.addEventListener('scroll', () => {
-  document.querySelector('nav').style.borderBottomColor =
-    window.scrollY > 10 ? 'var(--rule)' : 'var(--rule)';
-}, { passive: true });
+  /* ——— Idioma inicial: preferencia guardada > idioma del navegador > ES ——— */
+  let saved = null;
+  try{ saved = localStorage.getItem("pb-lang"); }catch(e){}
+  const initial = (saved === "en" || saved === "es")
+    ? saved
+    : ((navigator.language || "es").toLowerCase().indexOf("en") === 0 ? "en" : "es");
+  applyLang(initial);
+
+  if(!RM) requestAnimationFrame(tick);
+
+  let rb;
+  function rebuild(){ clearTimeout(rb); rb = setTimeout(buildRoute, 220); }
+  addEventListener("resize", rebuild);
+  if(window.ResizeObserver) new ResizeObserver(rebuild).observe(document.body);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=> setTimeout(buildRoute, 60));
+})();
 </script>
 </body>
 </html>
