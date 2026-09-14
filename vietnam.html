@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vietnam: The Deep Descent — Parabola · Marzo 2027</title>
+<meta name="description" content="22 días de viaje lento y exploración de cavernas en Vietnam. Del norte en terrazas a seis noches dentro de la selva de Phong Nha-Kẻ Bàng. Marzo 3–24, 2027.">
+<meta name="theme-color" content="#1F4A2A">
+<meta property="og:title" content="Vietnam: The Deep Descent — Parabola">
+<meta property="og:description" content="22 días · 2 expediciones · 6 noches de selva. Marzo 3–24, 2027.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400..700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F1E8;
+    --ink:#152019;
+    --ink2:#4C564E;
+    --green:#2F6B3E;
+    --green-deep:#1F4A2A;
+    --acc:#E2531F;
+    --acc-deep:#C2430F;
+    --yellow:#FFD41F;
+    --wa:#25D366;
+    --line:rgba(21,32,25,.16);
+    --line-c:rgba(244,241,232,.22);
+    --sans:"Instrument Sans",Helvetica,sans-serif;
+    --mono:"IBM Plex Mono",monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+    --pad:clamp(20px,5vw,72px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font:400 16.5px/1.7 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--acc);color:var(--paper)}
+  section{scroll-margin-top:84px}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;background:none;border:0;color:inherit}
+  :focus-visible{outline:2px solid var(--acc);outline-offset:3px}
+  .wrap{max-width:1240px;margin-inline:auto;padding-inline:var(--pad)}
+
+  .label{display:flex;align-items:center;gap:14px;font:500 10px/1 var(--mono);letter-spacing:.24em;text-transform:uppercase;color:var(--acc)}
+  .label::before{content:"";width:28px;height:1px;background:currentColor;flex:none}
+  .dark .label{color:var(--yellow)}
+  .h2{font:500 clamp(2rem,4.4vw,3.4rem)/1.1 var(--sans);letter-spacing:-.03em}
+  .sec-intro{max-width:52ch;color:var(--ink2);font-size:1.02rem}
+  .dark .sec-intro{color:rgba(244,241,232,.75)}
+  .sec-head{margin-bottom:clamp(2.6rem,5vw,4.4rem)}
+  .sec-head .label{margin-bottom:1.4rem}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ——— Velo (versión rápida para subpáginas) ——— */
+  #veil{position:fixed;inset:0;z-index:2000;background:var(--green-deep);display:grid;place-items:center;transition:transform .7s var(--ease)}
+  #veil.lift{transform:translateY(-101%)}
+  .veil-in{text-align:center}
+  .veil-art{width:170px;display:block;margin:0 auto 16px}
+  .vp{fill:none;stroke:var(--acc);stroke-width:2.6;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:vdraw 1.1s .15s var(--ease) forwards}
+  .vd{fill:var(--yellow);opacity:0;transform:scale(0);transform-origin:center;transform-box:fill-box;animation:vpop .45s var(--ease) forwards}
+  .veil-word{display:block;font:500 12px var(--sans);letter-spacing:.44em;text-indent:.44em;color:var(--paper);opacity:0;animation:vfade .6s 1s forwards}
+  @keyframes vdraw{to{stroke-dashoffset:0}}
+  @keyframes vfade{to{opacity:1}}
+  @keyframes vpop{to{opacity:1;transform:scale(1)}}
+
+  /* ——— Ruta en rojo ——— */
+  #route{position:fixed;inset:0;width:100%;height:100vh;pointer-events:none;z-index:3}
+  #routePath{stroke:var(--acc);stroke-width:2.2;fill:none;stroke-linecap:round}
+  #tip{fill:var(--acc)}
+  #tipRing{stroke:var(--acc);fill:none;stroke-width:1.2;transform-box:fill-box;transform-origin:center;animation:ringp 2.8s var(--ease) infinite}
+  @keyframes ringp{0%{transform:scale(.6);opacity:.8}70%{transform:scale(1.7);opacity:0}100%{transform:scale(1.7);opacity:0}}
+  .node{fill:var(--paper);stroke:var(--acc);stroke-width:1.6;transition:fill .5s}
+  .node.on{fill:var(--acc)}
+  .node-label{font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;opacity:0;transition:opacity .6s}
+  .node-label.on{opacity:1}
+  .node-label.lt{fill:var(--ink)}
+  .node-label.dk{fill:var(--paper)}
+
+  /* ——— Header ——— */
+  #top{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px var(--pad);color:var(--paper);transition:background .45s,color .45s,padding .45s,border-color .45s;border-bottom:1px solid transparent}
+  #top.scrolled{background:rgba(244,241,232,.92);backdrop-filter:blur(10px);color:var(--ink);padding-block:13px;border-color:var(--line)}
+  .brand{display:flex;align-items:center;gap:11px;font:600 12px var(--sans);letter-spacing:.34em}
+  .brand svg{width:34px;display:block}
+  .brand svg path{stroke:var(--acc);stroke-width:2.4;fill:none;stroke-linecap:round}
+  .top-nav{display:flex;gap:30px}
+  .top-nav a{position:relative;font:500 11px var(--sans);letter-spacing:.16em;text-transform:uppercase;padding-block:5px}
+  .top-nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+  .top-nav a:hover::after{transform:scaleX(1);transform-origin:left}
+  .lang{display:flex;align-items:center;gap:5px;font:500 11px var(--mono);letter-spacing:.08em}
+  .lang span{opacity:.4}
+  .lang button{opacity:.55;padding:4px 2px;transition:opacity .3s}
+  .lang button:hover{opacity:.85}
+  .lang button.on{opacity:1;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--acc)}
+  #menuBtn{display:none;width:38px;height:38px;position:relative}
+  #menuBtn span{position:absolute;left:8px;right:8px;height:1.5px;background:currentColor;transition:transform .4s var(--ease),top .4s var(--ease)}
+  #menuBtn span:first-child{top:15px}
+  #menuBtn span:last-child{top:23px}
+  body.menu-open #menuBtn span:first-child{top:19px;transform:rotate(45deg)}
+  body.menu-open #menuBtn span:last-child{top:19px;transform:rotate(-45deg)}
+  #menu{position:fixed;inset:0;z-index:95;background:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:var(--pad);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
+  body.menu-open #menu{opacity:1;visibility:visible}
+  #menu nav{display:flex;flex-direction:column;gap:4px}
+  #menu a.m-link{font:500 clamp(1.7rem,7vw,2.4rem)/1.3 var(--sans);letter-spacing:-.02em;display:flex;align-items:baseline;gap:16px;opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  #menu a.m-link small{font:500 10px var(--mono);letter-spacing:.2em;color:var(--acc)}
+  body.menu-open #menu a.m-link{opacity:1;transform:none}
+  body.menu-open #menu nav a:nth-child(1){transition-delay:.07s}
+  body.menu-open #menu nav a:nth-child(2){transition-delay:.13s}
+  body.menu-open #menu nav a:nth-child(3){transition-delay:.19s}
+  body.menu-open #menu nav a:nth-child(4){transition-delay:.25s}
+  body.menu-open #menu nav a:nth-child(5){transition-delay:.31s}
+  .menu-contact{margin-top:2.4rem;display:flex;flex-direction:column;gap:.55rem;font:400 13px var(--mono);letter-spacing:.03em;color:var(--ink2)}
+  .menu-contact a{text-decoration:underline;text-underline-offset:3px;width:fit-content}
+  .menu-contact a:hover{color:var(--acc)}
+
+  /* ——— Botones ——— */
+  .btn{display:inline-flex;align-items:center;gap:14px;background:var(--acc);color:var(--paper);padding:17px 26px;border:1px solid var(--acc);font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;transition:background .35s,border-color .35s}
+  .btn:hover{background:var(--acc-deep);border-color:var(--acc-deep)}
+  .btn svg{transition:transform .4s var(--ease)}
+  .btn:hover svg{transform:translateX(5px)}
+  .btn.ghost{background:transparent;color:var(--paper);border-color:rgba(244,241,232,.5)}
+  .btn.ghost:hover{background:var(--paper);border-color:var(--paper);color:var(--green-deep)}
+  .tlink{font:600 11px var(--sans);letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid currentColor;padding-bottom:4px;transition:color .3s}
+  .tlink:hover{color:var(--acc)}
+  .dark .tlink:hover{color:var(--yellow)}
+
+  /* ——— Hero ——— */
+  .hero{position:relative;min-height:92svh;background:var(--green);color:var(--paper);display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--pad) 44px;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:
+    radial-gradient(55% 45% at 18% 22%,rgba(255,255,255,.06),transparent 60%),
+    radial-gradient(45% 40% at 78% 12%,rgba(0,0,0,.16),transparent 60%),
+    radial-gradient(60% 50% at 70% 85%,rgba(255,255,255,.05),transparent 55%),
+    radial-gradient(40% 45% at 30% 80%,rgba(0,0,0,.18),transparent 60%)}
+  .hero-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .hero-art path{stroke:var(--paper);fill:none;stroke-width:1.3;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:hdraw 2.2s var(--ease) forwards}
+  .hero-art path:nth-child(2){animation-delay:.35s;animation-duration:2.6s}
+  .hero-art circle{fill:var(--paper);opacity:0;animation:hfade 1s .9s forwards}
+  @keyframes hdraw{to{stroke-dashoffset:0}}
+  @keyframes hfade{to{opacity:.4}}
+  .hero-inner{position:relative;z-index:2;max-width:1240px;width:100%;margin-inline:auto}
+  .hero .label{margin-bottom:clamp(1.4rem,3vw,2rem)}
+  .h1{font:500 clamp(2.4rem,6.6vw,5.4rem)/1.05 var(--sans);letter-spacing:-.03em}
+  .h1 .line{display:block;overflow:hidden}
+  .h1 .line>span{display:block;transform:translateY(110%);transition:transform 1s var(--ease)}
+  body.ready .h1 .line>span{transform:none}
+  .h1 .line:nth-child(2)>span{transition-delay:.09s}
+  .h1 .dot{color:var(--acc)}
+  .hero-sub{max-width:54ch;margin-top:clamp(1.4rem,3vw,2rem);color:rgba(244,241,232,.85);font-size:1.05rem}
+  .hero-cta{display:flex;align-items:center;gap:30px;flex-wrap:wrap;margin-top:clamp(1.6rem,3.5vw,2.4rem)}
+  .hero-foot{position:relative;z-index:2;max-width:1240px;margin:clamp(2.2rem,5vh,3.6rem) auto 0;display:flex;justify-content:space-between;align-items:flex-end;gap:18px;font:500 10px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:rgba(244,241,232,.65);opacity:0;transition:opacity 1s .9s}
+  body.ready .hero-foot{opacity:1}
+  .scroll-hint{display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--paper)}
+  .scroll-hint .vline{width:1px;height:40px;background:rgba(244,241,232,.35);position:relative;overflow:hidden;display:block}
+  .scroll-hint .vline::after{content:"";position:absolute;inset:0;background:var(--acc);animation:drip 2s var(--ease) infinite}
+  @keyframes drip{0%{transform:translateY(-100%)}55%{transform:translateY(0)}100%{transform:translateY(100%)}}
+
+  .paper-bg{background-image:radial-gradient(rgba(21,32,25,.10) 1px,transparent 1.1px);background-size:26px 26px}
+  .dark{background:var(--green);color:var(--paper)}
+
+  /* ——— Intro ——— */
+  .manif{padding:clamp(5.5rem,12vh,9rem) 0}
+  .manif-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+  .manif-copy{grid-column:5/13;max-width:62ch}
+  .lede{font:400 clamp(1.06rem,1.45vw,1.24rem)/1.65 var(--sans);color:var(--ink2)}
+  .lede+.lede{margin-top:1.4em}
+  .lede strong{font-weight:600;color:var(--ink)}
+  .pull{grid-column:1/10;margin-top:clamp(3rem,6vw,4.8rem);padding-top:clamp(1.8rem,4vw,2.6rem);border-top:1px solid var(--line);font:500 clamp(1.4rem,2.8vw,2.2rem)/1.25 var(--sans);letter-spacing:-.02em;max-width:26ch}
+  .hl{background:var(--yellow);padding:.02em .14em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+  /* ——— El descenso (corte geológico) ——— */
+  .descenso{padding:clamp(5.5rem,12vh,9rem) 0}
+  .descenso .sec-head .h2{margin-top:1.4rem}
+  .descenso .sec-head .sec-intro{margin-top:1.4rem}
+  .pf-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .pf-scroll svg{display:block;width:100%;min-width:640px;height:auto}
+  .mp{stroke:var(--acc);stroke-width:2.6;fill:none;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s var(--ease) .3s}
+  .descenso.in .mp{stroke-dashoffset:0}
+  .mdot{opacity:0;transition:opacity .8s 1.6s}
+  .descenso.in .mdot{opacity:1}
+  .chapters{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.6rem,3vw,2.6rem);margin-top:clamp(3rem,6vw,4.5rem)}
+  .chapter{border-top:1px solid var(--line);padding-top:1.3rem}
+  .chapter .ch-n{font:500 11px var(--mono);letter-spacing:.2em;color:var(--acc)}
+  .chapter h3{font:500 1.35rem/1.25 var(--sans);letter-spacing:-.02em;margin:.7rem 0 .2rem}
+  .chapter .ch-r{font:500 10px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+  .chapter p{font-size:.95rem;color:var(--ink2);margin-top:.7rem}
+  .chapter .ch-h{font:400 11px var(--mono);letter-spacing:.02em;color:var(--ink2);margin-top:.9rem;padding-top:.8rem;border-top:1px dashed var(--line)}
+
+  /* ——— Itinerario ——— */
+  .itin-sec{padding:clamp(5.5rem,12vh,9rem) 0}
+  .itin-sec .sec-head .h2{margin-top:1.4rem}
+  .itin-sec .sec-head .sec-intro{margin-top:1.4rem}
+  .ch-group-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;padding:1.1rem 0;border-bottom:1px solid var(--line);font:500 11px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)}
+  .ch-group-head:first-child{padding-top:0}
+  .ch-group-head b{color:var(--acc);font-weight:500}
+  .ch-group-head .gt{font:500 1.05rem var(--sans);letter-spacing:-.01em;text-transform:none;color:var(--ink)}
+  .acc{border-top:1px solid var(--line);margin-bottom:clamp(2.4rem,5vw,3.6rem)}
+  .acc-item{border-bottom:1px solid var(--line)}
+  .acc-head{width:100%;display:grid;grid-template-columns:52px 1fr 34px;gap:clamp(1rem,2.5vw,2rem);align-items:center;padding:1.15rem 0;text-align:left}
+  .d-num{font:500 12px var(--mono);letter-spacing:.12em;color:var(--acc)}
+  .d-title{display:block;font:500 clamp(1.02rem,1.7vw,1.3rem)/1.3 var(--sans);letter-spacing:-.01em;transition:transform .4s var(--ease)}
+  .d-date{display:block;font:500 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);margin-top:.15rem}
+  .acc-head:hover .d-title{transform:translateX(10px)}
+  .acc-x{position:relative;width:14px;height:14px;justify-self:end}
+  .acc-x::before,.acc-x::after{content:"";position:absolute;background:var(--acc);transition:transform .45s var(--ease)}
+  .acc-x::before{left:0;right:0;top:6.5px;height:1.5px}
+  .acc-x::after{top:0;bottom:0;left:6.5px;width:1.5px}
+  .acc-item.open .acc-x::after{transform:rotate(90deg)}
+  .acc-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+  .acc-item.open .acc-body{grid-template-rows:1fr}
+  .acc-body-in{overflow:hidden}
+  .d-body{padding:0 0 1.6rem calc(52px + clamp(1rem,2.5vw,2rem))}
+  .d-body p{max-width:60ch;color:var(--ink2);font-size:.98rem}
+  .d-ox{display:inline-block;margin-top:1rem;font:500 10px var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--acc);border-bottom:1px solid currentColor;padding-bottom:3px}
+  .d-ox:hover{color:var(--acc-deep)}
+  .d-meta{display:grid;grid-template-columns:1fr 1fr;gap:1rem 2rem;margin-top:1.3rem;padding-top:1.1rem;border-top:1px dashed var(--line)}
+  .d-meta span{display:block;font:500 9px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--acc);margin-bottom:.25rem}
+  .d-meta b{font:400 .92rem var(--sans);color:var(--ink)}
+  .d-meta b a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(21,32,25,.35)}
+  .d-meta b a:hover{color:var(--acc)}
+
+  /* ——— Tarifas ——— */
+  .rates{padding:clamp(5.5rem,12vh,9rem) 0;background:var(--green-deep);color:var(--paper)}
+  .rates .sec-head .h2{margin-top:1.4rem}
+  .rates .sec-head .sec-intro{margin-top:1.4rem}
+  .prices{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.4rem,3vw,2.4rem)}
+  .price{background:var(--paper);color:var(--ink);padding:clamp(1.6rem,3vw,2.4rem)}
+  .price .p-l{font:500 10px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
+  .price .p-v{font:500 clamp(1.9rem,3.4vw,2.8rem)/1.1 var(--sans);letter-spacing:-.02em;margin:.8rem 0 .3rem}
+  .price .p-s{font-size:.9rem;color:var(--ink2)}
+  .notes{margin-top:clamp(2rem,4vw,3rem);list-style:none;max-width:72ch}
+  .notes li{display:flex;gap:12px;font:400 12px var(--mono);letter-spacing:.03em;line-height:1.7;color:rgba(244,241,232,.62);padding:.55rem 0}
+  .notes li::before{content:"·";color:var(--acc);flex:none}
+  .incl{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);margin-top:clamp(3rem,6vw,4.5rem);padding-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--line-c)}
+  .incl h4{font:500 10px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.2rem}
+  .incl ul{list-style:none}
+  .incl li{display:flex;gap:10px;padding:.6rem 0;font-size:.94rem;color:rgba(244,241,232,.72);line-height:1.6}
+  .incl li::before{content:"—";color:var(--acc);flex:none}
+  .incl li strong{color:var(--paper);font-weight:600}
+
+  /* ——— CTA ——— */
+  .apply{padding:clamp(5.5rem,12vh,9rem) 0;background:var(--green);color:var(--paper)}
+  .apply .sec-head .h2{margin-top:1.4rem}
+  .apply .sec-head .sec-intro{margin-top:1.4rem}
+  .cta-row{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .cta-micro{margin-top:1.6rem;font:400 11px var(--mono);letter-spacing:.06em;color:rgba(244,241,232,.55)}
+
+  /* ——— WhatsApp flotante ——— */
+  #waFloat{position:fixed;right:clamp(16px,3vw,28px);bottom:clamp(16px,3vw,28px);z-index:120;display:flex;align-items:center;background:var(--wa);color:#fff;padding:15px;border-radius:999px;box-shadow:0 12px 30px rgba(15,35,20,.28);opacity:0;transform:translateY(14px);transition:opacity .6s .8s,transform .6s .8s var(--ease),background .3s}
+  body.ready #waFloat{opacity:1;transform:none}
+  #waFloat:hover{background:#1DB954}
+  #waFloat svg{width:26px;height:26px;display:block;position:relative;z-index:1}
+  #waFloat::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:0 0 0 0 rgba(37,211,102,.5);animation:wap 3.4s infinite}
+  @keyframes wap{0%{box-shadow:0 0 0 0 rgba(37,211,102,.45)}60%{box-shadow:0 0 0 16px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+  .wa-tip{font:600 12px var(--sans);letter-spacing:.02em;white-space:nowrap;max-width:0;overflow:hidden;transition:max-width .45s var(--ease);position:relative;z-index:1}
+  #waFloat:hover .wa-tip{max-width:220px;margin-left:10px}
+
+  /* ——— Footer ——— */
+  footer{background:var(--green-deep);color:var(--paper);border-top:1px solid var(--line-c)}
+  .foot-grid{display:grid;grid-template-columns:1.1fr .9fr .9fr;gap:clamp(2rem,5vw,4rem);padding-block:clamp(2.6rem,5vw,4rem)}
+  .foot-grid p{color:rgba(244,241,232,.7);font-size:.94rem;max-width:30ch}
+  .foot-col h4{font:500 10px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.1rem}
+  .foot-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+  .foot-col a{font-size:.94rem;color:rgba(244,241,232,.78);transition:color .3s;display:inline-flex;align-items:center;gap:9px}
+  .foot-col a:hover{color:var(--paper)}
+  .foot-col a svg{width:15px;height:15px;flex:none}
+  .foot-brand{display:flex;align-items:center;gap:10px;font:600 12px var(--sans);letter-spacing:.34em;margin-bottom:1.2rem}
+  .foot-brand svg{width:30px}
+  .foot-brand path{stroke:var(--acc);stroke-width:2.4;fill:none;stroke-linecap:round}
+  .foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line-c);padding-block:1.4rem;font:400 11px var(--mono);letter-spacing:.06em;color:rgba(244,241,232,.45)}
+
+  /* ——— Responsive ——— */
+  @media (max-width:1024px){
+    .manif-copy{grid-column:3/13}
+    .pull{grid-column:1/12}
+    .chapters{grid-template-columns:1fr 1fr}
+    .d-meta{grid-template-columns:1fr}
+  }
+  @media (max-width:900px){
+    .top-nav{display:none}
+    #menuBtn{display:block}
+    .prices{grid-template-columns:1fr}
+    .incl{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .manif-grid{display:block}
+    .manif-copy{margin-top:2rem}
+    .chapters{grid-template-columns:1fr}
+    .acc-head{grid-template-columns:40px 1fr 24px}
+    .d-body{padding-left:0}
+    .hero-foot span{display:none}
+    .foot-grid{grid-template-columns:1fr;gap:2.2rem}
+    .node-label{display:none}
+    #routePath{stroke-width:1.8}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.001s!important;transition-duration:.001s!important}
+    html{scroll-behavior:auto}
+    .reveal,.mdot{opacity:1;transform:none}
+    .h1 .line>span{transform:none}
+    .hero-foot{opacity:1}
+    .hero-art path,.mp{stroke-dashoffset:0}
+    #waFloat{opacity:1;transform:none}
+    #waFloat::after{display:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- Velo -->
+<div id="veil" aria-hidden="true">
+  <div class="veil-in">
+    <svg class="veil-art" viewBox="0 0 200 90">
+      <path class="vp" pathLength="100" d="M10 78 Q 100 -38 190 78"/>
+      <circle class="vd" cx="10" cy="78" r="3" style="animation-delay:.3s"/>
+      <circle class="vd" cx="100" cy="20" r="3.6" style="animation-delay:.7s"/>
+      <circle class="vd" cx="190" cy="78" r="3" style="animation-delay:1.1s"/>
+    </svg>
+    <span class="veil-word">PARABOLA</span>
+  </div>
+</div>
+
+<!-- Ruta en rojo -->
+<svg id="route" aria-hidden="true">
+  <g id="routeG">
+    <path id="routePath" d=""/>
+    <circle id="tipRing" r="8"/>
+    <circle id="tip" r="4"/>
+    <g id="nodes"></g>
+  </g>
+</svg>
+
+<!-- Header -->
+<header id="top">
+  <a class="brand" href="index.html" aria-label="Parabola — inicio">
+    <svg viewBox="0 0 40 18" aria-hidden="true"><path d="M3 14 C 10 3, 16 16, 24 7 S 34 11, 37 4"/></svg>
+    PARABOLA
+  </a>
+  <nav class="top-nav" aria-label="Principal">
+    <a href="#viaje" data-i18n="nav.trip"></a>
+    <a href="#descenso" data-i18n="nav.des"></a>
+    <a href="#itinerario" data-i18n="nav.itin"></a>
+    <a href="#tarifas" data-i18n="nav.rates"></a>
+  </nav>
+  <div class="lang" role="group" aria-label="Idioma / Language">
+    <button type="button" data-lang="es" class="on">ES</button><span>/</span><button type="button" data-lang="en">EN</button>
+  </div>
+  <a class="btn" href="#contacto" style="padding:13px 20px" data-i18n="cta.head"></a>
+  <button id="menuBtn" aria-label="Menú" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<!-- Menú móvil -->
+<div id="menu" aria-hidden="true">
+  <nav aria-label="Menú móvil">
+    <a class="m-link" href="index.html"><small>00</small><span data-i18n="m.back"></span></a>
+    <a class="m-link" href="#viaje"><small>01</small><span data-i18n="nav.trip"></span></a>
+    <a class="m-link" href="#descenso"><small>02</small><span data-i18n="nav.des"></span></a>
+    <a class="m-link" href="#itinerario"><small>03</small><span data-i18n="nav.itin"></span></a>
+    <a class="m-link" href="#tarifas"><small>04</small><span data-i18n="nav.rates"></span></a>
+  </nav>
+  <div class="menu-contact">
+    <a href="tel:+525651100276">+52 (565) 110 0276</a>
+    <a class="wa-link" target="_blank" rel="noopener">WhatsApp</a>
+    <a href="mailto:fbarnetche@gmail.com">fbarnetche@gmail.com</a>
+  </div>
+</div>
+
+<main>
+
+  <!-- 1 · HERO -->
+  <section id="viaje" class="hero" data-route="rl0" data-x=".85" data-th="dk">
+    <svg class="hero-art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <path pathLength="1" opacity=".16" d="M-40 230 C 160 150, 300 330, 470 300 S 720 170, 860 260 S 1120 420, 1280 330 S 1400 230, 1500 290"/>
+      <path pathLength="1" opacity=".10" d="M-40 660 C 140 580, 320 780, 500 710 S 780 560, 930 670 S 1180 810, 1340 710 S 1440 650, 1520 680"/>
+      <circle cx="470" cy="300" r="2.5"/><circle cx="860" cy="260" r="2.5"/>
+      <circle cx="1280" cy="330" r="2.5"/><circle cx="930" cy="670" r="2.5"/>
+    </svg>
+    <div class="hero-inner">
+      <p class="label reveal" data-i18n="hero.label"></p>
+      <h1 class="h1">
+        <span class="line"><span>Vietnam:</span></span>
+        <span class="line"><span>The Deep Descent<span class="dot">.</span></span></span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero.sub"></p>
+      <div class="hero-cta">
+        <a class="btn" href="#contacto">
+          <span data-i18n="hero.cta"></span>
+          <svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" fill="none"/></svg>
+        </a>
+        <a class="tlink" href="#itinerario" data-i18n="hero.how"></a>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <span data-i18n="hero.footl"></span>
+      <a class="scroll-hint" href="#intro" aria-label="Bajar"><span data-i18n="hero.hint"></span><i class="vline"></i></a>
+      <span data-i18n="hero.footr"></span>
+    </div>
+  </section>
+
+  <!-- 2 · LA CURA -->
+  <section id="intro" class="manif paper-bg" data-route="rl1" data-x=".13">
+    <div class="wrap">
+      <p class="label reveal" data-i18n="in.label"></p>
+      <h2 class="h2 reveal" style="--d:.08s;margin:1.4rem 0 clamp(2.4rem,5vw,4rem);max-width:18ch" data-i18n="in.h2"></h2>
+      <div class="manif-grid">
+        <div class="manif-copy">
+          <p class="lede reveal" data-i18n="in.p1"></p>
+          <p class="lede reveal" style="--d:.08s" data-i18n="in.p2"></p>
+          <p class="lede reveal" style="--d:.14s" data-i18n="in.p3"></p>
+        </div>
+        <p class="pull reveal" data-i18n-html="in.pull"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · EL DESCENSO (corte geológico + capítulos) -->
+  <section id="descenso" class="descenso paper-bg" data-route="rl2" data-x=".87">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label reveal" data-i18n="de.label"></p>
+        <h2 class="h2 reveal" style="--d:.08s" data-i18n="de.h2"></h2>
+        <p class="sec-intro reveal" style="--d:.16s" data-i18n="de.sub"></p>
+      </header>
+
+      <div class="pf-scroll reveal">
+        <svg viewBox="0 0 1000 460" role="img" aria-label="Perfil del viaje: la ruta se hunde bajo tierra durante las expediciones y vuelve a la superficie en Hue">
+          <!-- nivel de superficie -->
+          <path d="M-10 164 H1010" stroke="rgba(21,32,25,.28)" stroke-width="1" stroke-dasharray="3 7" fill="none"/>
+          <!-- terrazas (arrozales del norte) -->
+          <path class="mdot" d="M60 150 Q 110 138 160 150" stroke="rgba(21,32,25,.3)" stroke-width="1.4" fill="none" stroke-dasharray="2 6"/>
+          <path class="mdot" d="M70 136 Q 115 124 165 134" stroke="rgba(21,32,25,.24)" stroke-width="1.4" fill="none" stroke-dasharray="2 6"/>
+          <path class="mdot" d="M240 152 Q 300 140 360 150" stroke="rgba(21,32,25,.3)" stroke-width="1.4" fill="none" stroke-dasharray="2 6"/>
+          <!-- macizo de caliza (subsuelo) -->
+          <path d="M470 164 C 540 150 600 172 660 160 C 720 150 780 168 840 158 L840 460 L470 460 Z" fill="#152019"/>
+          <!-- claraboya (dolina) -->
+          <path class="mdot" d="M700 158 V244" stroke="#FFD41F" stroke-width="2"/>
+          <circle class="mdot" cx="700" cy="244" r="5" fill="#FFD41F"/>
+          <!-- la ruta del viaje -->
+          <path class="mp" pathLength="1" d="M-10 166 C 60 158 120 174 190 164 C 260 154 320 172 400 164 C 445 158 462 168 484 176 C 530 250 575 316 650 322 C 702 326 742 290 772 242 C 798 200 814 166 846 156 C 902 142 952 132 1010 128"/>
+          <!-- extremos -->
+          <circle class="mdot" cx="30" cy="163" r="3" fill="#152019"/>
+          <circle class="mdot" cx="965" cy="130" r="3" fill="#152019"/>
+          <!-- nodos de capítulo -->
+          <circle class="mdot" cx="190" cy="164" r="4.5" fill="#F4F1E8" stroke="#E2531F" stroke-width="1.6"/>
+          <circle class="mdot" cx="400" cy="164" r="4.5" fill="#F4F1E8" stroke="#E2531F" stroke-width="1.6"/>
+          <circle class="mdot" cx="650" cy="322" r="4.5" fill="#F4F1E8" stroke="#E2531F" stroke-width="1.6"/>
+          <circle class="mdot" cx="846" cy="156" r="4.5" fill="#F4F1E8" stroke="#E2531F" stroke-width="1.6"/>
+          <!-- etiquetas -->
+          <text class="mdot" x="30" y="146" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1.5" fill="#152019" data-i18n="pf.hanoi"></text>
+          <text class="mdot" x="190" y="192" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1.5" fill="#4C564E" data-i18n="pf.c1"></text>
+          <text class="mdot" x="400" y="192" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1.5" fill="#4C564E" data-i18n="pf.c2"></text>
+          <text class="mdot" x="650" y="352" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1.5" fill="#F4F1E8" data-i18n="pf.c3"></text>
+          <text class="mdot" x="846" y="136" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1.5" fill="#4C564E" data-i18n="pf.c4"></text>
+          <text class="mdot" x="965" y="112" text-anchor="end" font-family="IBM Plex Mono,monospace" font-size="10" letter-spacing="1.5" fill="#152019" data-i18n="pf.hue"></text>
+          <text class="mdot" x="650" y="396" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="9" letter-spacing="2" fill="rgba(244,241,232,.65)" data-i18n="pf.six"></text>
+          <!-- regla de días -->
+          <path d="M20 428 H980" stroke="rgba(21,32,25,.3)" stroke-width="1"/>
+          <g class="mdot" stroke="rgba(21,32,25,.3)" stroke-width="1">
+            <path d="M20 424 V432"/><path d="M211 424 V432"/><path d="M435 424 V432"/>
+            <path d="M658 424 V432"/><path d="M847 424 V432"/><path d="M980 424 V432"/>
+          </g>
+          <g class="mdot" font-family="IBM Plex Mono,monospace" font-size="9" fill="rgba(21,32,25,.5)">
+            <text x="20" y="446">D1</text><text x="211" y="446" text-anchor="middle">D5</text>
+            <text x="435" y="446" text-anchor="middle">D10</text><text x="658" y="446" text-anchor="middle">D15</text>
+            <text x="847" y="446" text-anchor="middle">D19</text><text x="980" y="446" text-anchor="end">D22</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Capítulos (render JS) -->
+      <div id="chapters" class="chapters"></div>
+    </div>
+  </section>
+
+  <!-- 4 · ITINERARIO -->
+  <section id="itinerario" class="itin-sec paper-bg" data-route="rl3" data-x=".12">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label reveal" data-i18n="it.label"></p>
+        <h2 class="h2 reveal" style="--d:.08s" data-i18n="it.h2"></h2>
+        <p class="sec-intro reveal" style="--d:.16s" data-i18n="it.sub"></p>
+      </header>
+      <div id="itin" class="reveal"></div>
+    </div>
+  </section>
+
+  <!-- 5 · TARIFAS -->
+  <section id="tarifas" class="rates dark" data-route="rl4" data-x=".88">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label reveal" data-i18n="ra.label"></p>
+        <h2 class="h2 reveal" style="--d:.08s" data-i18n="ra.h2"></h2>
+        <p class="sec-intro reveal" style="--d:.16s" data-i18n="ra.sub"></p>
+      </header>
+
+      <div class="prices">
+        <div class="price reveal">
+          <p class="p-l" data-i18n="pr.s.label"></p>
+          <p class="p-v">$5,588.60 <span style="font-size:.45em">USD</span></p>
+          <p class="p-s" data-i18n="pr.s.sub"></p>
+        </div>
+        <div class="price reveal" style="--d:.1s">
+          <p class="p-l" data-i18n="pr.d.label"></p>
+          <p class="p-v">$4,700.10 <span style="font-size:.45em">USD</span></p>
+          <p class="p-s" data-i18n="pr.d.sub"></p>
+        </div>
+      </div>
+
+      <ul class="notes reveal" id="notes"></ul>
+
+      <div class="incl">
+        <div class="reveal">
+          <h4 data-i18n="inc.label"></h4>
+          <ul id="incList"></ul>
+        </div>
+        <div class="reveal" style="--d:.1s">
+          <h4 data-i18n="excl.label"></h4>
+          <ul id="excList"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · CONTACTO -->
+  <section id="contacto" class="apply dark" data-route="rl5" data-x=".12">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="label reveal" data-i18n="ct.label"></p>
+        <h2 class="h2 reveal" style="--d:.08s;margin-top:1.4rem" data-i18n="ct.h2"></h2>
+        <p class="sec-intro reveal" style="--d:.16s;margin-top:1.4rem" data-i18n="ct.p"></p>
+      </header>
+      <div class="cta-row reveal" style="--d:.2s">
+        <a class="btn wa-link" target="_blank" rel="noopener">
+          <span data-i18n="ct.wa"></span>
+          <svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" fill="none"/></svg>
+        </a>
+        <a class="btn ghost" id="mailCta" href="mailto:fbarnetche@gmail.com"><span data-i18n="ct.mail"></span></a>
+        <a class="tlink" href="index.html#conversacion" data-i18n="ct.form"></a>
+      </div>
+      <p class="cta-micro reveal" style="--d:.26s" data-i18n="ct.micro"></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- WhatsApp flotante -->
+<!-- PRODUCCIÓN: confirmar que 525651100276 es el número correcto de WhatsApp Business -->
+<a id="waFloat" class="wa-link" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <span class="wa-tip" data-i18n="wa.tip"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <p class="foot-brand">
+        <svg viewBox="0 0 40 18" aria-hidden="true"><path d="M3 14 C 10 3, 16 16, 24 7 S 34 11, 37 4"/></svg>
+        PARABOLA
+      </p>
+      <p data-i18n="ft.p1"></p>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="ft.h2"></h4>
+      <ul>
+        <li><a href="index.html" data-i18n="ft.n1"></a></li>
+        <li><a href="#viaje" data-i18n="nav.trip"></a></li>
+        <li><a href="#itinerario" data-i18n="nav.itin"></a></li>
+        <li><a href="#tarifas" data-i18n="nav.rates"></a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="ft.h3"></h4>
+      <ul>
+        <li><a href="tel:+525651100276">+52 (565) 110 0276</a></li>
+        <li><a href="mailto:fbarnetche@gmail.com">fbarnetche@gmail.com</a></li>
+        <li>
+          <!-- PRODUCCIÓN: poner el handle real de Instagram -->
+          <a href="https://www.instagram.com/parabola.mx/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a class="wa-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-base">
+    <span data-i18n="ft.bl"></span>
+    <span data-i18n="ft.br"></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  const $  = (s,c)=> (c||document).querySelector(s);
+  const $$ = (s,c)=> Array.prototype.slice.call((c||document).querySelectorAll(s));
+  const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const clamp = (v,a,b)=> Math.min(b,Math.max(a,v));
+
+  /* =========================================================
+     I18N — Textos de la página (chrome, secciones, tarifas).
+     Editar copy aquí, no en el HTML.
+     ========================================================= */
+  const I18N = {
+    es: {
+      "doc.title":"Vietnam: The Deep Descent — Parabola · Marzo 2027",
+      "wa.msg":"Hola Parábola, me interesa Vietnam: The Deep Descent (marzo 2027).",
+      "wa.tip":"Escríbenos por WhatsApp",
+      "mail.sub":"Interés — Vietnam: The Deep Descent (marzo 2027)",
+      "mail.body":"Hola, me interesa Vietnam: The Deep Descent (3–24 de marzo, 2027). Quisiera más información sobre disponibilidad y siguiente paso.",
+      "nav.trip":"El viaje","nav.des":"El descenso","nav.itin":"Itinerario","nav.rates":"Tarifas","cta.head":"Solicitar plaza",
+      "m.back":"← Volver al inicio",
+      "hero.label":"Expedición curada · Marzo 2027",
+      "hero.sub":"22 días de viaje lento y exploración de cavernas. Del ritmo tranquilo del norte a seis noches dentro de la selva: el descenso más profundo que hemos curado hasta ahora.",
+      "hero.cta":"Solicitar información","hero.how":"Ver el itinerario",
+      "hero.footl":"3 — 24 de marzo, 2027","hero.hint":"Desliza","hero.footr":"Hanoi → Hue · Salida grupal",
+      "in.label":"01 — La cura","in.h2":"Dos viajes en uno: calma arriba, abismo abajo.",
+      "in.p1":"Curada de principio a fin por Parabola, esta expedición de 22 días balancea el viaje lento de alto nivel —arrozales del norte, lodges entre terrazas, mesas largas— con exploración de cavernas de clase mundial en el corazón protegido del parque Phong Nha-Kẻ Bàng.",
+      "in.p2":"El eje del viaje: <strong>seis noches dentro de la jungla</strong>, en las expediciones Hang Ba y Tu Lan. Cavernas monumentales, ríos subterráneos y selva primaria. Después, el cierre en calma: un retiro cultural en la histórica Hue.",
+      "in.p3":"Todo está resuelto —alojamientos, vuelo doméstico, transportes, permisos y equipo de expedición— para que el único trabajo del viajero sea el descenso.",
+      "in.pull":"Seis noches bajo la selva. <span class=\"hl\">El resto, para subir despacio.</span>",
+      "de.label":"02 — El descenso","de.h2":"La forma del viaje.",
+      "de.sub":"Empieza en la superficie, se hunde en la caliza y vuelve a salir. Ese es el viaje completo, dibujado como se vive: primero arriba, luego abajo, después el regreso.",
+      "pf.hanoi":"HANOI","pf.hue":"HUE",
+      "pf.c1":"01 · LA LLEGADA","pf.c2":"02 · LAS TERRAZAS","pf.c3":"03 · EL DESCENSO","pf.c4":"04 · EL FINAL",
+      "pf.six":"6 NOCHES DE SELVA",
+      "ch.word":"Capítulo","ch.days":"Días",
+      "it.label":"03 — Itinerario","it.h2":"Día a día.",
+      "it.sub":"22 días en cuatro capítulos. Abre cualquier día para ver el detalle: comidas incluidas y noche a noche.",
+      "dy.day":"DÍA","dy.meals":"Comidas","dy.night":"Noche en","dy.camp":"Campamento de expedición (Oxalis)","dy.end":"Fin del itinerario",
+      "dy.none":"Sin comidas incluidas","dy.ox":"Ver la expedición",
+      "dy.b":"Desayuno","dy.l":"Comida","dy.d":"Cena",
+      "ra.label":"04 — Tarifas","ra.h2":"Inversión por persona.",
+      "ra.sub":"Precios por persona, en dólares. El alcance completo —alojamientos, vuelo doméstico, expediciones y transporte— está detallado abajo.",
+      "pr.s.label":"Habitación individual","pr.s.sub":"Habitación privada durante todo el viaje.",
+      "pr.d.label":"Habitación compartida","pr.d.sub":"Doble o twin, para viajar acompañado.",
+      "pr.notes":"Notas",
+      "inc.label":"Lo que incluye","excl.label":"Lo que no incluye",
+      "ct.label":"05 — Contacto","ct.h2":"¿Este descenso es tuyo?",
+      "ct.p":"Los permisos de cueva y la logística de expedición son limitados: conviene apartar lugar con tiempo. Escríbenos y en menos de 48 horas te respondemos con disponibilidad, siguiente paso y cualquier duda del recorrido.",
+      "ct.wa":"Apartar por WhatsApp","ct.mail":"Escribir un correo","ct.form":"O llena el formulario del sitio",
+      "ct.micro":"Respondemos en menos de 48 horas. Marzo 3–24, 2027 · Hanoi → Hue.",
+      "ft.p1":"Viajes privados diseñados a la medida. Este itinerario es una salida grupal curada por Parabola, de principio a fin.",
+      "ft.h2":"Navegación","ft.n1":"Inicio","ft.h3":"Contacto",
+      "ft.bl":"© 2025 Parabola","ft.br":"Vietnam · Marzo 2027",
+      "rl0":"00 · Vietnam","rl1":"01 · La cura","rl2":"02 · El descenso","rl3":"03 · Itinerario","rl4":"04 · Tarifas","rl5":"05 · Contacto"
+    },
+    en: {
+      "doc.title":"Vietnam: The Deep Descent — Parabola · March 2027",
+      "wa.msg":"Hi Parabola, I'm interested in Vietnam: The Deep Descent (March 2027).",
+      "wa.tip":"Message us on WhatsApp",
+      "mail.sub":"Interest — Vietnam: The Deep Descent (March 2027)",
+      "mail.body":"Hi, I'm interested in Vietnam: The Deep Descent (March 3–24, 2027). I'd like more information on availability and next steps.",
+      "nav.trip":"The trip","nav.des":"The descent","nav.itin":"Itinerary","nav.rates":"Rates","cta.head":"Request a spot",
+      "m.back":"← Back to home",
+      "hero.label":"Curated expedition · March 2027",
+      "hero.sub":"22 days of slow travel and wilderness caving. From the calm rhythm of the north to six nights inside the jungle: the deepest descent we've curated so far.",
+      "hero.cta":"Request information","hero.how":"See the itinerary",
+      "hero.footl":"March 3 — 24, 2027","hero.hint":"Scroll","hero.footr":"Hanoi → Hue · Group departure",
+      "in.label":"01 — The curation","in.h2":"Two trips in one: calm above, abyss below.",
+      "in.p1":"Curated end to end by Parabola, this 22-day expedition balances high-level slow travel —northern rice terraces, lodges in the hills, long tables— with world-class caving in the protected core of Phong Nha-Kẻ Bàng National Park.",
+      "in.p2":"The axis of the trip: <strong>six nights inside the jungle</strong>, on the Hang Ba and Tu Lan expeditions. Monumental caverns, subterranean rivers and primary rainforest. Then, a calm closing: a cultural retreat in historic Hue.",
+      "in.p3":"Everything is handled —lodgings, domestic flight, transfers, permits and expedition gear— so the traveler's only job is the descent.",
+      "in.pull":"Six nights under the jungle. <span class=\"hl\">The rest, to climb back slowly.</span>",
+      "de.label":"02 — The descent","de.h2":"The shape of the trip.",
+      "de.sub":"It starts at the surface, sinks into the limestone and comes back out. That's the whole trip, drawn the way it's lived: first above, then below, then the return.",
+      "pf.hanoi":"HANOI","pf.hue":"HUE",
+      "pf.c1":"01 · THE ARRIVAL","pf.c2":"02 · THE TERRACES","pf.c3":"03 · THE DESCENT","pf.c4":"04 · THE FINALE",
+      "pf.six":"6 JUNGLE NIGHTS",
+      "ch.word":"Chapter","ch.days":"Days",
+      "it.label":"03 — Itinerary","it.h2":"Day by day.",
+      "it.sub":"22 days in four chapters. Open any day for the details: included meals and each night's stay.",
+      "dy.day":"DAY","dy.meals":"Meals","dy.night":"Night at","dy.camp":"Expedition camp (Oxalis)","dy.end":"End of itinerary",
+      "dy.none":"No meals included","dy.ox":"View the expedition",
+      "dy.b":"Breakfast","dy.l":"Lunch","dy.d":"Dinner",
+      "ra.label":"04 — Rates","ra.h2":"Investment per person.",
+      "ra.sub":"Prices per person, in USD. The full scope —lodgings, domestic flight, expeditions and transport— is detailed below.",
+      "pr.s.label":"Single occupancy","pr.s.sub":"Private room throughout the trip.",
+      "pr.d.label":"Shared occupancy","pr.d.sub":"Double or twin, for traveling together.",
+      "pr.notes":"Notes",
+      "inc.label":"What's included","excl.label":"What's not included",
+      "ct.label":"05 — Contact","ct.h2":"Is this descent yours?",
+      "ct.p":"Cave permits and expedition logistics are limited: it's worth securing a spot early. Write to us and within 48 hours we'll reply with availability, next steps and answers to any questions about the route.",
+      "ct.wa":"Hold a spot via WhatsApp","ct.mail":"Write an email","ct.form":"Or fill the main site form",
+      "ct.micro":"We reply within 48 hours. March 3–24, 2027 · Hanoi → Hue.",
+      "ft.p1":"Private trips designed from scratch. This is a group departure curated by Parabola, from start to finish.",
+      "ft.h2":"Browse","ft.n1":"Home","ft.h3":"Contact",
+      "ft.bl":"© 2025 Parabola","ft.br":"Vietnam · March 2027",
+      "rl0":"00 · Vietnam","rl1":"01 · Curation","rl2":"02 · The descent","rl3":"03 · Itinerary","rl4":"04 · Rates","rl5":"05 · Contact"
+    }
+  };
+
+  /* Capítulos del viaje */
+  const CH = [
+    {n:"01", d:"1–4", t:{es:"La llegada",en:"The arrival"}, r:"Hanoi & Ninh Binh",
+     p:{es:"Capital, barrio antiguo y las primeras aguas calmas: tempo bajo para aterrizar bien.",
+        en:"Capital, Old Quarter and the first calm waters: a low tempo to land well."},
+     h:"Acoustic Hotel & Spa · Aman Retreat"},
+    {n:"02", d:"5–9", t:{es:"Las terrazas",en:"The terraces"}, r:"Pu Luong & Mai Chau",
+     p:{es:"Arrozales en cascada, aldeas Thai y camino lento entre montañas hacia el sur.",
+        en:"Cascading rice terraces, Thai villages and a slow road south through the mountains."},
+     h:"Amigo Pu Luong · Mai Chau Hideaway"},
+    {n:"03", d:"10–18", t:{es:"El descenso",en:"The descent"}, r:"Phong Nha-Kẻ Bàng",
+     p:{es:"Dos expediciones Oxalis y seis noches de campamento en la selva: el corazón de caliza del país.",
+        en:"Two Oxalis expeditions and six nights of jungle camping: the limestone heart of the country."},
+     h:"Victory Road Villas · Campamentos Oxalis"},
+    {n:"04", d:"19–22", t:{es:"El final imperial",en:"The imperial finale"}, r:"Hue",
+     p:{es:"Regreso a la superficie: tumbas reales, río al atardecer y mesa lenta para cerrar.",
+        en:"Back to the surface: royal tombs, a river at sunset and a slow table to close."},
+     h:"Pilgrimage Village"}
+  ];
+
+  /* Notas de precio */
+  const NOTES = [
+    {es:"Estamos gestionando un mejor hotel para la noche de tránsito cerca del aeropuerto de Hanoi. De confirmarse, habría un ajuste de +$45 USD.",
+     en:"We are currently negotiating a better hotel for the transfer night near Hanoi airport. If secured, there will be a slight price increment of $45 USD."},
+    {es:"Si el grupo no llega en el mismo vuelo a Hanoi el primer día, hay un ajuste de +$30 USD por persona para coordinar traslados separados al hotel.",
+     en:"If the group does not arrive on the same flight to Hanoi on day one, there will be a $30 USD per person increment to arrange separate transfer services."}
+  ];
+
+  /* Incluye / No incluye */
+  const INC = [
+    {b:{es:"Alojamiento",en:"Accommodations"}, x:{es:"Habitaciones de hotel y homestay según el programa (o categoría similar), más campamentos de selva en tienda durante las expediciones.",en:"Hotel and homestay rooms as specified in the program (or similar category), plus tented wilderness campsites during expeditions."}},
+    {b:{es:"Comidas",en:"Meals"}, x:{es:"Las indicadas día a día en el itinerario, con pensión completa en los días de expedición Oxalis y desayuno diario en todos los hoteles.",en:"Meals explicitly noted for each day, including full board during Oxalis expedition days and daily breakfast at all hotel stays."}},
+    {b:{es:"Vuelo doméstico",en:"Domestic flight"}, x:{es:"Boletos Hanoi (HAN) – Dong Hoi (VDH) con Vietnam Airlines, clase económica en tarifa promocional (23 kg de maleta + 10 kg de mano).",en:"Flight tickets Hanoi (HAN) – Dong Hoi (VDH) via Vietnam Airlines (Economy class, promotional rate; includes 23 kg checked bag + 10 kg carry-on)."}},
+    {b:{es:"Transporte terrestre",en:"Ground transport"}, x:{es:"Traslados privados en minivan con aire acondicionado según el programa.",en:"Private air-conditioned minivan transfers as outlined in the program."}},
+    {b:{es:"Guías",en:"Guiding services"}, x:{es:"Guía de habla inglesa para el circuito norte, más guías de expedición y equipo de porteadores para los treks de cueva de Oxalis.",en:"English-speaking tour guide for the northern loop, plus expert expedition leads and porter teams for Oxalis cave treks."}},
+    {b:{es:"Actividades y visitas",en:"Activities & sightseeing"}, x:{es:"Todas las entradas y costos de actividad del itinerario, incluyendo bici guiada en Mai Chau y Tan Hoa, visitas a granjas y permisos de cuevas.",en:"All entrance fees and activity costs specified in the itinerary (guided cycling in Mai Chau and Tan Hoa, local farm visits, and cave permits)."}},
+    {b:{es:"Impuestos y cargos",en:"Taxes & fees"}, x:{es:"Todos los impuestos locales y cargos por servicio aplicables.",en:"All applicable local taxes and service charges."}}
+  ];
+  const EXC = [
+    {b:{es:"Vuelos internacionales",en:"International & extra flights"}, x:{es:"Cualquier vuelo internacional, vuelo interno o traslado no indicado explícitamente en el programa.",en:"Any international flights, internal flights, or ground transfers not explicitly stated in the program."}},
+    {b:{es:"Comidas y bebidas",en:"Meals & drinks"}, x:{es:"Cualquier alimento o bebida no indicado claramente en el itinerario (incluye comidas libres en los días de descanso en Hue).",en:"Any meals or beverages not clearly indicated in the daily itinerary (including personal dining on leisure days in Hue)."}},
+    {b:{es:"Políticas de hotel",en:"Hotel policies"}, x:{es:"Cargos por early check-in o late check-out (sujetos a disponibilidad, bajo petición).",en:"Early check-in or late check-out charges (subject to availability upon request)."}},
+    {b:{es:"Visa y trámites",en:"Visa & travel formalities"}, x:{es:"Visa de entrada a Vietnam (de gestionarse por adelantado si se requiere) y seguro personal de viaje y gastos médicos.",en:"Vietnam entry visa fees (must be arranged in advance if required) and personal travel/medical insurance."}},
+    {b:{es:"Cargos de pago",en:"Payment fees"}, x:{es:"Comisiones bancarias o de procesamiento por pagos con tarjeta.",en:"Merchant or bank processing fees for credit card payments."}},
+    {b:{es:"Gastos personales",en:"Personal expenses"}, x:{es:"Propinas para guías, porteadores y conductores; lavandería; spa; y cualquier actividad opcional o compra personal.",en:"Gratuities/tips for guides, porters, and drivers; personal laundry; spa treatments; and any unmentioned optional activities or personal purchases."}}
+  ];
+
+  /* Itinerario — 22 días (del PDF del cliente) */
+  const OX_HB = "https://oxalisadventure.com/tour/hang-ba-deep-jungle-expedition/";
+  const OX_TL = "https://oxalisadventure.com/tour/tu-lan-expedition/";
+  const ITIN = [
+    {n:1, m:"n", h:"Acoustic Hotel & Spa", u:"https://www.acoustichotel.com/",
+     t:{es:"Llegada a Hanoi — el aterrizaje",en:"Arrival in Hanoi — Landing at the Orient"},
+     x:{es:"Aterrizaje en Hanoi, donde el pulso vibrante de la capital recibe al grupo. Transporte privado hacia el Acoustic Hotel & Spa, en pleno Barrio Francés. El resto del día es libre: lo recomendamos para descansar del vuelo largo y entrar, sin prisa, a la cultura culinaria de la ciudad.",
+        en:"Touchdown in Hanoi, where the vibrant pulse of Vietnam's capital welcomes the group. Private transfer to Acoustic Hotel & Spa, in the heart of the French Quarter. The rest of the day is at leisure: rest, recover from the long-haul journey, and ease into the city's rich culinary culture."}},
+    {n:2, m:"b", h:"Acoustic Hotel & Spa", u:"https://www.acoustichotel.com/",
+     t:{es:"Hanoi — Barrio Antiguo y cocina",en:"Hanoi — Old Quarter Rhythms & Culinary Exploration"},
+     x:{es:"Día diseñado para explorar sin prisa el centro histórico: las calles enrevesadas del Barrio Antiguo, callejones silenciosos, y la cocina callejera y la cultura del café más celebradas del país. Un día pausado para aclimatarse al huso horario y al clima antes de salir al campo.",
+        en:"A day designed for unhurried exploration of the historic core. Wander the maze-like streets of the Old Quarter, discover quiet alleyways, and sample Vietnam's world-renowned street food and coffee culture. A slow-paced day to acclimate before moving into the countryside."}},
+    {n:3, m:"bl", h:"Aman Retreat, Ninh Binh", u:"https://amanretreat.vn/en",
+     t:{es:"Hanoi → Ninh Binh — dinastías y aguas kársticas",en:"Hanoi to Ninh Binh — Ancient Dynasties & Karst Waterways"},
+     x:{es:"Salida hacia los paisajes de caliza de Ninh Binh. Por la mañana, Hoa Lu, la antigua capital de Vietnam, con sus santuarios históricos entre colinas. Después de comer, barcas sampan por los canales silenciosos y las redes de cuevas de Trang An. El día cierra con un paseo en bici por caminos rurales.",
+        en:"Depart for the dramatic limestone landscapes of Ninh Binh. Morning exploration of Hoa Lu, Vietnam's ancient capital, with historic shrines set against rolling hills. After lunch, board traditional sampan boats to glide through the quiet waterways and cavern networks of Trang An, closing the day with a relaxed cycle along rural village paths."}},
+    {n:4, m:"bl", h:"Aman Retreat, Ninh Binh", u:"https://amanretreat.vn/en",
+     t:{es:"Ninh Binh — templos antiguos",en:"Ninh Binh — Ancient Temples"},
+     x:{es:"Día para descubrir el campo de Ninh Binh a paso ligero. Visita matutina a la pagoda Bich Dong, un conjunto de templos-cueva construidos en el acantilado, seguida de un paseo tranquilo en bici entre arrozales esmeralda y vías fluviales enmarcadas por farallones kársticos. Regreso al resort para una tarde y noche de descanso.",
+        en:"Discover Ninh Binh's serene countryside at an easy pace. Morning visit to Bich Dong Pagoda, a cluster of ancient cave temples built into the cliffside, followed by a gentle bicycle ride through emerald rice fields and past quiet waterways framed by towering karst cliffs. Return to the resort for an afternoon of quiet relaxation."}},
+    {n:5, m:"bl", h:"Amigo Pu Luong", u:"https://amigopuluong.com/",
+     t:{es:"Ninh Binh → Pu Luong — subida a los valles en terraza",en:"Ninh Binh to Pu Luong — Ascent to the Terraced Valleys"},
+     x:{es:"Salida hacia el oeste, a las montañas de la Reserva Natural de Pu Luong. El lodge está suspendido sobre arrozales en cascada y aldeas tradicionales Thai. La tarde es para soltar: vistas panorámicas del valle y aire fresco de montaña.",
+        en:"Leave Ninh Binh behind and travel west into the mountain highlands of Pu Luong Nature Reserve. The lodge sits above cascading rice terraces and traditional ethnic Thai hamlets. The afternoon is dedicated to unwinding, panoramic valley views, and the cool mountain air."}},
+    {n:6, m:"bl", h:"Amigo Pu Luong", u:"https://amigopuluong.com/",
+     t:{es:"Pu Luong — cascada Hieu y senderos",en:"Pu Luong — Hieu Waterfall & Countryside Trails"},
+     x:{es:"Mañana relajada rumbo a la aldea de Hieu: caminata suave por el valle entre arrozales, arroyos y casas tradicionales sobre pilotes. La cascada de Hieu invita a quedarse junto al agua y darse un baño en sus pozas naturales. Después de una comida local, la tarde sigue por senderos y arrozales, en bici o a pie.",
+        en:"A relaxed morning toward Hieu Village for a gentle walk through the valley, passing rice terraces, streams, and traditional Thai stilt houses. Unwind by Hieu Waterfall and take a refreshing swim in its natural pools. After a traditional local lunch, the afternoon is spent on the surrounding village paths — cycling or walking, unhurried."}},
+    {n:7, m:"bl", h:"Mai Chau Hideaway Lake Resort", u:"https://www.maichauhideaway.com/",
+     t:{es:"Pu Luong → Mai Chau — paso panorámico y bici",en:"Pu Luong to Mai Chau — Scenic Passage & Valley Cycling"},
+     x:{es:"A las 08:30, salida por carretera de montaña hacia el valle de Mai Chau, rodeado de farallones de caliza y arrozales. Después de una comida local curada, tarde en bici —o a pie— por senderos tranquilos entre aldeas White Thai, casas sobre pilotes y campos en terrazas. Llegada al resort al atardecer, junto al agua.",
+        en:"At 08:30, depart Pu Luong for a scenic mountain drive into the picturesque Mai Chau Valley, surrounded by soaring limestone cliffs and lush rice fields. After a curated local lunch, spend the afternoon cycling — or walking — quiet paths through traditional White Thai villages, stilt houses and terraced fields. Check into the resort in the late afternoon to unwind by the water."}},
+    {n:8, m:"bl", h:"Mai Chau Hideaway Lake Resort", u:"https://www.maichauhideaway.com/",
+     t:{es:"Mai Chau — campo e inmersión local",en:"Mai Chau — Countryside Walk & Local Immersion"},
+     x:{es:"Caminata suave por los arrozales y aldeas alrededor de Mai Chau, con visita a una familia Thai local para conocer sus costumbres y su vida en el valle. Comida local. Por la tarde, descanso junto al lago o paseo opcional en bici por los campos.",
+        en:"Begin with a gentle walk through the rice fields and hamlets surrounding Mai Chau, passing small farms and traditional stilt houses. Visit a local Thai family to learn about their daily customs and life in the valley before a local lunch. The afternoon is yours to relax at the lake resort or enjoy an optional cycling ride."}},
+    {n:9, m:"bl", h:"Haap Transit Hotel, Noi Bai Airport", u:null,
+     t:{es:"Mai Chau → Hanoi — regreso y tránsito",en:"Mai Chau to Hanoi — Return to the Capital & Transit"},
+     x:{es:"Mañana tranquila en el resort para despedirse del valle. Después de comer, transporte privado de regreso a Hanoi y check-in en un hotel de tránsito cerca del aeropuerto de Noi Bai: descansar y preparar el vuelo del día siguiente hacia el campamento base de la selva.",
+        en:"A relaxed morning at the lake resort to take in the final views of Mai Chau Valley. After lunch, private transport takes the group back toward Hanoi. Check into a transit hotel near Noi Bai Airport to rest and prepare for the flight south to the jungle base camp tomorrow."}},
+    {n:10, m:"n", h:"Victory Road Villas, Phong Nha", u:"https://victoryroadvillas.com/",
+     t:{es:"Vuelo a Dong Hoi — llegada a Phong Nha",en:"Flight to Dong Hoi & Arrival in Phong Nha"},
+     x:{es:"Traslado temprano al aeropuerto de Hanoi para el vuelo doméstico al sur, a Dong Hoi (VN1591, 08:45–09:50). Al aterrizar, transporte privado hacia la puerta de entrada a la selva: Phong Nha. Check-in en las villas y tarde libre junto a la piscina, preparando el terreno para las expediciones que empiezan mañana.",
+        en:"Early morning transfer to Hanoi Airport for the short domestic flight south to Dong Hoi (VN1591, 08:45–09:50). Upon landing, private transport meets the group to transfer inland toward the jungle gateway of Phong Nha. Check into the villas and spend the rest of the day at leisure by the pool, prepping for the wilderness expeditions beginning tomorrow."}},
+    {n:11, m:"bld", camp:true, ox:OX_HB,
+     t:{es:"Expedición 1: Hang Ba Deep Jungle (día 1)",en:"Expedition 1: Hang Ba Deep Jungle (Day 1)"},
+     x:{es:"Después del desayuno, reunión con el equipo de Oxalis para el briefing de seguridad y revisión de equipo antes de entrar a la zona núcleo del Parque Nacional Phong Nha-Kẻ Bàng. Se acaban las carreteras: trekking por selva densa, terreno kárstico y arroyos de montaña hasta el primer campamento, junto a la entrada de la caverna. Cena de campamento bajo el dosel de la selva.",
+        en:"After breakfast at Victory Road Villas, join the Oxalis team for a safety briefing and gear check before heading into the core zone of Phong Nha-Kẻ Bàng National Park. Leave paved roads behind and trek through dense jungle, crossing limestone terrain and mountain streams to reach the initial camp near the cavern entrance. Evening under the forest canopy with a fresh camp meal prepared by the expedition team."}},
+    {n:12, m:"bld", camp:true, ox:OX_HB,
+     t:{es:"Hang Ba — selva profunda (día 2)",en:"Hang Ba Deep Jungle Expedition (Day 2)"},
+     x:{es:"Día de profundizar en el sistema de cuevas Hang Ba, de acceso restringido: trekking por selva primaria, campos de bloques subterráneos y cavernas inmensas esculpidas por millones de años de erosión del agua.",
+        en:"Deepen the exploration into the restricted Hang Ba cave system. The day is spent trekking through primary jungle, scrambling over subterranean boulder fields, and exploring vast caverns shaped by millions of years of water erosion."}},
+    {n:13, m:"bl", h:"Victory Road Villas, Phong Nha", u:"https://victoryroadvillas.com/",
+     t:{es:"Cierre de Hang Ba y regreso a Phong Nha",en:"Concluding Hang Ba & Return to Phong Nha"},
+     x:{es:"Salida del sistema de cuevas y último trekking de selva de regreso al punto de inicio. El transporte de Oxalis regresa al grupo a la aldea de Phong Nha para una ducha bien ganada, comida caliente y una buena noche de sueño.",
+        en:"Emerge from the cave system for the final jungle trek back to the trailhead. Oxalis transport transfers the group back to the village of Phong Nha for a well-deserved shower, hot meal, and a comfortable night's rest."}},
+    {n:14, m:"b", h:"Victory Road Villas, Phong Nha", u:"https://victoryroadvillas.com/",
+     t:{es:"Descanso en Phong Nha",en:"Rest & Recharge in Phong Nha"},
+     x:{es:"Día completo de descanso entre expediciones: servicio de lavandería en las villas, piscina, masaje o una caminata tranquila por la aldea. Recargar para la siguiente etapa.",
+        en:"A full day at leisure between jungle expeditions. Rest, arrange laundry service at the villas, and recharge for the next leg of the adventure: afternoon by the pool, a massage, or a quiet walk around the local village."}},
+    {n:15, m:"bld", camp:true, ox:OX_TL,
+     t:{es:"Expedición 2: Tu Lan Cave Expedition (día 1)",en:"Expedition 2: Tu Lan Cave Expedition (Day 1)"},
+     x:{es:"Desayuno en las villas y reunión con el equipo de Oxalis para el briefing y el ajuste de equipo de la expedición Tu Lan, de 5 días. Traslado a Tan Hoa y inicio del trekking: campos de cacahuate, valles rurales y cruces de río hasta la selva. Primer campamento salvaje con cena caliente preparada por los porteadores y una noche de estrellas.",
+        en:"Breakfast at the villas before meeting the Oxalis team for the safety briefing and gear fitting for the 5-day Tu Lan Expedition. Transfer to Tan Hoa, gateway to Tu Lan, and begin the trek through peanut fields, rural valleys, and river crossings into the jungle. Arrive at the first wilderness campsite in time for a warm meal prepared by the porters and an evening under the stars."}},
+    {n:16, m:"bld", camp:true, ox:OX_TL,
+     t:{es:"Tu Lan — cuevas de río y nados (día 2)",en:"Tu Lan — River Caves & Subterranean Swims (Day 2)"},
+     x:{es:"Día de profundizar en el paisaje kárstico: nado por cuevas de río subterráneas, paso por salas de caverna enormes y navegación de valles de selva que conectan los sistemas. Llegada al siguiente campamento a la orilla del río para una tarde relajada junto al agua.",
+        en:"Break camp after breakfast to trek deeper into the karst landscape. Today's journey involves swimming through underground river caves, climbing through massive cavern halls, and navigating lush jungle valleys connecting the cave systems. Arrive at the next riverbank campsite in the late afternoon for a relaxing evening by the water."}},
+    {n:17, m:"bld", camp:true, ox:OX_TL,
+     t:{es:"Tu Lan — cavernas y valles (día 3)",en:"Tu Lan — Massive Caverns & Jungle Valleys (Day 3)"},
+     x:{es:"Trekking por selva lluviosa primaria y pasos de caliza. Hoy tocan algunas de las cámaras más grandes de Tu Lan, con estalactitas impresionantes y claraboyas naturales. Cierre del día en un campamento ribereño: baño en pozas de selva antes del atardecer.",
+        en:"Trek through pristine primary rainforest and navigate towering limestone passages. Today features some of Tu Lan's largest cavern chambers, complete with impressive stalactites and natural skylights. Finish the day at a tranquil riverside campsite, swimming in natural jungle pools before sunset."}},
+    {n:18, m:"bld", camp:true, ox:OX_TL,
+     t:{es:"Tu Lan — sistemas profundos y claraboyas (día 4)",en:"Tu Lan — Deep Systems & Skylights (Day 4)"},
+     x:{es:"Últimas cuevas salvajes del sistema: pasos de río, cámaras secas y valles de selva. Dolinas de colapso por donde la luz del sol atraviesa el dosel y alimenta ecosistemas aislados bajo tierra. Campamento final y última noche celebratoria en la jungla.",
+        en:"Journey through the final wilderness caves of the system, traversing river passages, dry subterranean chambers, and lush forest valleys. Marvel at massive collapse dolines where sunlight pierces the canopy, nourishing isolated ecosystems deep underground. Reach the final wilderness camp for a celebratory last evening in the jungle."}},
+    {n:19, m:"b", h:"Pilgrimage Village, Hue", u:"https://www.pilgrimagevillage.com/", ox:OX_TL,
+     t:{es:"Cierre de Tu Lan y traslado a Hue",en:"Concluding Tu Lan & Transfer to Hue"},
+     x:{es:"Despertar con vistas brumosas de los picos de caliza desde Tu Lan Lodge. Paseo guiado en bici por los caminos rurales de Tan Hoa —maizales, huertos de cacahuate, granjas locales— con paradas para probar cacahuate tostado y té de jengibre con miel. Después, transporte privado al sur, pasando la DMZ, hasta la ciudad imperial de Hue.",
+        en:"Wake up to misty morning views of limestone peaks at Tu Lan Lodge. After breakfast, a guided bicycle ride through Tan Hoa's rural paths — past cornfields and peanut gardens, visiting local farms, and sampling regional specialties like roasted peanuts and ginger honey tea. After check-out, private transport transfers the group south past the DMZ toward the imperial city of Hue."}},
+    {n:20, m:"b", h:"Pilgrimage Village, Hue", u:"https://www.pilgrimagevillage.com/",
+     t:{es:"Hue — descanso y cultura",en:"Hue — Leisure & Cultural Exploration"},
+     x:{es:"Día para descansar y explorar Hue a tu ritmo: piscina del resort o visitas históricas. Sugerencias: la Ciudadela Imperial y la Ciudad Púrpura Prohibida, o un paseo en barco al atardecer por el Río de los Perfumes hacia la pagoda Thien Mu.",
+        en:"A day to rest and explore Hue at your own pace: the resort's pools or the nearby historic sites. Recommended self-guided visits: the historic Imperial Citadel and Forbidden Purple City, or a sunset boat ride along the Perfume River toward Thien Mu Pagoda."}},
+    {n:21, m:"b", h:"Pilgrimage Village, Hue", u:"https://www.pilgrimagevillage.com/",
+     t:{es:"Hue — campo y cocina",en:"Hue — Countryside & Culinary Discovery"},
+     x:{es:"Otro día libre para recargar después de las expediciones. Sugerencias: las tumbas reales de Tu Duc o Khai Dinh entre colinas, o la escena culinaria de Hue, del Bún Bò Huế de calle a la cocina de corte real.",
+        en:"Another full day at leisure to recharge after the wilderness expeditions. Recommended: the royal tombs of Tu Duc or Khai Dinh set among the surrounding hills, or Hue's celebrated culinary scene, from street-side Bún Bò Huế to traditional royal court cuisine."}},
+    {n:22, m:"b", h:null,
+     t:{es:"Salida desde Hue",en:"Departure from Hue"},
+     x:{es:"Desayuno en el resort y día libre para relajarse o seguir explorando Hue. Los traslados al aeropuerto se coordinan de forma independiente según el horario del vuelo de salida.",
+        en:"Breakfast at the resort followed by a full day at leisure to relax or explore Hue on your own. Departure and airport transfers are arranged independently according to your onward flight schedule."}}
+  ];
+
+  let LANG = "es";
+  function t(k){ return (I18N[LANG] && I18N[LANG][k]) || I18N.es[k] || ""; }
+  const pad = (n)=> String(n).padStart(2,"0");
+  const esc = (s)=> s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const mealsStr = (m)=>{
+    if(m === "n") return t("dy.none");
+    const parts = [];
+    if(m.includes("b")) parts.push(t("dy.b"));
+    if(m.includes("l")) parts.push(t("dy.l"));
+    if(m.includes("d")) parts.push(t("dy.d"));
+    return parts.join(" · ");
+  };
+  const dateStr = (n)=> LANG === "es" ? (n + " DE MARZO") : ("MAR " + n);
+
+  function setWaLinks(){
+    const href = "https://wa.me/525651100276?text=" + encodeURIComponent(t("wa.msg"));
+    $$(".wa-link").forEach(a=> a.href = href);
+  }
+
+  /* ——— Render: capítulos ——— */
+  function renderChapters(){
+    $("#chapters").innerHTML = CH.map(c=>
+      '<article class="chapter">' +
+        '<span class="ch-n">' + c.n + '</span>' +
+        '<h3>' + esc(c.t[LANG]) + '</h3>' +
+        '<span class="ch-r">' + t("ch.days") + ' ' + c.d + ' · ' + esc(c.r) + '</span>' +
+        '<p>' + esc(c.p[LANG]) + '</p>' +
+        '<span class="ch-h">' + esc(c.h) + '</span>' +
+      '</article>'
+    ).join("");
+  }
+
+  /* ——— Render: itinerario ——— */
+  function renderItin(){
+    const html = CH.map(c=>{
+      const days = ITIN.filter(d=> {
+        const [a,b] = c.d.split("–").map(Number);
+        return d.n >= a && d.n <= b;
+      });
+      return '<div class="ch-group-head"><b>' + t("ch.word").toUpperCase() + ' ' + c.n + '</b>' +
+             '<span class="gt">' + esc(c.t[LANG]) + '</span>' +
+             '<span>' + t("ch.days") + ' ' + c.d + '</span></div>' +
+             '<div class="acc">' + days.map(d=>{
+               let night = "";
+               if(d.h) night = d.u
+                 ? '<a href="' + d.u + '" target="_blank" rel="noopener">' + esc(d.h) + ' ↗</a>'
+                 : esc(d.h);
+               else if(d.camp) night = t("dy.camp");
+               else night = t("dy.end");
+               return '<div class="acc-item day' + (d.n === 1 ? ' open' : '') + '">' +
+                 '<button class="acc-head" aria-expanded="' + (d.n === 1) + '">' +
+                   '<span class="d-num">' + pad(d.n) + '</span>' +
+                   '<span><span class="d-title">' + esc(d.t[LANG]) + '</span>' +
+                   '<span class="d-date">' + t("dy.day") + ' ' + pad(d.n) + ' · ' + dateStr(d.n) + '</span></span>' +
+                   '<span class="acc-x" aria-hidden="true"></span>' +
+                 '</button>' +
+                 '<div class="acc-body"><div class="acc-body-in"><div class="d-body">' +
+                   '<p>' + esc(d.x[LANG]) + '</p>' +
+                   (d.ox ? '<a class="d-ox" href="' + d.ox + '" target="_blank" rel="noopener">' + t("dy.ox") + ' ↗</a>' : "") +
+                   '<div class="d-meta">' +
+                     '<div><span>' + t("dy.meals") + '</span><b>' + mealsStr(d.m) + '</b></div>' +
+                     '<div><span>' + t("dy.night") + '</span><b>' + night + '</b></div>' +
+                   '</div>' +
+                 '</div></div></div>' +
+               '</div>';
+             }).join("") + '</div>';
+    }).join("");
+    $("#itin").innerHTML = html;
+  }
+
+  /* ——— Render: notas + listas ——— */
+  function renderLists(){
+    $("#notes").innerHTML = '<li style="color:var(--yellow);font-weight:500">' + t("pr.notes").toUpperCase() + '</li>' +
+      NOTES.map(n=> '<li>' + esc(n[LANG]) + '</li>').join("");
+    const li = (arr)=> arr.map(i=> '<li><strong>' + esc(i.b[LANG]) + ':</strong> ' + esc(i.x[LANG]) + '</li>').join("");
+    $("#incList").innerHTML = li(INC);
+    $("#excList").innerHTML = li(EXC);
+  }
+
+  function applyLang(l){
+    LANG = (l === "en") ? "en" : "es";
+    try{ localStorage.setItem("pb-lang", LANG); }catch(e){}
+    document.documentElement.setAttribute("lang", LANG);
+    document.title = t("doc.title");
+    $$("[data-i18n]").forEach(el=> el.textContent = t(el.dataset.i18n));
+    $$("[data-i18n-html]").forEach(el=> el.innerHTML = t(el.dataset.i18nHtml));
+    $$(".lang button").forEach(b=> b.classList.toggle("on", b.dataset.lang === LANG));
+    setWaLinks();
+    $("#mailCta").href = "mailto:fbarnetche@gmail.com?subject=" + encodeURIComponent(t("mail.sub")) + "&body=" + encodeURIComponent(t("mail.body"));
+    renderChapters(); renderItin(); renderLists();
+    buildRoute();
+  }
+  $$(".lang button").forEach(b=> b.addEventListener("click", ()=> applyLang(b.dataset.lang)));
+
+  /* ——— Velo ——— */
+  const veil = $("#veil");
+  let revealed = false;
+  function initReveals(){
+    if(revealed) return; revealed = true;
+    const io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    },{threshold:.12,rootMargin:"0px 0px -6% 0px"});
+    $$(".reveal").forEach(el=> io.observe(el));
+  }
+  function lift(){
+    if(document.body.classList.contains("ready")) return;
+    document.body.classList.add("ready");
+    veil.classList.add("lift");
+    setTimeout(()=>{ veil.remove(); initReveals(); }, 720);
+  }
+  /* PRODUCCIÓN: si el velo molesta en navegación interna, bajar 2200 a 1400 */
+  if(RM){ veil.remove(); document.body.classList.add("ready"); initReveals(); }
+  else { setTimeout(lift, 2200); setTimeout(lift, 5000); }
+
+  /* ——— Figura del descenso: se dibuja al entrar en pantalla ——— */
+  const bandIO = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); bandIO.unobserve(e.target); } });
+  },{threshold:.3});
+  $$(".descenso").forEach(el=> bandIO.observe(el));
+
+  /* ——— Header ——— */
+  const top = $("#top");
+  addEventListener("scroll", ()=> top.classList.toggle("scrolled", scrollY > 24), {passive:true});
+
+  /* ——— Menú móvil ——— */
+  const menuBtn = $("#menuBtn");
+  menuBtn.addEventListener("click", ()=>{
+    const open = document.body.classList.toggle("menu-open");
+    menuBtn.setAttribute("aria-expanded", String(open));
+    document.body.style.overflow = open ? "hidden" : "";
+  });
+  $$("#menu a").forEach(a=> a.addEventListener("click", ()=>{
+    document.body.classList.remove("menu-open");
+    menuBtn.setAttribute("aria-expanded","false");
+    document.body.style.overflow = "";
+  }));
+
+  /* ——— Acordeones (delegación: sobrevive re-renders de idioma) ——— */
+  $("#itin").addEventListener("click", function(e){
+    const head = e.target.closest(".acc-head");
+    if(!head) return;
+    const item = head.parentElement;
+    const was = item.classList.contains("open");
+    $$("#itin .acc-item.open").forEach(o=>{
+      o.classList.remove("open");
+      $(".acc-head", o).setAttribute("aria-expanded","false");
+    });
+    if(!was){ item.classList.add("open"); head.setAttribute("aria-expanded","true"); }
+  });
+
+  /* ——— La ruta en rojo ——— */
+  const svg = $("#route"), g = $("#routeG"), path = $("#routePath"),
+        tip = $("#tip"), ring = $("#tipRing"), nodesG = $("#nodes");
+  const SVGNS = "http://www.w3.org/2000/svg";
+  let total = 0, nodeEls = [], nodeLens = [];
+
+  function prnd(n){ const s = Math.sin(n * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
+  function smooth(p){
+    let d = "M " + p[0].x + " " + p[0].y;
+    for(let i = 0; i < p.length - 1; i++){
+      const p0 = p[Math.max(0,i-1)], p1 = p[i], p2 = p[i+1], p3 = p[Math.min(p.length-1,i+2)];
+      d += " C " + (p1.x+(p2.x-p0.x)/6) + " " + (p1.y+(p2.y-p0.y)/6) + ", "
+                 + (p2.x-(p3.x-p1.x)/6) + " " + (p2.y-(p3.y-p1.y)/6) + ", " + p2.x + " " + p2.y;
+    }
+    return d;
+  }
+  function buildRoute(){
+    const W = innerWidth;
+    const docH = document.documentElement.scrollHeight;
+    svg.setAttribute("viewBox", "0 0 " + W + " " + innerHeight);
+    const anchors = $$("[data-route]").map((s,i)=>{
+      const r = s.getBoundingClientRect();
+      const isHero = s.id === "viaje";
+      return {
+        x: W * parseFloat(s.dataset.x || (i % 2 ? ".86" : ".14")),
+        y: isHero ? (r.bottom + scrollY - 140) : (r.top + scrollY + 64),
+        label: t(s.dataset.route),
+        dark: s.classList.contains("dark") || s.dataset.th === "dk" || s.classList.contains("rates")
+      };
+    });
+    let pts = [{x: W * .5, y: -80}];
+    anchors.forEach((a,i)=>{
+      const prev = pts[pts.length-1];
+      for(let k = 1; k <= 2; k++){
+        const tt = k / 3;
+        const dx = a.x - prev.x, dy = a.y - prev.y;
+        const len = Math.hypot(dx, dy) || 1;
+        const amp = (prnd(i * 7 + k) - .5) * 120;
+        pts.push({ x: clamp(prev.x + dx * tt - (dy/len) * amp, 24, W - 24),
+                   y: prev.y + dy * tt + (dx/len) * amp });
+      }
+      pts.push({x: a.x, y: a.y});
+    });
+    pts.push({x: W * .55, y: docH + 80});
+    path.setAttribute("d", smooth(pts));
+    total = path.getTotalLength();
+    path.style.strokeDasharray = total;
+    path.style.strokeDashoffset = RM ? 0 : total;
+    nodesG.innerHTML = ""; nodeEls = []; nodeLens = [];
+    anchors.forEach(a=>{
+      const c = document.createElementNS(SVGNS, "circle");
+      c.setAttribute("cx", a.x); c.setAttribute("cy", a.y); c.setAttribute("r", "5");
+      c.setAttribute("class", "node");
+      const tx = document.createElementNS(SVGNS, "text");
+      tx.textContent = a.label;
+      tx.setAttribute("class", "node-label " + (a.dark ? "dk" : "lt"));
+      if(a.x > W * .5){ tx.setAttribute("text-anchor","end"); tx.setAttribute("x", a.x - 16); }
+      else { tx.setAttribute("text-anchor","start"); tx.setAttribute("x", a.x + 16); }
+      tx.setAttribute("y", a.y + 3.5);
+      nodesG.appendChild(c); nodesG.appendChild(tx);
+      nodeEls.push([c, tx]); nodeLens.push(nearestLen(a));
+    });
+    if(RM) nodeEls.forEach(p=>{ p[0].classList.add("on"); p[1].classList.add("on"); });
+  }
+  function nearestLen(pt){
+    let best = 0, bd = Infinity;
+    for(let l = 0; l <= total; l += 40){
+      const q = path.getPointAtLength(l);
+      const d = (q.x-pt.x)*(q.x-pt.x) + (q.y-pt.y)*(q.y-pt.y);
+      if(d < bd){ bd = d; best = l; }
+    }
+    for(let l = Math.max(0, best-40); l <= Math.min(total, best+40); l += 2){
+      const q = path.getPointAtLength(l);
+      const d = (q.x-pt.x)*(q.x-pt.x) + (q.y-pt.y)*(q.y-pt.y);
+      if(d < bd){ bd = d; best = l; }
+    }
+    return best;
+  }
+  let tP = 0, cP = 0, tY = scrollY, cY = scrollY;
+  function onScroll(){
+    tY = scrollY;
+    const max = document.documentElement.scrollHeight - innerHeight;
+    tP = max > 0 ? Math.min(1, scrollY / max) : 0;
+  }
+  addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+  function tick(){
+    cY += (tY - cY) * .1; cP += (tP - cP) * .08;
+    if(Math.abs(tY - cY) < .05) cY = tY;
+    if(Math.abs(tP - cP) < .0004) cP = tP;
+    g.setAttribute("transform", "translate(0 " + (-cY) + ")");
+    const drawn = cP * total;
+    path.style.strokeDashoffset = total - drawn;
+    const p = path.getPointAtLength(drawn);
+    tip.setAttribute("cx", p.x); tip.setAttribute("cy", p.y);
+    ring.setAttribute("cx", p.x); ring.setAttribute("cy", p.y);
+    nodeEls.forEach((pair, i)=>{
+      const on = drawn >= nodeLens[i] - 2;
+      pair[0].classList.toggle("on", on);
+      pair[1].classList.toggle("on", on);
+    });
+    requestAnimationFrame(tick);
+  }
+
+  /* Idioma inicial: preferencia guardada > idioma del navegador > ES */
+  let saved = null;
+  try{ saved = localStorage.getItem("pb-lang"); }catch(e){}
+  const initial = (saved === "en" || saved === "es")
+    ? saved
+    : ((navigator.language || "es").toLowerCase().indexOf("en") === 0 ? "en" : "es");
+  applyLang(initial);
+
+  if(!RM) requestAnimationFrame(tick);
+  let rb;
+  function rebuild(){ clearTimeout(rb); rb = setTimeout(buildRoute, 220); }
+  addEventListener("resize", rebuild);
+  if(window.ResizeObserver) new ResizeObserver(rebuild).observe(document.body);
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=> setTimeout(buildRoute, 60));
+})();
+</script>
+</body>
+</html>
