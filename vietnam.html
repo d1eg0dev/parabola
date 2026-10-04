@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vietnam: The Deep Descent — Parabola · Marzo 2027</title>
-<meta name="description" content="22 días de viaje lento y exploración de cavernas en Vietnam. Del norte en terrazas a seis noches dentro de la selva de Phong Nha-Kẻ Bàng. Marzo 3–24, 2027.">
+<title>Vietnam: El Gran Descenso — Parabola · Marzo 2027</title>
+<meta name="description" content="22 días de viaje pausado y exploración de cavernas en Vietnam. De las montañas del norte a seis noches de selva en Phong Nha-Kẻ Bàng. 3–24 de marzo, 2027.">
 <meta name="theme-color" content="#1F4A2A">
-<meta property="og:title" content="Vietnam: The Deep Descent — Parabola">
-<meta property="og:description" content="22 días · 2 expediciones · 6 noches de selva. Marzo 3–24, 2027.">
+<meta property="og:title" content="Vietnam: El Gran Descenso — Parabola">
+<meta property="og:description" content="22 días · 2 expediciones · 6 noches de selva. 3–24 de marzo, 2027.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -302,6 +302,19 @@
     #waFloat{opacity:1;transform:none}
     #waFloat::after{display:none}
   }
+
+/* ——— Plazas disponibles ——— */
+.plazas{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(244,241,232,.4);border-radius:999px;padding:9px 18px;font:500 10px var(--mono);letter-spacing:.22em;text-transform:uppercase;color:var(--paper)}
+.pl-dot{width:8px;height:8px;border-radius:50%;background:var(--acc);flex:none;animation:plpulse 1.8s infinite}
+@keyframes plpulse{0%,100%{box-shadow:0 0 0 0 rgba(226,83,31,.55)}60%{box-shadow:0 0 0 8px rgba(226,83,31,0)}}
+.hero .plazas{margin-bottom:1.4rem}
+.apply .plazas{margin-bottom:1.8rem}
+.plazas-band{display:flex;align-items:center;gap:clamp(1.4rem,3vw,2.6rem);flex-wrap:wrap;background:var(--paper);color:var(--ink);padding:clamp(1.4rem,3vw,2rem) clamp(1.6rem,3vw,2.4rem);margin-bottom:clamp(2.2rem,5vw,3.4rem)}
+.pl-big{font:500 clamp(2.6rem,5vw,4rem)/1 var(--mono);color:var(--acc);letter-spacing:-.04em}
+.pl-t{font:500 1.15rem/1.3 var(--sans);letter-spacing:-.01em}
+.pl-s{font-size:.9rem;color:var(--ink2);max-width:46ch;margin-top:.2rem}
+.plazas-band .btn{margin-left:auto}
+@media (max-width:640px){.plazas-band .btn{margin-left:0}}
 </style>
 </head>
 <body>
@@ -375,10 +388,11 @@
       <circle cx="1280" cy="330" r="2.5"/><circle cx="930" cy="670" r="2.5"/>
     </svg>
     <div class="hero-inner">
+      <p class="plazas reveal"><span class="pl-dot" aria-hidden="true"></span><span data-i18n="pl.hero"></span></p>
       <p class="label reveal" data-i18n="hero.label"></p>
       <h1 class="h1">
-        <span class="line"><span>Vietnam:</span></span>
-        <span class="line"><span>The Deep Descent<span class="dot">.</span></span></span>
+        <span class="line"><span data-i18n="hero.h1a">Vietnam:</span></span>
+        <span class="line"><span data-i18n-html="hero.h1b">The Great Descent<span class="dot">.</span></span></span>
       </h1>
       <p class="hero-sub" data-i18n="hero.sub"></p>
       <div class="hero-cta">
@@ -403,7 +417,7 @@
       <h2 class="h2 reveal" style="--d:.08s;margin:1.4rem 0 clamp(2.4rem,5vw,4rem);max-width:18ch" data-i18n="in.h2"></h2>
       <div class="manif-grid">
         <div class="manif-copy">
-          <p class="lede reveal" data-i18n="in.p1"></p>
+          <p class="lede reveal" data-i18n-html="in.p1"></p>
           <p class="lede reveal" style="--d:.08s" data-i18n="in.p2"></p>
           <p class="lede reveal" style="--d:.14s" data-i18n="in.p3"></p>
         </div>
@@ -491,7 +505,18 @@
         <h2 class="h2 reveal" style="--d:.08s" data-i18n="ra.h2"></h2>
         <p class="sec-intro reveal" style="--d:.16s" data-i18n="ra.sub"></p>
       </header>
-
+      <div class="plazas-band reveal">
+        <span class="pl-big">04</span>
+        <div>
+          <p class="pl-t" data-i18n="pl.bandT"></p>
+          <p class="pl-s" data-i18n="pl.bandS"></p>
+        </div>
+        <a class="btn" href="#contacto">
+          <span data-i18n="pl.cta"></span>
+          <svg width="24" height="10" viewBox="0 0 24 10" aria-hidden="true"><path d="M0 5h22M18 1l4 4-4 4" stroke="currentColor" fill="none"/></svg>
+        </a>
+      </div>
+      
       <div class="prices">
         <div class="price reveal">
           <p class="p-l" data-i18n="pr.s.label"></p>
@@ -528,6 +553,7 @@
         <h2 class="h2 reveal" style="--d:.08s;margin-top:1.4rem" data-i18n="ct.h2"></h2>
         <p class="sec-intro reveal" style="--d:.16s;margin-top:1.4rem" data-i18n="ct.p"></p>
       </header>
+      <p class="plazas reveal" style="--d:.14s"><span class="pl-dot" aria-hidden="true"></span><span data-i18n="pl.hero"></span></p>
       <div class="cta-row reveal" style="--d:.2s">
         <a class="btn wa-link" target="_blank" rel="noopener">
           <span data-i18n="ct.wa"></span>
@@ -609,26 +635,28 @@
      ========================================================= */
   const I18N = {
     es: {
-      "doc.title":"Vietnam: The Deep Descent — Parabola · Marzo 2027",
-      "wa.msg":"Hola Parábola, me interesa Vietnam: The Deep Descent (marzo 2027).",
+      "doc.title":"Vietnam: El Gran Descenso — Parabola · Marzo 2027",
+      "wa.msg":"Hola Parábola, me interesa Vietnam: El Gran Descenso (marzo 2027).",
       "wa.tip":"Escríbenos por WhatsApp",
-      "mail.sub":"Interés — Vietnam: The Deep Descent (marzo 2027)",
-      "mail.body":"Hola, me interesa Vietnam: The Deep Descent (3–24 de marzo, 2027). Quisiera más información sobre disponibilidad y siguiente paso.",
+      "mail.sub":"Interés — Vietnam: El Gran Descenso (marzo 2027)",
+      "mail.body":"Hola, me interesa Vietnam: El Gran Descenso (3–24 de marzo, 2027). Quisiera más información sobre disponibilidad y siguiente paso.",
       "nav.trip":"El viaje","nav.des":"El descenso","nav.itin":"Itinerario","nav.rates":"Tarifas","cta.head":"Solicitar plaza",
       "m.back":"← Volver al inicio",
       "hero.label":"Expedición curada · Marzo 2027",
-      "hero.sub":"22 días de viaje lento y exploración de cavernas. Del ritmo tranquilo del norte a seis noches dentro de la selva: el descenso más profundo que hemos curado hasta ahora.",
+      "hero.h1a":"Vietnam:",
+      "hero.h1b":"El Gran Descenso<span class=\"dot\">.</span>",
+      "hero.sub":"22 días de viaje pausado, de las montañas del norte a las cavernas y selvas de Phong Nha, terminando entre la historia y gastronomía de Hue.",
       "hero.cta":"Solicitar información","hero.how":"Ver el itinerario",
-      "hero.footl":"3 — 24 de marzo, 2027","hero.hint":"Desliza","hero.footr":"Hanoi → Hue · Salida grupal",
-      "in.label":"01 — La cura","in.h2":"Dos viajes en uno: calma arriba, abismo abajo.",
-      "in.p1":"Curada de principio a fin por Parabola, esta expedición de 22 días balancea el viaje lento de alto nivel —arrozales del norte, lodges entre terrazas, mesas largas— con exploración de cavernas de clase mundial en el corazón protegido del parque Phong Nha-Kẻ Bàng.",
-      "in.p2":"El eje del viaje: <strong>seis noches dentro de la jungla</strong>, en las expediciones Hang Ba y Tu Lan. Cavernas monumentales, ríos subterráneos y selva primaria. Después, el cierre en calma: un retiro cultural en la histórica Hue.",
-      "in.p3":"Todo está resuelto —alojamientos, vuelo doméstico, transportes, permisos y equipo de expedición— para que el único trabajo del viajero sea el descenso.",
-      "in.pull":"Seis noches bajo la selva. <span class=\"hl\">El resto, para subir despacio.</span>",
-      "de.label":"02 — El descenso","de.h2":"La forma del viaje.",
-      "de.sub":"Empieza en la superficie, se hunde en la caliza y vuelve a salir. Ese es el viaje completo, dibujado como se vive: primero arriba, luego abajo, después el regreso.",
+      "hero.footl":"3 — 24 de marzo de 2027 · 21 noches","hero.hint":"Desliza","hero.footr":"Hanoi → Hue · Salida grupal",
+      "in.label":"01 — La cura","in.h2":"Del norte de Vietnam a las profundidades de Phong Nha.",
+      "in.p1":"22 días recorriendo Vietnam a otro ritmo. Comenzamos en Hanoi antes de adentrarnos en el norte: arrozales, montañas, pequeños pueblos y lodges entre terrazas. De ahí, el viaje cambia de escala en Phong Nha-Kẻ Bàng, con <strong>seis noches de expedición en la selva</strong> explorando Hang Ba y Tu Lan: cavernas monumentales, ríos subterráneos y algunos de los paisajes más extraordinarios del viaje.",
+      "in.p2":"Después de la expedición, terminamos en Hue, con unos días para bajar el ritmo y descubrir su historia, arquitectura y cocina.",
+      "in.p3":"Parábola se encarga de toda la logística —alojamientos, vuelo doméstico, transportes, permisos y equipo de expedición— para que ustedes simplemente se dediquen a viajar.",
+      "in.pull":"Vietnam a otro ritmo, <span class=\"hl\">hasta llegar bajo tierra.</span>",
+      "de.label":"02 — El descenso","de.h2":"Un viaje profundo, de contrastes y exploración.",
+      "de.sub":"El viaje cambia a medida que avanzamos. Comienza entre ciudades, montañas y arrozales del norte; se convierte en expedición al adentrarnos en la selva, entre ríos subterráneos y cavernas monumentales que parecen de otro planeta; y termina con unos días de calma, historia y buena comida en Hue.",
       "pf.hanoi":"HANOI","pf.hue":"HUE",
-      "pf.c1":"01 · LA LLEGADA","pf.c2":"02 · LAS TERRAZAS","pf.c3":"03 · EL DESCENSO","pf.c4":"04 · EL FINAL",
+      "pf.c1":"01 · LA LLEGADA","pf.c2":"02 · EL NORTE RURAL","pf.c3":"03 · LAS CUEVAS","pf.c4":"04 · HUE",
       "pf.six":"6 NOCHES DE SELVA",
       "ch.word":"Capítulo","ch.days":"Días",
       "it.label":"03 — Itinerario","it.h2":"Día a día.",
@@ -643,35 +671,42 @@
       "pr.notes":"Notas",
       "inc.label":"Lo que incluye","excl.label":"Lo que no incluye",
       "ct.label":"05 — Contacto","ct.h2":"¿Este descenso es tuyo?",
-      "ct.p":"Los permisos de cueva y la logística de expedición son limitados: conviene apartar lugar con tiempo. Escríbenos y en menos de 48 horas te respondemos con disponibilidad, siguiente paso y cualquier duda del recorrido.",
-      "ct.wa":"Apartar por WhatsApp","ct.mail":"Escribir un correo","ct.form":"O llena el formulario del sitio",
+      "ct.p":"Son los últimos 4 lugares de la salida, y los permisos de cueva son limitados: conviene apartar cuanto antes. Escríbenos y en menos de 48 horas te respondemos con el siguiente paso y cualquier duda del recorrido.",      "ct.wa":"Apartar por WhatsApp","ct.mail":"Escribir un correo","ct.form":"O llena el formulario del sitio",
       "ct.micro":"Respondemos en menos de 48 horas. Marzo 3–24, 2027 · Hanoi → Hue.",
       "ft.p1":"Viajes privados diseñados a la medida. Este itinerario es una salida grupal curada por Parabola, de principio a fin.",
       "ft.h2":"Navegación","ft.n1":"Inicio","ft.h3":"Contacto",
       "ft.bl":"© 2025 Parabola","ft.br":"Vietnam · Marzo 2027",
-      "rl0":"00 · Vietnam","rl1":"01 · La cura","rl2":"02 · El descenso","rl3":"03 · Itinerario","rl4":"04 · Tarifas","rl5":"05 · Contacto"
+      "rl0":"00 · Vietnam","rl1":"01 · La cura","rl2":"02 · El descenso","rl3":"03 · Itinerario","rl4":"04 · Tarifas","rl5":"05 · Contacto",
+      "gl.label":"Galería","gl.h2":"El país, en imágenes.",
+      "gl.sub":"Una lectura visual del recorrido: terrazas, caliza, selva y ríos. Referencia de atmósfera; el día a día completo está abajo."
+      "pl.hero":"Solo quedan 4 lugares",
+      "pl.bandT":"Quedan 4 lugares en esta salida.",
+      "pl.bandS":"Las expediciones de cueva operan con grupos reducidos por seguridad y permisos: cuando el cupo se cierra, se cierra. Si este viaje te llama, escríbenos ahora.",
+      "pl.cta":"Apartar lugar",
     },
     en: {
-      "doc.title":"Vietnam: The Deep Descent — Parabola · March 2027",
-      "wa.msg":"Hi Parabola, I'm interested in Vietnam: The Deep Descent (March 2027).",
+      "doc.title":"Vietnam: The Great Descent — Parabola · March 2027",
+      "wa.msg":"Hi Parabola, I'm interested in Vietnam: The Great Descent (March 2027).",
       "wa.tip":"Message us on WhatsApp",
-      "mail.sub":"Interest — Vietnam: The Deep Descent (March 2027)",
-      "mail.body":"Hi, I'm interested in Vietnam: The Deep Descent (March 3–24, 2027). I'd like more information on availability and next steps.",
+      "mail.sub":"Interest — Vietnam: The Great Descent (March 2027)",
+      "mail.body":"Hi, I'm interested in Vietnam: The Great Descent (March 3–24, 2027). I'd like more information on availability and next steps.",
       "nav.trip":"The trip","nav.des":"The descent","nav.itin":"Itinerary","nav.rates":"Rates","cta.head":"Request a spot",
       "m.back":"← Back to home",
       "hero.label":"Curated expedition · March 2027",
-      "hero.sub":"22 days of slow travel and wilderness caving. From the calm rhythm of the north to six nights inside the jungle: the deepest descent we've curated so far.",
+      "hero.h1a":"Vietnam:",
+      "hero.h1b":"The Great Descent<span class=\"dot\">.</span>",
+      "hero.sub":"22 days of slow travel, from the northern mountains to the caverns and jungles of Phong Nha, ending among the history and gastronomy of Hue.",
       "hero.cta":"Request information","hero.how":"See the itinerary",
-      "hero.footl":"March 3 — 24, 2027","hero.hint":"Scroll","hero.footr":"Hanoi → Hue · Group departure",
-      "in.label":"01 — The curation","in.h2":"Two trips in one: calm above, abyss below.",
-      "in.p1":"Curated end to end by Parabola, this 22-day expedition balances high-level slow travel —northern rice terraces, lodges in the hills, long tables— with world-class caving in the protected core of Phong Nha-Kẻ Bàng National Park.",
-      "in.p2":"The axis of the trip: <strong>six nights inside the jungle</strong>, on the Hang Ba and Tu Lan expeditions. Monumental caverns, subterranean rivers and primary rainforest. Then, a calm closing: a cultural retreat in historic Hue.",
-      "in.p3":"Everything is handled —lodgings, domestic flight, transfers, permits and expedition gear— so the traveler's only job is the descent.",
-      "in.pull":"Six nights under the jungle. <span class=\"hl\">The rest, to climb back slowly.</span>",
-      "de.label":"02 — The descent","de.h2":"The shape of the trip.",
-      "de.sub":"It starts at the surface, sinks into the limestone and comes back out. That's the whole trip, drawn the way it's lived: first above, then below, then the return.",
+      "hero.footl":"March 3 — 24, 2027 · 21 nights","hero.hint":"Scroll","hero.footr":"Hanoi → Hue · Group departure",
+      "in.label":"01 — The curation","in.h2":"From northern Vietnam to the depths of Phong Nha.",
+      "in.p1":"22 days across Vietnam at a different pace. We begin in Hanoi before heading into the north: rice terraces, mountains, small villages and lodges among the hills. From there, the trip changes scale in Phong Nha-Kẻ Bàng, with <strong>six nights of jungle expedition</strong> exploring Hang Ba and Tu Lan: monumental caverns, underground rivers and some of the most extraordinary landscapes of the journey.",
+      "in.p2":"After the expedition, we finish in Hue, with a few days to slow down and discover its history, architecture and cuisine.",
+      "in.p3":"Parabola handles all the logistics —accommodations, domestic flight, transfers, permits and expedition gear— so you can simply focus on traveling.",
+      "in.pull":"Vietnam at another pace, <span class=\"hl\">all the way underground.</span>",
+      "de.label":"02 — The descent","de.h2":"A deep journey, of contrasts and exploration.",
+      "de.sub":"The trip changes as we move. It begins among the cities, mountains and rice terraces of the north; becomes an expedition as we enter the jungle, among underground rivers and monumental caverns that feel like another planet; and ends with a few days of calm, history and good food in Hue.",
       "pf.hanoi":"HANOI","pf.hue":"HUE",
-      "pf.c1":"01 · THE ARRIVAL","pf.c2":"02 · THE TERRACES","pf.c3":"03 · THE DESCENT","pf.c4":"04 · THE FINALE",
+      "pf.c1":"01 · THE ARRIVAL","pf.c2":"02 · RURAL NORTH","pf.c3":"03 · THE CAVES","pf.c4":"04 · HUE",
       "pf.six":"6 JUNGLE NIGHTS",
       "ch.word":"Chapter","ch.days":"Days",
       "it.label":"03 — Itinerary","it.h2":"Day by day.",
@@ -686,40 +721,45 @@
       "pr.notes":"Notes",
       "inc.label":"What's included","excl.label":"What's not included",
       "ct.label":"05 — Contact","ct.h2":"Is this descent yours?",
-      "ct.p":"Cave permits and expedition logistics are limited: it's worth securing a spot early. Write to us and within 48 hours we'll reply with availability, next steps and answers to any questions about the route.",
-      "ct.wa":"Hold a spot via WhatsApp","ct.mail":"Write an email","ct.form":"Or fill the main site form",
+      "ct.p":"These are the last 4 spots on this departure, and cave permits are limited: it's worth holding one soon. Write to us and within 48 hours we'll reply with next steps and answers about the route.",      "ct.wa":"Hold a spot via WhatsApp","ct.mail":"Write an email","ct.form":"Or fill the main site form",
       "ct.micro":"We reply within 48 hours. March 3–24, 2027 · Hanoi → Hue.",
       "ft.p1":"Private trips designed from scratch. This is a group departure curated by Parabola, from start to finish.",
       "ft.h2":"Browse","ft.n1":"Home","ft.h3":"Contact",
       "ft.bl":"© 2025 Parabola","ft.br":"Vietnam · March 2027",
-      "rl0":"00 · Vietnam","rl1":"01 · Curation","rl2":"02 · The descent","rl3":"03 · Itinerary","rl4":"04 · Rates","rl5":"05 · Contact"
+      "rl0":"00 · Vietnam","rl1":"01 · Curation","rl2":"02 · The descent","rl3":"03 · Itinerary","rl4":"04 · Rates","rl5":"05 · Contact",
+      "gl.label":"Gallery","gl.h2":"The country, in images.",
+      "gl.sub":"A visual read of the route: terraces, limestone, jungle and rivers. For atmosphere; the full day-by-day is below."
+      "pl.hero":"Only 4 spots left",
+      "pl.bandT":"4 spots remain on this departure.",
+      "pl.bandS":"Cave expeditions run with small groups for safety and permit reasons: once the quota closes, it closes. If this trip is calling you, write to us now.",
+      "pl.cta":"Hold a spot",
     }
   };
 
   /* Capítulos del viaje */
-  const CH = [
-    {n:"01", d:"1–4", t:{es:"La llegada",en:"The arrival"}, r:"Hanoi & Ninh Binh",
-     p:{es:"Capital, barrio antiguo y las primeras aguas calmas: tempo bajo para aterrizar bien.",
-        en:"Capital, Old Quarter and the first calm waters: a low tempo to land well."},
-     h:"Acoustic Hotel & Spa · Aman Retreat"},
-    {n:"02", d:"5–9", t:{es:"Las terrazas",en:"The terraces"}, r:"Pu Luong & Mai Chau",
-     p:{es:"Arrozales en cascada, aldeas Thai y camino lento entre montañas hacia el sur.",
-        en:"Cascading rice terraces, Thai villages and a slow road south through the mountains."},
-     h:"Amigo Pu Luong · Mai Chau Hideaway"},
-    {n:"03", d:"10–18", t:{es:"El descenso",en:"The descent"}, r:"Phong Nha-Kẻ Bàng",
-     p:{es:"Dos expediciones Oxalis y seis noches de campamento en la selva: el corazón de caliza del país.",
-        en:"Two Oxalis expeditions and six nights of jungle camping: the limestone heart of the country."},
-     h:"Victory Road Villas · Campamentos Oxalis"},
-    {n:"04", d:"19–22", t:{es:"El final imperial",en:"The imperial finale"}, r:"Hue",
-     p:{es:"Regreso a la superficie: tumbas reales, río al atardecer y mesa lenta para cerrar.",
-        en:"Back to the surface: royal tombs, a river at sunset and a slow table to close."},
-     h:"Pilgrimage Village"}
+    const CH = [
+    {n:"01", d:"1–2", t:{es:"La llegada",en:"The arrival"}, r:"Hanoi",
+     p:{es:"Dos noches para entrar en el ritmo de Vietnam: recorrer el barrio antiguo, probar su cocina y descubrir una ciudad intensa, caótica y fascinante.",
+        en:"Two nights to settle into Vietnam's rhythm: wandering the Old Quarter, tasting its food, and getting to know an intense, chaotic, fascinating city."},
+     h:{es:"Rex Hanoi Hotel",en:"Rex Hanoi Hotel"}},
+    {n:"02", d:"3–9", t:{es:"El norte rural",en:"Rural north"}, r:"Ninh Binh · Pu Luong · Mai Chau",
+     p:{es:"De los paisajes de piedra caliza de Ninh Binh a los arrozales y montañas de Pu Luong y Mai Chau. Una semana para descubrir el Vietnam rural, avanzando sin prisa entre pequeños pueblos y naturaleza.",
+        en:"From Ninh Binh's limestone landscapes to the rice terraces and mountains of Pu Luong and Mai Chau. A week to discover rural Vietnam, moving unhurried through small villages and nature."},
+     h:{es:"Aman Retreat · Amigo Pu Luong · Mai Chau Hideaway",en:"Aman Retreat · Amigo Pu Luong · Mai Chau Hideaway"}},
+    {n:"03", d:"10–18", t:{es:"Las cuevas de Phong Nha",en:"The caves of Phong Nha"}, r:"Phong Nha-Kẻ Bàng",
+     p:{es:"Dos expediciones con equipos locales expertos que conocen y protegen este extraordinario mundo subterráneo. Cavernas monumentales, ríos bajo tierra y selva primaria en uno de los paisajes kársticos de piedra caliza más excepcionales y mejor conservados del mundo, reconocido como Patrimonio Mundial por la UNESCO.",
+        en:"Two expeditions with expert local teams who know and protect this extraordinary underground world. Monumental caverns, underground rivers and primary jungle in one of the most exceptional and best-preserved limestone karst landscapes on Earth, recognized as UNESCO World Heritage."},
+     h:{es:"Phong Nha Lake House · Campamentos Oxalis",en:"Phong Nha Lake House · Oxalis camps"}},
+    {n:"04", d:"19–22", t:{es:"Hue, la ciudad imperial",en:"Hue, the imperial city"}, r:"Hue",
+     p:{es:"Después de la expedición, el viaje cambia de ritmo. Tres días para descubrir la antigua capital imperial de Vietnam entre palacios, tumbas reales, jardines y una de las tradiciones gastronómicas más interesantes del país.",
+        en:"After the expedition, the trip changes pace. Three days to discover Vietnam's ancient imperial capital among palaces, royal tombs, gardens and one of the country's most interesting culinary traditions."},
+     h:{es:"Pilgrimage Village Boutique Resort & Spa",en:"Pilgrimage Village Boutique Resort & Spa"}}
   ];
 
   /* Notas de precio */
   const NOTES = [
-    {es:"Estamos gestionando un mejor hotel para la noche de tránsito cerca del aeropuerto de Hanoi. De confirmarse, habría un ajuste de +$45 USD.",
-     en:"We are currently negotiating a better hotel for the transfer night near Hanoi airport. If secured, there will be a slight price increment of $45 USD."},
+    {es:"La noche de tránsito cerca del aeropuerto de Hanoi se aloja en el Noi Bai Horizon Hotel, una mejora respecto al hotel original del programa. De confirmarse esta reserva, aplica un ajuste de +$45 USD por persona.",
+     en:"The transfer night near Hanoi airport is hosted at the Noi Bai Horizon Hotel, an upgrade over the original hotel in the program. If this booking is confirmed, a price adjustment of $45 USD per person applies."},
     {es:"Si el grupo no llega en el mismo vuelo a Hanoi el primer día, hay un ajuste de +$30 USD por persona para coordinar traslados separados al hotel.",
      en:"If the group does not arrive on the same flight to Hanoi on day one, there will be a $30 USD per person increment to arrange separate transfer services."}
   ];
@@ -746,15 +786,17 @@
   /* Itinerario — 22 días (del PDF del cliente) */
   const OX_HB = "https://oxalisadventure.com/tour/hang-ba-deep-jungle-expedition/";
   const OX_TL = "https://oxalisadventure.com/tour/tu-lan-expedition/";
+   const OX_HB = "https://oxalisadventure.com/tour/hang-ba-deep-jungle-expedition/";
+  const OX_TL = "https://oxalisadventure.com/tour/tu-lan-expedition/";
   const ITIN = [
-    {n:1, m:"n", h:"Acoustic Hotel & Spa", u:"https://www.acoustichotel.com/",
-     t:{es:"Llegada a Hanoi — el aterrizaje",en:"Arrival in Hanoi — Landing at the Orient"},
-     x:{es:"Aterrizaje en Hanoi, donde el pulso vibrante de la capital recibe al grupo. Transporte privado hacia el Acoustic Hotel & Spa, en pleno Barrio Francés. El resto del día es libre: lo recomendamos para descansar del vuelo largo y entrar, sin prisa, a la cultura culinaria de la ciudad.",
-        en:"Touchdown in Hanoi, where the vibrant pulse of Vietnam's capital welcomes the group. Private transfer to Acoustic Hotel & Spa, in the heart of the French Quarter. The rest of the day is at leisure: rest, recover from the long-haul journey, and ease into the city's rich culinary culture."}},
-    {n:2, m:"b", h:"Acoustic Hotel & Spa", u:"https://www.acoustichotel.com/",
-     t:{es:"Hanoi — Barrio Antiguo y cocina",en:"Hanoi — Old Quarter Rhythms & Culinary Exploration"},
-     x:{es:"Día diseñado para explorar sin prisa el centro histórico: las calles enrevesadas del Barrio Antiguo, callejones silenciosos, y la cocina callejera y la cultura del café más celebradas del país. Un día pausado para aclimatarse al huso horario y al clima antes de salir al campo.",
-        en:"A day designed for unhurried exploration of the historic core. Wander the maze-like streets of the Old Quarter, discover quiet alleyways, and sample Vietnam's world-renowned street food and coffee culture. A slow-paced day to acclimate before moving into the countryside."}},
+    {n:1, m:"n", h:"Rex Hanoi Hotel", u:"https://rexhanoihotel.com",
+     t:{es:"Llegada a Hanoi",en:"Arrival in Hanoi"},
+     x:{es:"Aterrizaje en Hanoi, donde el pulso vibrante de la capital recibe al grupo. Transporte privado hacia el Rex Hanoi Hotel. El resto del día es libre: lo recomendamos para descansar del vuelo largo y entrar, sin prisa, a la cultura culinaria de la ciudad.",
+        en:"Touchdown in Hanoi, where the vibrant pulse of Vietnam's capital welcomes the group. Private transfer to the Rex Hanoi Hotel. The rest of the day is at leisure: rest, recover from the long-haul journey, and ease into the city's rich culinary culture."}},
+    {n:2, m:"b", h:"Rex Hanoi Hotel", u:"https://rexhanoihotel.com",
+     t:{es:"Hanoi — día libre en el Barrio Antiguo",en:"Hanoi — Free day in the Old Quarter"},
+     x:{es:"Día libre para explorar sin prisa el centro histórico: las calles enrevesadas del Barrio Antiguo, callejones silenciosos, y la cocina callejera y la cultura del café más celebradas del país. Un día pausado para aclimatarse al huso horario y al clima antes de salir al campo.",
+        en:"A free day for unhurried exploration of the historic core. Wander the maze-like streets of the Old Quarter, discover quiet alleyways, and sample Vietnam's world-renowned street food and coffee culture. A slow-paced day to acclimate before moving into the countryside."}},
     {n:3, m:"bl", h:"Aman Retreat, Ninh Binh", u:"https://amanretreat.vn/en",
      t:{es:"Hanoi → Ninh Binh — dinastías y aguas kársticas",en:"Hanoi to Ninh Binh — Ancient Dynasties & Karst Waterways"},
      x:{es:"Salida hacia los paisajes de caliza de Ninh Binh. Por la mañana, Hoa Lu, la antigua capital de Vietnam, con sus santuarios históricos entre colinas. Después de comer, barcas sampan por los canales silenciosos y las redes de cuevas de Trang An. El día cierra con un paseo en bici por caminos rurales.",
@@ -779,34 +821,34 @@
      t:{es:"Mai Chau — campo e inmersión local",en:"Mai Chau — Countryside Walk & Local Immersion"},
      x:{es:"Caminata suave por los arrozales y aldeas alrededor de Mai Chau, con visita a una familia Thai local para conocer sus costumbres y su vida en el valle. Comida local. Por la tarde, descanso junto al lago o paseo opcional en bici por los campos.",
         en:"Begin with a gentle walk through the rice fields and hamlets surrounding Mai Chau, passing small farms and traditional stilt houses. Visit a local Thai family to learn about their daily customs and life in the valley before a local lunch. The afternoon is yours to relax at the lake resort or enjoy an optional cycling ride."}},
-    {n:9, m:"bl", h:"Haap Transit Hotel, Noi Bai Airport", u:null,
+    {n:9, m:"bl", h:"Noi Bai Horizon Hotel, Noi Bai Airport", u:"https://noibaihorizon.vn/",
      t:{es:"Mai Chau → Hanoi — regreso y tránsito",en:"Mai Chau to Hanoi — Return to the Capital & Transit"},
-     x:{es:"Mañana tranquila en el resort para despedirse del valle. Después de comer, transporte privado de regreso a Hanoi y check-in en un hotel de tránsito cerca del aeropuerto de Noi Bai: descansar y preparar el vuelo del día siguiente hacia el campamento base de la selva.",
-        en:"A relaxed morning at the lake resort to take in the final views of Mai Chau Valley. After lunch, private transport takes the group back toward Hanoi. Check into a transit hotel near Noi Bai Airport to rest and prepare for the flight south to the jungle base camp tomorrow."}},
-    {n:10, m:"n", h:"Victory Road Villas, Phong Nha", u:"https://victoryroadvillas.com/",
+     x:{es:"Mañana tranquila en el resort para despedirse del valle. Después de comer, transporte privado de regreso a Hanoi y check-in en el Noi Bai Horizon Hotel, junto al aeropuerto: descansar y preparar el vuelo del día siguiente hacia el campamento base de la selva.",
+        en:"A relaxed morning at the lake resort to take in the final views of Mai Chau Valley. After lunch, private transport back toward Hanoi and check-in at the Noi Bai Horizon Hotel, right by the airport: rest and prepare for tomorrow's flight south to the jungle base camp."}},
+    {n:10, m:"n", h:"Phong Nha Lake House, Phong Nha", u:"http://phongnhalakehouse.vn/",
      t:{es:"Vuelo a Dong Hoi — llegada a Phong Nha",en:"Flight to Dong Hoi & Arrival in Phong Nha"},
-     x:{es:"Traslado temprano al aeropuerto de Hanoi para el vuelo doméstico al sur, a Dong Hoi (VN1591, 08:45–09:50). Al aterrizar, transporte privado hacia la puerta de entrada a la selva: Phong Nha. Check-in en las villas y tarde libre junto a la piscina, preparando el terreno para las expediciones que empiezan mañana.",
-        en:"Early morning transfer to Hanoi Airport for the short domestic flight south to Dong Hoi (VN1591, 08:45–09:50). Upon landing, private transport meets the group to transfer inland toward the jungle gateway of Phong Nha. Check into the villas and spend the rest of the day at leisure by the pool, prepping for the wilderness expeditions beginning tomorrow."}},
+     x:{es:"Traslado temprano al aeropuerto de Hanoi para el vuelo doméstico al sur, a Dong Hoi (VN1591, 08:45–09:50). Al aterrizar, transporte privado hacia la puerta de entrada a la selva: Phong Nha. Check-in en el lodge junto al lago y tarde libre para preparar el terreno antes de las expediciones que empiezan mañana.",
+        en:"Early morning transfer to Hanoi Airport for the short domestic flight south to Dong Hoi (VN1591, 08:45–09:50). Upon landing, private transport meets the group to transfer inland toward the jungle gateway of Phong Nha. Check into the lakeside lodge and spend the rest of the day at leisure, prepping for the wilderness expeditions beginning tomorrow."}},
     {n:11, m:"bld", camp:true, ox:OX_HB,
      t:{es:"Expedición 1: Hang Ba Deep Jungle (día 1)",en:"Expedition 1: Hang Ba Deep Jungle (Day 1)"},
-     x:{es:"Después del desayuno, reunión con el equipo de Oxalis para el briefing de seguridad y revisión de equipo antes de entrar a la zona núcleo del Parque Nacional Phong Nha-Kẻ Bàng. Se acaban las carreteras: trekking por selva densa, terreno kárstico y arroyos de montaña hasta el primer campamento, junto a la entrada de la caverna. Cena de campamento bajo el dosel de la selva.",
-        en:"After breakfast at Victory Road Villas, join the Oxalis team for a safety briefing and gear check before heading into the core zone of Phong Nha-Kẻ Bàng National Park. Leave paved roads behind and trek through dense jungle, crossing limestone terrain and mountain streams to reach the initial camp near the cavern entrance. Evening under the forest canopy with a fresh camp meal prepared by the expedition team."}},
+     x:{es:"Después del desayuno en el lodge, reunión con el equipo de Oxalis para el briefing de seguridad y revisión de equipo antes de entrar a la zona núcleo del Parque Nacional Phong Nha-Kẻ Bàng. Se acaban las carreteras: trekking por selva densa, terreno kárstico y arroyos de montaña hasta el primer campamento, junto a la entrada de la caverna. Cena de campamento bajo el dosel de la selva.",
+        en:"After breakfast at the lodge, join the Oxalis team for a safety briefing and gear check before heading into the core zone of Phong Nha-Kẻ Bàng National Park. Leave paved roads behind and trek through dense jungle, crossing limestone terrain and mountain streams to reach the initial camp near the cavern entrance. Evening under the forest canopy with a fresh camp meal prepared by the expedition team."}},
     {n:12, m:"bld", camp:true, ox:OX_HB,
      t:{es:"Hang Ba — selva profunda (día 2)",en:"Hang Ba Deep Jungle Expedition (Day 2)"},
      x:{es:"Día de profundizar en el sistema de cuevas Hang Ba, de acceso restringido: trekking por selva primaria, campos de bloques subterráneos y cavernas inmensas esculpidas por millones de años de erosión del agua.",
         en:"Deepen the exploration into the restricted Hang Ba cave system. The day is spent trekking through primary jungle, scrambling over subterranean boulder fields, and exploring vast caverns shaped by millions of years of water erosion."}},
-    {n:13, m:"bl", h:"Victory Road Villas, Phong Nha", u:"https://victoryroadvillas.com/",
+    {n:13, m:"bl", h:"Phong Nha Lake House, Phong Nha", u:"http://phongnhalakehouse.vn/",
      t:{es:"Cierre de Hang Ba y regreso a Phong Nha",en:"Concluding Hang Ba & Return to Phong Nha"},
-     x:{es:"Salida del sistema de cuevas y último trekking de selva de regreso al punto de inicio. El transporte de Oxalis regresa al grupo a la aldea de Phong Nha para una ducha bien ganada, comida caliente y una buena noche de sueño.",
-        en:"Emerge from the cave system for the final jungle trek back to the trailhead. Oxalis transport transfers the group back to the village of Phong Nha for a well-deserved shower, hot meal, and a comfortable night's rest."}},
-    {n:14, m:"b", h:"Victory Road Villas, Phong Nha", u:"https://victoryroadvillas.com/",
+     x:{es:"Salida del sistema de cuevas y último trekking de selva de regreso al punto de inicio. El transporte de Oxalis regresa al grupo a la aldea de Phong Nha para una ducha bien ganada, comida caliente y una buena noche de sueño en el lodge.",
+        en:"Emerge from the cave system for the final jungle trek back to the trailhead. Oxalis transport transfers the group back to the village of Phong Nha for a well-deserved shower, hot meal, and a comfortable night's rest at the lodge."}},
+    {n:14, m:"b", h:"Phong Nha Lake House, Phong Nha", u:"http://phongnhalakehouse.vn/",
      t:{es:"Descanso en Phong Nha",en:"Rest & Recharge in Phong Nha"},
-     x:{es:"Día completo de descanso entre expediciones: servicio de lavandería en las villas, piscina, masaje o una caminata tranquila por la aldea. Recargar para la siguiente etapa.",
-        en:"A full day at leisure between jungle expeditions. Rest, arrange laundry service at the villas, and recharge for the next leg of the adventure: afternoon by the pool, a massage, or a quiet walk around the local village."}},
+     x:{es:"Día completo de descanso entre expediciones: servicio de lavandería en el lodge, piscina, masaje o una caminata tranquila por la aldea. Recargar para la siguiente etapa.",
+        en:"A full day at leisure between jungle expeditions. Rest, arrange laundry service at the lodge, and recharge for the next leg of the adventure: afternoon by the pool, a massage, or a quiet walk around the local village."}},
     {n:15, m:"bld", camp:true, ox:OX_TL,
      t:{es:"Expedición 2: Tu Lan Cave Expedition (día 1)",en:"Expedition 2: Tu Lan Cave Expedition (Day 1)"},
-     x:{es:"Desayuno en las villas y reunión con el equipo de Oxalis para el briefing y el ajuste de equipo de la expedición Tu Lan, de 5 días. Traslado a Tan Hoa y inicio del trekking: campos de cacahuate, valles rurales y cruces de río hasta la selva. Primer campamento salvaje con cena caliente preparada por los porteadores y una noche de estrellas.",
-        en:"Breakfast at the villas before meeting the Oxalis team for the safety briefing and gear fitting for the 5-day Tu Lan Expedition. Transfer to Tan Hoa, gateway to Tu Lan, and begin the trek through peanut fields, rural valleys, and river crossings into the jungle. Arrive at the first wilderness campsite in time for a warm meal prepared by the porters and an evening under the stars."}},
+     x:{es:"Desayuno en el lodge y reunión con el equipo de Oxalis para el briefing y el ajuste de equipo de la expedición Tu Lan, de 5 días. Traslado a Tan Hoa y inicio del trekking: campos de cacahuate, valles rurales y cruces de río hasta la selva. Primer campamento salvaje con cena caliente preparada por los porteadores y una noche de estrellas.",
+        en:"Breakfast at the lodge before meeting the Oxalis team for the safety briefing and gear fitting for the 5-day Tu Lan Expedition. Transfer to Tan Hoa, gateway to Tu Lan, and begin the trek through peanut fields, rural valleys, and river crossings into the jungle. Arrive at the first wilderness campsite in time for a warm meal prepared by the porters and an evening under the stars."}},
     {n:16, m:"bld", camp:true, ox:OX_TL,
      t:{es:"Tu Lan — cuevas de río y nados (día 2)",en:"Tu Lan — River Caves & Subterranean Swims (Day 2)"},
      x:{es:"Día de profundizar en el paisaje kárstico: nado por cuevas de río subterráneas, paso por salas de caverna enormes y navegación de valles de selva que conectan los sistemas. Llegada al siguiente campamento a la orilla del río para una tarde relajada junto al agua.",
@@ -819,15 +861,15 @@
      t:{es:"Tu Lan — sistemas profundos y claraboyas (día 4)",en:"Tu Lan — Deep Systems & Skylights (Day 4)"},
      x:{es:"Últimas cuevas salvajes del sistema: pasos de río, cámaras secas y valles de selva. Dolinas de colapso por donde la luz del sol atraviesa el dosel y alimenta ecosistemas aislados bajo tierra. Campamento final y última noche celebratoria en la jungla.",
         en:"Journey through the final wilderness caves of the system, traversing river passages, dry subterranean chambers, and lush forest valleys. Marvel at massive collapse dolines where sunlight pierces the canopy, nourishing isolated ecosystems deep underground. Reach the final wilderness camp for a celebratory last evening in the jungle."}},
-    {n:19, m:"b", h:"Pilgrimage Village, Hue", u:"https://www.pilgrimagevillage.com/", ox:OX_TL,
+    {n:19, m:"b", h:"Pilgrimage Village Boutique Resort & Spa, Hue", u:"https://www.pilgrimagevillage.com/", ox:OX_TL,
      t:{es:"Cierre de Tu Lan y traslado a Hue",en:"Concluding Tu Lan & Transfer to Hue"},
-     x:{es:"Despertar con vistas brumosas de los picos de caliza desde Tu Lan Lodge. Paseo guiado en bici por los caminos rurales de Tan Hoa —maizales, huertos de cacahuate, granjas locales— con paradas para probar cacahuate tostado y té de jengibre con miel. Después, transporte privado al sur, pasando la DMZ, hasta la ciudad imperial de Hue.",
-        en:"Wake up to misty morning views of limestone peaks at Tu Lan Lodge. After breakfast, a guided bicycle ride through Tan Hoa's rural paths — past cornfields and peanut gardens, visiting local farms, and sampling regional specialties like roasted peanuts and ginger honey tea. After check-out, private transport transfers the group south past the DMZ toward the imperial city of Hue."}},
-    {n:20, m:"b", h:"Pilgrimage Village, Hue", u:"https://www.pilgrimagevillage.com/",
+     x:{es:"Despertar con vistas brumosas de los picos de caliza desde Tu Lan Lodge. Paseo guiado en bici por los caminos rurales de Tan Hoa —maizales, huertos de cacahuate, granjas locales— con paradas para probar cacahuate tostado y té de jengibre con miel. Después, transporte privado al sur, pasando la DMZ, hasta la ciudad imperial de Hue, llegando por la tarde para el check-in y descanso.",
+        en:"Wake up to misty morning views of limestone peaks at Tu Lan Lodge. A guided bicycle ride through Tan Hoa's rural paths — past cornfields and peanut gardens, visiting local farms, and sampling regional specialties like roasted peanuts and ginger honey tea. After check-out, private transport transfers the group south past the DMZ toward the imperial city of Hue, arriving in the late afternoon for check-in and rest."}},
+    {n:20, m:"b", h:"Pilgrimage Village Boutique Resort & Spa, Hue", u:"https://www.pilgrimagevillage.com/",
      t:{es:"Hue — descanso y cultura",en:"Hue — Leisure & Cultural Exploration"},
      x:{es:"Día para descansar y explorar Hue a tu ritmo: piscina del resort o visitas históricas. Sugerencias: la Ciudadela Imperial y la Ciudad Púrpura Prohibida, o un paseo en barco al atardecer por el Río de los Perfumes hacia la pagoda Thien Mu.",
         en:"A day to rest and explore Hue at your own pace: the resort's pools or the nearby historic sites. Recommended self-guided visits: the historic Imperial Citadel and Forbidden Purple City, or a sunset boat ride along the Perfume River toward Thien Mu Pagoda."}},
-    {n:21, m:"b", h:"Pilgrimage Village, Hue", u:"https://www.pilgrimagevillage.com/",
+    {n:21, m:"b", h:"Pilgrimage Village Boutique Resort & Spa, Hue", u:"https://www.pilgrimagevillage.com/",
      t:{es:"Hue — campo y cocina",en:"Hue — Countryside & Culinary Discovery"},
      x:{es:"Otro día libre para recargar después de las expediciones. Sugerencias: las tumbas reales de Tu Duc o Khai Dinh entre colinas, o la escena culinaria de Hue, del Bún Bò Huế de calle a la cocina de corte real.",
         en:"Another full day at leisure to recharge after the wilderness expeditions. Recommended: the royal tombs of Tu Duc or Khai Dinh set among the surrounding hills, or Hue's celebrated culinary scene, from street-side Bún Bò Huế to traditional royal court cuisine."}},
@@ -849,8 +891,8 @@
     if(m.includes("d")) parts.push(t("dy.d"));
     return parts.join(" · ");
   };
-  const dateStr = (n)=> LANG === "es" ? (n + " DE MARZO") : ("MAR " + n);
-
+  const dateStr = (n)=> LANG === "es" ? ((n + 2) + " DE MARZO") : ("MAR " + (n + 2));
+  
   function setWaLinks(){
     const href = "https://wa.me/525651100276?text=" + encodeURIComponent(t("wa.msg"));
     $$(".wa-link").forEach(a=> a.href = href);
@@ -864,7 +906,7 @@
         '<h3>' + esc(c.t[LANG]) + '</h3>' +
         '<span class="ch-r">' + t("ch.days") + ' ' + c.d + ' · ' + esc(c.r) + '</span>' +
         '<p>' + esc(c.p[LANG]) + '</p>' +
-        '<span class="ch-h">' + esc(c.h) + '</span>' +
+        '<span class="ch-h">' + esc(c.h[LANG]) + '</span>' +
       '</article>'
     ).join("");
   }
