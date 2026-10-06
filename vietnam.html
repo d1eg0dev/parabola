@@ -315,6 +315,11 @@
 .pl-s{font-size:.9rem;color:var(--ink2);max-width:46ch;margin-top:.2rem}
 .plazas-band .btn{margin-left:auto}
 @media (max-width:640px){.plazas-band .btn{margin-left:0}}
+
+/* ——— Hero meta (fechas + plazas) ——— */
+.hero-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:clamp(1.2rem,3vw,1.8rem)}
+.hero-meta .plazas{margin-bottom:0}
+.plazas-plain{border-color:rgba(244,241,232,.3);color:rgba(244,241,232,.85)}
 </style>
 </head>
 <body>
@@ -388,7 +393,10 @@
       <circle cx="1280" cy="330" r="2.5"/><circle cx="930" cy="670" r="2.5"/>
     </svg>
     <div class="hero-inner">
-      <p class="plazas reveal"><span class="pl-dot" aria-hidden="true"></span><span data-i18n="pl.hero"></span></p>
+      <div class="hero-meta reveal">
+        <span class="plazas plazas-plain"><span data-i18n="hero.dates"></span></span>
+        <span class="plazas"><span class="pl-dot" aria-hidden="true"></span><span data-i18n="pl.hero"></span></span>
+      </div>
       <p class="label reveal" data-i18n="hero.label"></p>
       <h1 class="h1">
         <span class="line"><span data-i18n="hero.h1a">Vietnam:</span></span>
@@ -506,7 +514,7 @@
         <p class="sec-intro reveal" style="--d:.16s" data-i18n="ra.sub"></p>
       </header>
       <div class="plazas-band reveal">
-        <span class="pl-big">04</span>
+        <span class="pl-big">04/08</span>
         <div>
           <p class="pl-t" data-i18n="pl.bandT"></p>
           <p class="pl-s" data-i18n="pl.bandS"></p>
@@ -679,8 +687,9 @@
       "rl0":"00 · Vietnam","rl1":"01 · La cura","rl2":"02 · El descenso","rl3":"03 · Itinerario","rl4":"04 · Tarifas","rl5":"05 · Contacto",
       "gl.label":"Galería","gl.h2":"El país, en imágenes.",
       "gl.sub":"Una lectura visual del recorrido: terrazas, caliza, selva y ríos. Referencia de atmósfera; el día a día completo está abajo.",
-      "pl.hero":"Solo quedan 4 lugares",
-      "pl.bandT":"Quedan 4 lugares en esta salida.",
+      "hero.dates":"3 — 24 de marzo, 2027",
+      "pl.hero":"4 de 8 lugares disponibles",
+      "pl.bandT":"Quedan 4 de 8 lugares en esta salida.",
       "pl.bandS":"Las expediciones de cueva operan con grupos reducidos por seguridad y permisos: cuando el cupo se cierra, se cierra. Si este viaje te llama, escríbenos ahora.",
       "pl.cta":"Apartar lugar",
     },
@@ -729,8 +738,9 @@
       "rl0":"00 · Vietnam","rl1":"01 · Curation","rl2":"02 · The descent","rl3":"03 · Itinerary","rl4":"04 · Rates","rl5":"05 · Contact",
       "gl.label":"Gallery","gl.h2":"The country, in images.",
       "gl.sub":"A visual read of the route: terraces, limestone, jungle and rivers. For atmosphere; the full day-by-day is below.",
-      "pl.hero":"Only 4 spots left",
-      "pl.bandT":"4 spots remain on this departure.",
+      "hero.dates":"March 3 — 24, 2027",
+      "pl.hero":"4 of 8 spots available",
+      "pl.bandT":"4 of 8 spots remain on this departure.",
       "pl.bandS":"Cave expeditions run with small groups for safety and permit reasons: once the quota closes, it closes. If this trip is calling you, write to us now.",
       "pl.cta":"Hold a spot",
     }
