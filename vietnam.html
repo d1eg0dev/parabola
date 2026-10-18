@@ -268,6 +268,48 @@
   .foot-brand path{stroke:var(--acc);stroke-width:2.4;fill:none;stroke-linecap:round}
   .foot-base{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line-c);padding-block:1.4rem;font:400 11px var(--mono);letter-spacing:.06em;color:rgba(244,241,232,.45)}
 
+  /* ——— Fotografía ——— */
+  .photo-bg{position:absolute;inset:0;overflow:hidden;z-index:0}
+  .photo-bg img{width:100%;height:100%;object-fit:cover;display:block}
+  .photo-bg::after{content:"";position:absolute;inset:0}
+  .hero .photo-bg img{object-position:56% 40%;transform:scale(1.06);transition:transform 2.6s var(--ease)}
+  body.ready .hero .photo-bg img{transform:none}
+  .hero .photo-bg::after{background:
+    linear-gradient(to top,rgba(12,20,14,.9) 0%,rgba(12,20,14,.55) 38%,rgba(12,20,14,.08) 68%,rgba(12,20,14,.38) 100%),
+    linear-gradient(to right,rgba(12,20,14,.5),transparent 55%)}
+  .hero .hero-art{z-index:1}
+  .hero .label{color:var(--yellow)}
+  @media (max-width:640px){
+    .hero .photo-bg::after{background:linear-gradient(to top,rgba(12,20,14,.92) 0%,rgba(12,20,14,.72) 55%,rgba(12,20,14,.4) 100%)}
+  }
+
+  .ch-img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;margin-bottom:1.3rem;background:rgba(21,32,25,.08)}
+  .chapter{border-top:0;padding-top:0}
+
+  /* Galería: banda sin número, como las bandas del index */
+  .gal-band{background:var(--green-deep);color:var(--paper);padding:clamp(5rem,11vh,8rem) 0}
+  .gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:clamp(2.2rem,5vw,3.4rem)}
+  .gal-head .h2{max-width:14ch}
+  .gal-head p{max-width:34ch;color:rgba(244,241,232,.7);font-size:.98rem}
+  .gal{columns:3 280px;column-gap:12px}
+  .gal button{display:block;width:100%;margin:0 0 12px;break-inside:avoid;cursor:zoom-in;position:relative;overflow:hidden;background:rgba(244,241,232,.06)}
+  .gal img{display:block;width:100%;height:auto;transition:transform .9s var(--ease),opacity .4s}
+  .gal button:hover img{transform:scale(1.03)}
+  .gal button:focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+
+  #lightbox{border:0;padding:0;margin:auto;width:100vw;height:100svh;max-width:none;max-height:none;background:rgba(10,18,12,.96);color:var(--paper)}
+  #lightbox::backdrop{background:rgba(10,18,12,.96)}
+  #lightbox[open]{display:grid;grid-template-columns:64px 1fr 64px;align-items:center}
+  #lightbox figure{grid-column:2;height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;padding:56px 0 28px}
+  #lightbox img{max-width:100%;max-height:calc(100svh - 120px);object-fit:contain;display:block}
+  #lightbox figcaption{font:400 11px var(--mono);letter-spacing:.12em;color:rgba(244,241,232,.6)}
+  .lb-btn{width:48px;height:48px;display:grid;place-items:center;color:var(--paper);cursor:pointer;opacity:.75;transition:opacity .3s}
+  .lb-btn:hover{opacity:1}
+  .lb-btn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round}
+  .lb-prev{grid-column:1;justify-self:center}
+  .lb-next{grid-column:3;justify-self:center}
+  .lb-close{position:absolute;top:12px;right:12px}
+
   /* ——— Responsive ——— */
   @media (max-width:1024px){
     .manif-copy{grid-column:3/13}
@@ -285,6 +327,9 @@
     .manif-grid{display:block}
     .manif-copy{margin-top:2rem}
     .chapters{grid-template-columns:1fr}
+    .gal{columns:2;column-gap:8px}
+    .gal button{margin-bottom:8px}
+    #lightbox[open]{grid-template-columns:44px 1fr 44px}
     .acc-head{grid-template-columns:40px 1fr 24px}
     .d-body{padding-left:0}
     .hero-foot span{display:none}
@@ -386,6 +431,9 @@
 
   <!-- 1 · HERO -->
   <section id="viaje" class="hero" data-route="rl0" data-x=".85" data-th="dk">
+    <div class="photo-bg">
+      <img src="img/vietnam/vietnam-18.jpg" srcset="img/vietnam/sm/vietnam-18.jpg 1200w, img/vietnam/vietnam-18.jpg 2500w" sizes="100vw" width="2500" height="1667" alt="" fetchpriority="high" decoding="async">
+    </div>
     <svg class="hero-art" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <path pathLength="1" opacity=".16" d="M-40 230 C 160 150, 300 330, 470 300 S 720 170, 860 260 S 1120 420, 1280 330 S 1400 230, 1500 290"/>
       <path pathLength="1" opacity=".10" d="M-40 660 C 140 580, 320 780, 500 710 S 780 560, 930 670 S 1180 810, 1340 710 S 1440 650, 1520 680"/>
@@ -504,6 +552,24 @@
       <div id="itin" class="reveal"></div>
     </div>
   </section>
+
+  <!-- BANDA · Galería -->
+  <section id="galeria" class="gal-band" aria-labelledby="galTitle">
+    <div class="wrap">
+      <header class="gal-head">
+        <h2 class="h2 reveal" id="galTitle" data-i18n="gal.h2"></h2>
+        <p class="reveal" style="--d:.08s" data-i18n="gal.sub"></p>
+      </header>
+      <div id="gal" class="gal"></div>
+    </div>
+  </section>
+
+  <dialog id="lightbox" aria-label="Galería">
+    <button class="lb-btn lb-close" data-lb="close" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+    <button class="lb-btn lb-prev" data-lb="prev" aria-label="Anterior"><svg viewBox="0 0 24 24"><path d="M15 4l-8 8 8 8"/></svg></button>
+    <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+    <button class="lb-btn lb-next" data-lb="next" aria-label="Siguiente"><svg viewBox="0 0 24 24"><path d="M9 4l8 8-8 8"/></svg></button>
+  </dialog>
 
   <!-- 5 · TARIFAS -->
   <section id="tarifas" class="rates dark" data-route="rl4" data-x=".88">
@@ -667,6 +733,7 @@
       "pf.c1":"01 · LA LLEGADA","pf.c2":"02 · EL NORTE RURAL","pf.c3":"03 · LAS CUEVAS","pf.c4":"04 · HUE",
       "pf.six":"6 NOCHES DE SELVA",
       "ch.word":"Capítulo","ch.days":"Días",
+      "gal.h2":"El viaje, antes de vivirlo.","gal.sub":"Montañas, arrozales, cuevas, mercados y la ciudad imperial. Toca cualquier foto para verla completa.","gal.of":"de",
       "it.label":"03 — Itinerario","it.h2":"Día a día.",
       "it.sub":"22 días en cuatro capítulos. Abre cualquier día para ver el detalle: comidas incluidas y noche a noche.",
       "dy.day":"DÍA","dy.meals":"Comidas","dy.night":"Noche en","dy.camp":"Campamento de expedición (Oxalis)","dy.end":"Fin del itinerario",
@@ -718,6 +785,7 @@
       "pf.c1":"01 · THE ARRIVAL","pf.c2":"02 · RURAL NORTH","pf.c3":"03 · THE CAVES","pf.c4":"04 · HUE",
       "pf.six":"6 JUNGLE NIGHTS",
       "ch.word":"Chapter","ch.days":"Days",
+      "gal.h2":"The trip, before you live it.","gal.sub":"Mountains, rice terraces, caves, markets and the imperial city. Tap any photo to see it in full.","gal.of":"of",
       "it.label":"03 — Itinerary","it.h2":"Day by day.",
       "it.sub":"22 days in four chapters. Open any day for the details: included meals and each night's stay.",
       "dy.day":"DAY","dy.meals":"Meals","dy.night":"Night at","dy.camp":"Expedition camp (Oxalis)","dy.end":"End of itinerary",
@@ -748,19 +816,19 @@
 
   /* Capítulos del viaje */
     const CH = [
-    {n:"01", d:"1–2", t:{es:"La llegada",en:"The arrival"}, r:"Hanoi",
+    {n:"01", d:"1–2", img:"vietnam-36", alt:{es:"Calle de Hanoi con banderas y una vendedora de fruta",en:"Hanoi street with flags and a fruit vendor"}, t:{es:"La llegada",en:"The arrival"}, r:"Hanoi",
      p:{es:"Dos noches para entrar en el ritmo de Vietnam: recorrer el barrio antiguo, probar su cocina y descubrir una ciudad intensa, caótica y fascinante.",
         en:"Two nights to settle into Vietnam's rhythm: wandering the Old Quarter, tasting its food, and getting to know an intense, chaotic, fascinating city."},
      h:{es:"Rex Hanoi Hotel",en:"Rex Hanoi Hotel"}},
-    {n:"02", d:"3–9", t:{es:"El norte rural",en:"Rural north"}, r:"Ninh Binh · Pu Luong · Mai Chau",
+    {n:"02", d:"3–9", img:"vietnam-17", alt:{es:"Camino entre arrozales y montañas",en:"Path through rice fields and mountains"}, t:{es:"El norte rural",en:"Rural north"}, r:"Ninh Binh · Pu Luong · Mai Chau",
      p:{es:"De los paisajes de piedra caliza de Ninh Binh a los arrozales y montañas de Pu Luong y Mai Chau. Una semana para descubrir el Vietnam rural, avanzando sin prisa entre pequeños pueblos y naturaleza.",
         en:"From Ninh Binh's limestone landscapes to the rice terraces and mountains of Pu Luong and Mai Chau. A week to discover rural Vietnam, moving unhurried through small villages and nature."},
      h:{es:"Aman Retreat · Amigo Pu Luong · Mai Chau Hideaway",en:"Aman Retreat · Amigo Pu Luong · Mai Chau Hideaway"}},
-    {n:"03", d:"10–18", t:{es:"Las cuevas de Phong Nha",en:"The caves of Phong Nha"}, r:"Phong Nha-Kẻ Bàng",
+    {n:"03", d:"10–18", img:"vietnam-06", alt:{es:"Haz de luz dentro de una cueva",en:"A beam of light inside a cave"}, t:{es:"Las cuevas de Phong Nha",en:"The caves of Phong Nha"}, r:"Phong Nha-Kẻ Bàng",
      p:{es:"Dos expediciones con equipos locales expertos que conocen y protegen este extraordinario mundo subterráneo. Cavernas monumentales, ríos bajo tierra y selva primaria en uno de los paisajes kársticos de piedra caliza más excepcionales y mejor conservados del mundo, reconocido como Patrimonio Mundial por la UNESCO.",
         en:"Two expeditions with expert local teams who know and protect this extraordinary underground world. Monumental caverns, underground rivers and primary jungle in one of the most exceptional and best-preserved limestone karst landscapes on Earth, recognized as UNESCO World Heritage."},
      h:{es:"Phong Nha Lake House · Campamentos Oxalis",en:"Phong Nha Lake House · Oxalis camps"}},
-    {n:"04", d:"19–22", t:{es:"Hue, la ciudad imperial",en:"Hue, the imperial city"}, r:"Hue",
+    {n:"04", d:"19–22", img:"vietnam-19", alt:{es:"Puerta de la ciudad imperial de Hue",en:"Gate of Hue imperial city"}, t:{es:"Hue, la ciudad imperial",en:"Hue, the imperial city"}, r:"Hue",
      p:{es:"Después de la expedición, el viaje cambia de ritmo. Tres días para descubrir la antigua capital imperial de Vietnam entre palacios, tumbas reales, jardines y una de las tradiciones gastronómicas más interesantes del país.",
         en:"After the expedition, the trip changes pace. Three days to discover Vietnam's ancient imperial capital among palaces, royal tombs, gardens and one of the country's most interesting culinary traditions."},
      h:{es:"Pilgrimage Village Boutique Resort & Spa",en:"Pilgrimage Village Boutique Resort & Spa"}}
@@ -911,6 +979,7 @@
   function renderChapters(){
     $("#chapters").innerHTML = CH.map(c=>
       '<article class="chapter">' +
+        '<img class="ch-img" src="img/vietnam/sm/' + c.img + '.jpg" width="1200" height="1500" loading="lazy" decoding="async" alt="' + esc(c.alt[LANG]) + '">' +
         '<span class="ch-n">' + c.n + '</span>' +
         '<h3>' + esc(c.t[LANG]) + '</h3>' +
         '<span class="ch-r">' + t("ch.days") + ' ' + c.d + ' · ' + esc(c.r) + '</span>' +
@@ -919,6 +988,62 @@
       '</article>'
     ).join("");
   }
+
+  /* ——— Galería ——— */
+  const GAL = [
+    ["02",{es:"Barcas entre montañas de caliza",en:"Boats among limestone hills"}],
+    ["29",{es:"Luz entrando a una caverna",en:"Light entering a cavern"}],
+    ["32",{es:"Arrozales inundados y casas de campo",en:"Flooded rice paddies and farmhouses"}],
+    ["21",{es:"Puesto de fideos",en:"A noodle stall"}],
+    ["11",{es:"Boca de cueva sobre el río",en:"Cave mouth over the river"}],
+    ["40",{es:"Campo de flores blancas",en:"Field of white flowers"}],
+    ["46",{es:"Templos y lagos desde el aire",en:"Temples and lakes from above"}],
+    ["14",{es:"Formaciones dentro de una cueva",en:"Formations inside a cave"}],
+    ["38",{es:"Cocina callejera",en:"Street food"}],
+    ["15",{es:"Valle con río y arrozales",en:"Valley with river and rice fields"}],
+    ["44",{es:"Puerta imperial de Hue",en:"Imperial gate of Hue"}],
+    ["31",{es:"Río subterráneo",en:"Underground river"}],
+    ["35",{es:"Tienda de dulces",en:"A sweets shop"}],
+    ["05",{es:"Trabajo en el campo",en:"Working the fields"}],
+    ["09",{es:"Laguna a la salida de una cueva",en:"Lagoon at a cave exit"}],
+    ["42",{es:"Mercado de fruta en la calle",en:"Street fruit market"}],
+    ["41",{es:"Conversación entre flores",en:"Conversation among flowers"}],
+    ["43",{es:"Palacio en la ciudad imperial",en:"Palace in the imperial city"}],
+    ["08",{es:"Comida en olla de barro",en:"Clay-pot dish"}],
+    ["30",{es:"Explorador en una gran caverna",en:"Explorer in a vast cavern"}]
+  ];
+  const GALSIZE = {"02": [1200, 800], "29": [800, 1200], "32": [800, 1200], "21": [904, 1200], "11": [675, 1200], "40": [1200, 769], "46": [1200, 800], "14": [800, 1200], "38": [1200, 800], "15": [675, 1200], "44": [900, 1200], "31": [1200, 800], "35": [800, 1200], "05": [800, 1200], "09": [1200, 800], "42": [1200, 900], "41": [1200, 800], "43": [1200, 675], "08": [1200, 675], "30": [1200, 800]};
+  function renderGallery(){
+    $("#gal").innerHTML = GAL.map((g,i)=>{
+      const sz = GALSIZE[g[0]];
+      return '<button type="button" data-i="' + i + '" aria-label="' + esc(g[1][LANG]) + '">' +
+        '<img src="img/vietnam/sm/vietnam-' + g[0] + '.jpg" width="' + sz[0] + '" height="' + sz[1] + '" loading="lazy" decoding="async" alt="' + esc(g[1][LANG]) + '">' +
+      '</button>';
+    }).join("");
+  }
+  const lb = $("#lightbox");
+  let lbI = 0;
+  function lbShow(i){
+    lbI = (i + GAL.length) % GAL.length;
+    const g = GAL[lbI];
+    $("#lbImg").src = "img/vietnam/vietnam-" + g[0] + ".jpg";
+    $("#lbImg").alt = g[1][LANG];
+    $("#lbCap").textContent = g[1][LANG] + " — " + (lbI + 1) + " " + t("gal.of") + " " + GAL.length;
+  }
+  $("#gal").addEventListener("click", function(e){
+    const b = e.target.closest("button[data-i]"); if(!b) return;
+    lbShow(+b.dataset.i); lb.showModal();
+  });
+  lb.addEventListener("click", function(e){
+    const b = e.target.closest("[data-lb]");
+    if(b){ const a = b.dataset.lb; if(a === "close") lb.close(); else lbShow(lbI + (a === "next" ? 1 : -1)); return; }
+    if(e.target === lb || e.target.tagName === "FIGURE") lb.close();
+  });
+  lb.addEventListener("keydown", function(e){
+    if(e.key === "ArrowRight") lbShow(lbI + 1);
+    if(e.key === "ArrowLeft") lbShow(lbI - 1);
+  });
+  lb.addEventListener("close", function(){ const b = $('#gal button[data-i="' + lbI + '"]'); if(b) b.focus(); });
 
   /* ——— Render: itinerario ——— */
   function renderItin(){
@@ -977,7 +1102,7 @@
     $$(".lang button").forEach(b=> b.classList.toggle("on", b.dataset.lang === LANG));
     setWaLinks();
     $("#mailCta").href = "mailto:hola@parabola.com.mx?subject=" + encodeURIComponent(t("mail.sub")) + "&body=" + encodeURIComponent(t("mail.body"));
-    renderChapters(); renderItin(); renderLists();
+    renderChapters(); renderItin(); renderLists(); renderGallery();
     buildRoute();
   }
   $$(".lang button").forEach(b=> b.addEventListener("click", ()=> applyLang(b.dataset.lang)));
