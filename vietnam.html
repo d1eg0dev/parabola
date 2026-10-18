@@ -226,6 +226,7 @@
   .price{background:var(--paper);color:var(--ink);padding:clamp(1.6rem,3vw,2.4rem)}
   .price .p-l{font:500 10px var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--acc)}
   .price .p-v{font:500 clamp(1.9rem,3.4vw,2.8rem)/1.1 var(--sans);letter-spacing:-.02em;margin:.8rem 0 .3rem}
+  .price .p-u{font-size:.45em;letter-spacing:0;white-space:nowrap}
   .price .p-s{font-size:.9rem;color:var(--ink2)}
   .notes{margin-top:clamp(2rem,4vw,3rem);list-style:none;max-width:72ch}
   .notes li{display:flex;gap:12px;font:400 12px var(--mono);letter-spacing:.03em;line-height:1.7;color:rgba(244,241,232,.62);padding:.55rem 0}
@@ -594,12 +595,12 @@
       <div class="prices">
         <div class="price reveal">
           <p class="p-l" data-i18n="pr.s.label"></p>
-          <p class="p-v">$5,588.60 <span style="font-size:.45em">USD</span></p>
+          <p class="p-v">$5,588.60 <span class="p-u">USD <span data-i18n="pr.pp"></span></span></p>
           <p class="p-s" data-i18n="pr.s.sub"></p>
         </div>
         <div class="price reveal" style="--d:.1s">
           <p class="p-l" data-i18n="pr.d.label"></p>
-          <p class="p-v">$4,700.10 <span style="font-size:.45em">USD</span></p>
+          <p class="p-v">$4,700.10 <span class="p-u">USD <span data-i18n="pr.pp"></span></span></p>
           <p class="p-s" data-i18n="pr.d.sub"></p>
         </div>
       </div>
@@ -742,7 +743,7 @@
       "ra.label":"04 — Tarifas","ra.h2":"Inversión por persona.",
       "ra.sub":"Precios por persona, en dólares. El alcance completo —alojamientos, vuelo doméstico, expediciones y transporte— está detallado abajo.",
       "pr.s.label":"Habitación individual","pr.s.sub":"Habitación privada durante todo el viaje.",
-      "pr.d.label":"Habitación compartida","pr.d.sub":"Doble o twin, para viajar acompañado.",
+      "pr.d.label":"Habitación compartida","pr.d.sub":"Doble o twin, para viajar acompañado. El precio es por persona, no por habitación.","pr.pp":"por persona",
       "pr.notes":"Notas",
       "inc.label":"Lo que incluye","excl.label":"Lo que no incluye",
       "ct.label":"05 — Contacto","ct.h2":"¿Este descenso es tuyo?",
@@ -794,7 +795,7 @@
       "ra.label":"04 — Rates","ra.h2":"Investment per person.",
       "ra.sub":"Prices per person, in USD. The full scope —lodgings, domestic flight, expeditions and transport— is detailed below.",
       "pr.s.label":"Single occupancy","pr.s.sub":"Private room throughout the trip.",
-      "pr.d.label":"Shared occupancy","pr.d.sub":"Double or twin, for traveling together.",
+      "pr.d.label":"Shared occupancy","pr.d.sub":"Double or twin, for traveling together. The price is per person, not per room.","pr.pp":"per person",
       "pr.notes":"Notes",
       "inc.label":"What's included","excl.label":"What's not included",
       "ct.label":"05 — Contact","ct.h2":"Is this descent yours?",
